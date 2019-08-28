@@ -1,0 +1,68 @@
+require "./spec_helper"
+
+describe Facebook::Client do
+  describe "#request" do
+    it "builds request object" do
+      client = Facebook::Client.new(api: "/me")
+      client.request.to_s.should eq("https://graph.facebook.com/me")
+    end
+
+    it "respects api" do
+      client = Facebook::Client.new(api: "/v4.0/me")
+      client.request.to_s.should eq("https://graph.facebook.com/v4.0/me")
+
+      client = Facebook::Client.new
+      client.api = Facebook::Api::Get.new("/me", data: {"limit" => "2"})
+      client.request.to_s.should eq("https://graph.facebook.com/me?limit=2")
+
+      client = Facebook::Client.new
+      client.api = Facebook::Api::Get.parse("/me -d limit=3")
+      client.request.to_s.should eq("https://graph.facebook.com/me?limit=3")
+    end
+
+    it "respects host" do
+      client = Facebook::Client.new(api: "/me")
+      client.host = "http://localhost:8080"
+      client.request.to_s.should eq("http://localhost:8080/me")
+    end
+  end
+
+  describe "#execute" do
+    it "raises when auth is not set or empty" do
+      client = Facebook::Client.new(api: "/me")
+      expect_raises(Facebook::Auth::NotAuthorizedError) do
+        client.execute
+      end
+
+      client.auth = ""
+      expect_raises(Facebook::Auth::NotAuthorizedError) do
+        client.execute
+      end
+    end
+
+    it "raises Dryrun when the strategy is dryrun" do
+      client = Facebook::Client.new(api: "/me")
+      client.auth = "xxx"
+      client.dryrun!
+
+      expect_raises(Facebook::Dryrun, "curl -s -G -d 'access_token=xxx' https://graph.facebook.com/me") do
+        client.execute
+      end
+    end
+
+    context "(http connection error)" do
+      it "returns response" do
+        client = Facebook::Client.new(api: "/me", auth: "xxx")
+        client.host = "http://localhost:4"
+        res = client.execute
+        res.should be_a Facebook::Response
+
+        res.code.should eq -1
+        res.success?.should be_false
+        expect_raises(Facebook::Api::Error) { res.body }
+        expect_raises(Facebook::Api::Error) { res.headers }
+        expect_raises(Facebook::Api::Error) { res.success! }
+      end
+    end
+  end
+end

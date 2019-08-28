@@ -1,0 +1,50 @@
+name: facebook
+version: 0.1.0
+
+authors:
+  - maiha <maiha@wota.jp>
+
+dependencies:
+  protobuf-storage:
+    github: maiha/protobuf-storage.cr
+    version: ">= 0.3.1"
+  var:
+    github: maiha/var.cr
+    version: ">= 1.2.0"
+  cmds:
+    github: maiha/cmds.cr
+    version: ">= 0.3.4"
+  toml-config:
+    github: maiha/toml-config.cr
+    version: ">= 0.5.0"
+  pretty:
+    github: maiha/pretty.cr
+    version: ">= 0.7.4"
+  retriable:
+    github: Sija/retriable.cr
+    branch: develop
+  jq:
+    github: maiha/jq.cr
+    version: ">= 0.8.0"
+
+development_dependencies:
+  app:
+    github: maiha/app.cr
+    version: ">= 0.5.0"
+  opts:
+    github: maiha/opts.cr
+    version: ">= 0.6.0"
+  cmds:
+    github: maiha/cmds.cr
+    verison: ">= 0.3.4"
+  shell:
+    github: maiha/shell.cr
+    version: ">= 0.4.0"
+  clickhouse:
+    github: maiha/clickhouse.cr
+    version: ">= 0.5.2"
+  composite_logger:
+    github: maiha/composite_logger.cr
+    version: ">= 0.3.2"
+
+license: MIT
