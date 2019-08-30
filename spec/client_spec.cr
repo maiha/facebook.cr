@@ -27,6 +27,30 @@ describe Facebook::Client do
     end
   end
 
+  describe "#get" do
+    context "('/foo -d a=1 -d b=2')" do
+      it "accepts '-d' as data" do
+        client = Facebook::Client.new(auth: "xxx")
+        client.dryrun!
+
+        expect_raises(Facebook::Dryrun, "curl -s -G -d 'a=1' -d 'b=2' -d 'access_token=xxx' https://graph.facebook.com/foo") do
+          client.get("/foo -d a=1 -d b=2")
+        end
+      end
+    end
+
+    context "('/foo -d a=1 -d b=2', {a=>x})" do
+      it "overwrites data by parameters" do
+        client = Facebook::Client.new(auth: "xxx")
+        client.dryrun!
+
+        expect_raises(Facebook::Dryrun, "curl -s -G -d 'a=x' -d 'b=2' -d 'access_token=xxx' https://graph.facebook.com/foo") do
+          client.get("/foo -d a=1 -d b=2", {"a" => "x"})
+        end
+      end
+    end
+  end
+  
   describe "#execute" do
     it "raises when auth is not set or empty" do
       client = Facebook::Client.new(api: "/me")

@@ -22,7 +22,11 @@ Cmds.command "api" do
 
   usage "get XXX # get 'XXX' as is"
   task get, "XXX" do
-    res = client.get(arg1)
+    if limit = config.limit?
+      res = client.get(arg1, {"limit" => limit.to_s})
+    else
+      res = client.get(arg1)
+    end
     show(res)
   end
 

@@ -65,15 +65,15 @@ module Facebook
     ######################################################################
     ### HTTP methods
     
-    def get(path : String, params = {} of String => String) : Response
+    def get(path : String, data = {} of String => String) : Response
       api = Api::Get.parse(path)
-      api.data.merge(params)
+      api.data.merge!(data)
       execute(api: api)
     end
 
     def post(path : String, form = {} of String => String) : Response
       api = Api::Post.parse(path)
-      api.form.merge(params)
+      api.form.merge!(params)
       execute(api: api)
     end
 
