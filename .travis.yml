@@ -1,9 +1,9 @@
 language: crystal
-
-# Uncomment the following if you'd like Travis to run specs and check code formatting
-# script:
-#   - crystal spec
-#   - crystal tool format --check
 sudo: false
+addons:
+  apt:
+    packages:
+      - libcurl4-openssl-dev
+      - libidn2-0-dev
 script:
-  - make test
+  - make spec

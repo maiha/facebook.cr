@@ -1,4 +1,4 @@
-# facebook.cr
+# facebook.cr [![Build Status](https://travis-ci.org/maiha/facebook.cr.svg?branch=master)](https://travis-ci.org/maiha/facebook.cr)
 
 facebook api for [Crystal](http://crystal-lang.org/).
 
@@ -61,7 +61,7 @@ $ facebook api get '/v4.0/act_123456/campaigns'
 dependencies:
   facebook:
     github: maiha/facebook
-	version: 0.2.0
+    version: 0.2.0
 ```
 
 2. Run `shards install`
