@@ -4,6 +4,8 @@ require "http"
 require "uri"
 
 require "var"
+require "pretty"
+require "curl"
 
 # lib
 # require "./lib/**"
@@ -13,4 +15,4 @@ require "var"
 
 # api
 # require "./facebook/rate_limit"
-require "./facebook/*"
+require "./facebook/client"

@@ -1,5 +1,7 @@
 require "./callback"
 require "./strategy"
+require "./request"
+require "./response"
 
 module Facebook
   class Client
@@ -16,6 +18,9 @@ module Facebook
       self.api  = api
       self.auth = auth
       self.host = host
+
+      self.strategy = Strategy::Libcurl.new
+      self.logger = logger      # set loggers on related objects
     end
 
     ######################################################################
@@ -33,11 +38,25 @@ module Facebook
       @host = Facebook::Host.new(host)
     end
 
-    def dryrun! : Client
-      @strategy = Facebook::Strategy::Dryrun.new
+    def strategy=(v : Strategy::Base) : Client
+      @strategy = v
+      strategy.logger = logger
       return self
     end
 
+    def dryrun! : Client
+      self.strategy= Facebook::Strategy::Dryrun.new
+    end
+
+    def libcurl! : Client
+      self.strategy= Facebook::Strategy::Libcurl.new
+    end
+
+    def logger=(v : Logger)
+      @logger = v
+      strategy.logger = v
+    end
+    
     ######################################################################
     ### API methods
 
@@ -47,11 +66,15 @@ module Facebook
     ### HTTP methods
     
     def get(path : String, params = {} of String => String) : Response
-      execute(api: Api::Get.new(path, data: params))
+      api = Api::Get.parse(path)
+      api.data.merge(params)
+      execute(api: api)
     end
 
     def post(path : String, form = {} of String => String) : Response
-      execute(api: Api::Post.new(path, form: params))
+      api = Api::Post.parse(path)
+      api.form.merge(params)
+      execute(api: api)
     end
 
     ######################################################################

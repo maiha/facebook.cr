@@ -1,7 +1,7 @@
 require "./strategy/*"
 
 module Facebook::Strategy
-  var strategy : Strategy::Base = Http.new
+  var strategy : Strategy::Base
 
   # overrides to bind logger
   def strategy=(v : Strategy::Base)

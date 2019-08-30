@@ -1,3 +1,5 @@
+require "../dryrun"
+
 module Facebook::Strategy
   class Dryrun < Base
     def execute(req : Request) : HTTP::Client::Response

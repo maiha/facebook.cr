@@ -1,10 +1,10 @@
 # ```console
 # $ fbget /me
-# $ fbget /v4.0/me/adaccounts -d limit 10
+# $ fbget '/v4.0/me/adaccounts -d limit 10'
 # ```
 
 require "../src/facebook"
-require "pretty"
+require "composite_logger"
 
 def show_headers(res : Facebook::Response)
   hash = res.headers.to_h
@@ -15,6 +15,9 @@ def show_headers(res : Facebook::Response)
   puts Pretty.lines(lines, delimiter: " ").split(/\n/).map(&.gsub(/\s+$/,"")).join("\n")
 rescue Facebook::Api::Error
   puts "N/A"
+rescue err
+  puts "!!!!!!!!!!! #{err} !!!!!!!!!!!!"
+  puts res.header
 end
 
 def show_body(res : Facebook::Response, verbose = false)
@@ -26,7 +29,7 @@ rescue
 end
 
 def show(res : Facebook::Response, verbose = false)
-  if verbose || !res.success? 
+  if verbose
     puts "%s %s %s" % [res.code, res.req.api.method, res.req.full_url]
     puts "----------------------------------------"
     show_headers(res)
@@ -35,22 +38,28 @@ def show(res : Facebook::Response, verbose = false)
   show_body(res, verbose)
 end
 
-def run(client, verbose = false)
-  res = client.execute
+def run(client, cmd : String, verbose = false)
+  res = client.get(cmd)
   show(res, verbose: verbose)
 rescue curl : Facebook::Dryrun
   puts curl.inspect
 end
 
+debug   = !! ARGV.delete("-d")
 verbose = !! ARGV.delete("-v")
 dryrun  = !! ARGV.delete("-n")
 token   = ENV["FACEBOOK_ACCESS_TOKEN"]? || abort "missing token. try 'FACEBOOK_ACCESS_TOKEN=xxxxxx #{PROGRAM_NAME}'"
 ARGV.any? || abort "no api commands. try '#{PROGRAM_NAME} /me'"
 
-client = Facebook::Client.new
-client.auth = token
-client.api  = ARGV.join(" ")
-#client.host = "http://localhost:7777"
+extra_opts = ARGV.select(&.starts_with?("-"))
+extra_opts.empty? || abort "An unknown option was passed #{extra_opts.inspect}"
+
+if debug
+  logger = Logger.new(STDOUT)
+  logger.level = "DEBUG"
+end
+
+client = Facebook::Client.new(auth: token, logger: logger)
 client.dryrun! if dryrun
 
-run(client, verbose: verbose)
+run(client, cmd: ARGV.join(" "), verbose: verbose)

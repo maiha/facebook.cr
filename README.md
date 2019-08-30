@@ -10,9 +10,7 @@ facebook api for [Crystal](http://crystal-lang.org/).
 require "facebook"
 
 client = Facebook::Client.new(auth: "xxxxxx")
-client.api = "/me"
-
-res = client.execute
+res = client.get("/me")
 puts res.body
 ```
 
