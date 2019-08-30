@@ -1,0 +1,11 @@
+syntax = "proto2";
+
+
+
+message AdMonetizationProperty {
+  optional string id           = 1;
+}
+
+message AdMonetizationPropertyArray {
+  repeated AdMonetizationProperty array = 1;
+}

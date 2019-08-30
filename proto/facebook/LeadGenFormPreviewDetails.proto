@@ -1,0 +1,21 @@
+syntax = "proto2";
+
+
+
+message LeadGenFormPreviewDetails {
+  optional string call_to_action_title = 1;
+  optional string default_appointment_scheduling_inline_context = 2;
+  optional string edit_text    = 3;
+  optional string email_inline_context_text = 4;
+  optional string next_button_text = 5;
+  optional string personal_info_text = 6;
+  optional string phone_number_inline_context_text = 7;
+  optional string review_your_info_text = 8;
+  optional string secure_sharing_text = 9;
+  optional string slide_to_submit_text = 10;
+  optional string submit_button_text = 11;
+}
+
+message LeadGenFormPreviewDetailsArray {
+  repeated LeadGenFormPreviewDetails array = 1;
+}

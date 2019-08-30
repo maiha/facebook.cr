@@ -1,0 +1,16 @@
+syntax = "proto2";
+
+import "Datetime.proto";
+
+message IgComment {
+  optional string   id         = 1;
+  optional bool     hidden     = 2;
+  optional int64    like_count = 3;
+  optional string   text       = 4;
+  optional Datetime timestamp  = 5;
+  optional string   username   = 6;
+}
+
+message IgCommentArray {
+  repeated IgComment array = 1;
+}

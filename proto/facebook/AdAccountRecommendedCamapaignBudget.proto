@@ -1,0 +1,13 @@
+syntax = "proto2";
+
+
+
+message AdAccountRecommendedCamapaignBudget {
+  optional string daily        = 1;
+  optional string lifetime     = 2;
+  optional string objective    = 3;
+}
+
+message AdAccountRecommendedCamapaignBudgetArray {
+  repeated AdAccountRecommendedCamapaignBudget array = 1;
+}

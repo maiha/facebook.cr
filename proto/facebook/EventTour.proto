@@ -1,0 +1,22 @@
+syntax = "proto2";
+
+
+
+message EventTour {
+  optional string id                          = 1;
+  optional string description                 = 2;
+  optional string dominant_color              = 3;
+  optional string end_time                    = 4;
+  optional bool   is_past                     = 5;
+  optional int64  last_event_timestamp        = 6;
+  optional string name                        = 7;
+  optional int64  num_events                  = 8;
+  optional string publishing_state            = 9;
+  optional int64  scheduled_publish_timestamp = 10;
+  optional string start_time                  = 11;
+  optional string ticketing_uri               = 12;
+}
+
+message EventTourArray {
+  repeated EventTour array = 1;
+}

@@ -1,0 +1,11 @@
+syntax = "proto2";
+
+
+
+message UserIdForPage {
+  optional string id   = 1;
+}
+
+message UserIdForPageArray {
+  repeated UserIdForPage array = 1;
+}

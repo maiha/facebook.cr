@@ -1,0 +1,20 @@
+syntax = "proto2";
+
+import "Datetime.proto";
+
+message BusinessImage {
+  optional string   id                 = 1;
+  optional Datetime creation_time      = 2;
+  optional string   hash               = 3;
+  optional int64    height             = 4;
+  optional string   name               = 5;
+  optional string   url                = 6;
+  optional string   url_128            = 7;
+  optional int64    width              = 8;
+  optional string   creative_folder_id = 9;
+  repeated string   validation_ad_placements = 10;
+}
+
+message BusinessImageArray {
+  repeated BusinessImage array = 1;
+}

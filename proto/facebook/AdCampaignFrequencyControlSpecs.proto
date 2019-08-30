@@ -1,0 +1,13 @@
+syntax = "proto2";
+
+
+
+message AdCampaignFrequencyControlSpecs {
+  optional string event         = 1;
+  optional int64  interval_days = 2;
+  optional int64  max_frequency = 3;
+}
+
+message AdCampaignFrequencyControlSpecsArray {
+  repeated AdCampaignFrequencyControlSpecs array = 1;
+}

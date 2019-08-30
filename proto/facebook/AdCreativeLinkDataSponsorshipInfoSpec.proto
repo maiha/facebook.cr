@@ -1,0 +1,12 @@
+syntax = "proto2";
+
+
+
+message AdCreativeLinkDataSponsorshipInfoSpec {
+  optional string sponsor_image_url = 1;
+  optional string sponsor_name = 2;
+}
+
+message AdCreativeLinkDataSponsorshipInfoSpecArray {
+  repeated AdCreativeLinkDataSponsorshipInfoSpec array = 1;
+}

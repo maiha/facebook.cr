@@ -1,0 +1,19 @@
+syntax = "proto2";
+
+
+
+message InstagramUser {
+  optional string id                  = 1;
+  optional int64  follow_count        = 2;
+  optional int64  followed_by_count   = 3;
+  optional bool   has_profile_picture = 4;
+  optional bool   is_private          = 5;
+  optional bool   is_published        = 6;
+  optional int64  media_count         = 7;
+  optional string profile_pic         = 8;
+  optional string username            = 9;
+}
+
+message InstagramUserArray {
+  repeated InstagramUser array = 1;
+}

@@ -10,6 +10,8 @@ class Facebook::Request
   def initialize(@api = nil, @auth = nil, @host = nil)
   end
 
+  delegate method, path, headers, to: api
+  
   def full_url : String
     u = host.uri.dup
     u.path = api.request_path

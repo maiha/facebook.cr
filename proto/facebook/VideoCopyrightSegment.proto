@@ -1,0 +1,13 @@
+syntax = "proto2";
+
+
+
+message VideoCopyrightSegment {
+  optional double duration_in_sec = 1;
+  optional string media_type   = 2;
+  optional double start_time_in_sec = 3;
+}
+
+message VideoCopyrightSegmentArray {
+  repeated VideoCopyrightSegment array = 1;
+}

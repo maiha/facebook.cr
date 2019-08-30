@@ -1,0 +1,12 @@
+syntax = "proto2";
+
+
+
+message AudiencePermission {
+  optional string share_account_id = 1;
+  optional string share_account_name = 2;
+}
+
+message AudiencePermissionArray {
+  repeated AudiencePermission array = 1;
+}

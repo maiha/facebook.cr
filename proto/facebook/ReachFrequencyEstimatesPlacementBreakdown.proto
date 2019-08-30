@@ -1,0 +1,11 @@
+syntax = "proto2";
+
+
+
+message ReachFrequencyEstimatesPlacementBreakdown {
+
+}
+
+message ReachFrequencyEstimatesPlacementBreakdownArray {
+  repeated ReachFrequencyEstimatesPlacementBreakdown array = 1;
+}

@@ -1,0 +1,12 @@
+syntax = "proto2";
+
+
+
+message CommerceSettings {
+  optional int64 inventory       = 1;
+  optional int64 total_inventory = 2;
+}
+
+message CommerceSettingsArray {
+  repeated CommerceSettings array = 1;
+}

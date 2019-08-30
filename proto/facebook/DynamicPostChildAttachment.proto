@@ -1,0 +1,16 @@
+syntax = "proto2";
+
+
+
+message DynamicPostChildAttachment {
+  optional string description  = 1;
+  optional string image_url    = 2;
+  optional string link         = 3;
+  optional string place_id     = 4;
+  optional string product_id   = 5;
+  optional string title        = 6;
+}
+
+message DynamicPostChildAttachmentArray {
+  repeated DynamicPostChildAttachment array = 1;
+}

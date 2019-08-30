@@ -1,0 +1,16 @@
+syntax = "proto2";
+
+
+
+message SavedMessageResponse {
+  optional string id         = 1;
+  optional string category   = 2;
+  optional string image      = 3;
+  optional bool   is_enabled = 4;
+  optional string message    = 5;
+  optional string title      = 6;
+}
+
+message SavedMessageResponseArray {
+  repeated SavedMessageResponse array = 1;
+}

@@ -1,0 +1,14 @@
+syntax = "proto2";
+
+
+
+message AsyncRequest {
+  optional int64  id     = 1;
+  optional string result = 2;
+  optional int64  status = 3;
+  optional int64  type   = 4;
+}
+
+message AsyncRequestArray {
+  repeated AsyncRequest array = 1;
+}

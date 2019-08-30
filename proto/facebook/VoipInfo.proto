@@ -1,0 +1,17 @@
+syntax = "proto2";
+
+
+
+message VoipInfo {
+  optional bool   has_mobile_app     = 1;
+  optional bool   has_permission     = 2;
+  optional bool   is_callable        = 3;
+  optional bool   is_callable_webrtc = 4;
+  optional bool   is_pushable        = 5;
+  optional int64  reason_code        = 6;
+  optional string reason_description = 7;
+}
+
+message VoipInfoArray {
+  repeated VoipInfo array = 1;
+}

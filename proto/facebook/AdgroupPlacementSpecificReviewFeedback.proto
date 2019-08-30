@@ -1,0 +1,11 @@
+syntax = "proto2";
+
+
+
+message AdgroupPlacementSpecificReviewFeedback {
+
+}
+
+message AdgroupPlacementSpecificReviewFeedbackArray {
+  repeated AdgroupPlacementSpecificReviewFeedback array = 1;
+}

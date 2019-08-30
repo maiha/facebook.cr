@@ -1,0 +1,14 @@
+syntax = "proto2";
+
+
+
+message AdgroupRelevanceScore {
+  optional string negative_feedback = 1;
+  optional string positive_feedback = 2;
+  optional string score        = 3;
+  optional string status       = 4;
+}
+
+message AdgroupRelevanceScoreArray {
+  repeated AdgroupRelevanceScore array = 1;
+}

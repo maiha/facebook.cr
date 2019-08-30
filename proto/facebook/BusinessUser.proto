@@ -1,0 +1,22 @@
+syntax = "proto2";
+
+
+
+message BusinessUser {
+  optional string id                 = 1;
+  optional string email              = 2;
+  optional string finance_permission = 3;
+  optional string first_name         = 4;
+  optional string ip_permission      = 5;
+  optional string last_name          = 6;
+  optional bool   marked_for_removal = 7;
+  optional string name               = 8;
+  optional string pending_email      = 9;
+  optional string role               = 10;
+  optional string title              = 11;
+  optional string two_fac_status     = 12;
+}
+
+message BusinessUserArray {
+  repeated BusinessUser array = 1;
+}

@@ -1,0 +1,17 @@
+syntax = "proto2";
+
+
+
+message VideoPoll {
+  optional string id                 = 1;
+  optional bool   close_after_voting = 2;
+  optional bool   default_open       = 3;
+  optional string question           = 4;
+  optional bool   show_gradient      = 5;
+  optional bool   show_results       = 6;
+  optional string status             = 7;
+}
+
+message VideoPollArray {
+  repeated VideoPoll array = 1;
+}

@@ -1,0 +1,12 @@
+syntax = "proto2";
+
+
+
+message AdCreativePostClickConfiguration {
+  optional string post_click_item_description = 1;
+  optional string post_click_item_headline = 2;
+}
+
+message AdCreativePostClickConfigurationArray {
+  repeated AdCreativePostClickConfiguration array = 1;
+}

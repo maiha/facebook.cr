@@ -1,0 +1,29 @@
+syntax = "proto2";
+
+import "Datetime.proto";
+
+message Photo {
+  optional string   id                         = 1;
+  optional string   alt_text                   = 2;
+  optional string   alt_text_custom            = 3;
+  optional Datetime backdated_time             = 4;
+  optional string   backdated_time_granularity = 5;
+  optional bool     can_backdate               = 6;
+  optional bool     can_delete                 = 7;
+  optional bool     can_tag                    = 8;
+  optional Datetime created_time               = 9;
+  optional int64    height                     = 10;
+  optional string   icon                       = 11;
+  optional string   link                       = 12;
+  optional string   name                       = 13;
+  optional string   page_story_id              = 14;
+  optional string   picture                    = 15;
+  optional int64    position                   = 16;
+  optional string   source                     = 17;
+  optional Datetime updated_time               = 18;
+  optional int64    width                      = 19;
+}
+
+message PhotoArray {
+  repeated Photo array = 1;
+}

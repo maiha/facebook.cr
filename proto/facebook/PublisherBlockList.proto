@@ -1,0 +1,18 @@
+syntax = "proto2";
+
+import "Datetime.proto";
+
+message PublisherBlockList {
+  optional string   id                            = 1;
+  optional string   business_owner_id             = 2;
+  optional bool     is_auto_blocking_on           = 3;
+  optional bool     is_eligible_at_campaign_level = 4;
+  optional Datetime last_update_time              = 5;
+  optional string   last_update_user              = 6;
+  optional string   name                          = 7;
+  optional string   owner_ad_account_id           = 8;
+}
+
+message PublisherBlockListArray {
+  repeated PublisherBlockList array = 1;
+}

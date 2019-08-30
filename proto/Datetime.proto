@@ -1,0 +1,9 @@
+syntax = "proto2";
+
+message Datetime {
+  required string value = 1; 
+}
+
+message DatetimeArray {
+  repeated Datetime array = 1;
+}

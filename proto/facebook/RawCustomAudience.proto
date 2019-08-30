@@ -1,0 +1,12 @@
+syntax = "proto2";
+
+
+
+message RawCustomAudience {
+  optional string id           = 1;
+  optional string name         = 2;
+}
+
+message RawCustomAudienceArray {
+  repeated RawCustomAudience array = 1;
+}

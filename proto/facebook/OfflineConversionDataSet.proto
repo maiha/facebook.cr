@@ -1,0 +1,29 @@
+syntax = "proto2";
+
+import "Datetime.proto";
+
+message OfflineConversionDataSet {
+  optional string   id                               = 1;
+  optional string   config                           = 2;
+  optional Datetime creation_time                    = 3;
+  optional string   description                      = 4;
+  optional int64    duplicate_entries                = 5;
+  optional bool     enable_auto_assign_to_accounts   = 6;
+  optional string   event_stats                      = 7;
+  optional int64    event_time_max                   = 8;
+  optional int64    event_time_min                   = 9;
+  optional bool     is_mta_use                       = 10;
+  optional bool     is_restricted_use                = 11;
+  optional bool     is_unavailable                   = 12;
+  optional string   last_upload_app                  = 13;
+  optional int64    last_upload_app_changed_time     = 14;
+  optional int64    match_rate_approx                = 15;
+  optional int64    matched_entries                  = 16;
+  optional string   name                             = 17;
+  optional int64    valid_entries                    = 18;
+  optional bool     auto_assign_to_new_accounts_only = 19;
+}
+
+message OfflineConversionDataSetArray {
+  repeated OfflineConversionDataSet array = 1;
+}

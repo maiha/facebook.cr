@@ -1,0 +1,13 @@
+syntax = "proto2";
+
+
+
+message AdAccountUser {
+  optional string id           = 1;
+  optional string name         = 2;
+  repeated string tasks        = 3;
+}
+
+message AdAccountUserArray {
+  repeated AdAccountUser array = 1;
+}

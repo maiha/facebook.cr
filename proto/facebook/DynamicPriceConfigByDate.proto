@@ -1,0 +1,13 @@
+syntax = "proto2";
+
+
+
+message DynamicPriceConfigByDate {
+  optional string id           = 1;
+  optional string checkin_date = 2;
+  optional string prices       = 3;
+}
+
+message DynamicPriceConfigByDateArray {
+  repeated DynamicPriceConfigByDate array = 1;
+}

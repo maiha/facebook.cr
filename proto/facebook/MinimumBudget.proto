@@ -1,0 +1,15 @@
+syntax = "proto2";
+
+
+
+message MinimumBudget {
+  optional string currency                     = 1;
+  optional int64  min_daily_budget_high_freq   = 2;
+  optional int64  min_daily_budget_imp         = 3;
+  optional int64  min_daily_budget_low_freq    = 4;
+  optional int64  min_daily_budget_video_views = 5;
+}
+
+message MinimumBudgetArray {
+  repeated MinimumBudget array = 1;
+}

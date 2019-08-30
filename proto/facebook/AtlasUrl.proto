@@ -1,0 +1,11 @@
+syntax = "proto2";
+
+
+
+message AtlasUrl {
+  optional string url          = 1;
+}
+
+message AtlasUrlArray {
+  repeated AtlasUrl array = 1;
+}

@@ -1,0 +1,11 @@
+syntax = "proto2";
+
+
+
+message TargetingProspectingAudience {
+
+}
+
+message TargetingProspectingAudienceArray {
+  repeated TargetingProspectingAudience array = 1;
+}

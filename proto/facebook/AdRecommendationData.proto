@@ -1,0 +1,11 @@
+syntax = "proto2";
+
+
+
+message AdRecommendationData {
+  optional string link         = 1;
+}
+
+message AdRecommendationDataArray {
+  repeated AdRecommendationData array = 1;
+}

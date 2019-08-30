@@ -1,0 +1,14 @@
+syntax = "proto2";
+
+
+
+message TargetingGeoLocationPoliticalDistrict {
+  optional string country      = 1;
+  optional string key          = 2;
+  optional string name         = 3;
+  optional string political_district = 4;
+}
+
+message TargetingGeoLocationPoliticalDistrictArray {
+  repeated TargetingGeoLocationPoliticalDistrict array = 1;
+}

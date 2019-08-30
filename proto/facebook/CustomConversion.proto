@@ -1,0 +1,28 @@
+syntax = "proto2";
+
+import "Datetime.proto";
+
+message CustomConversion {
+  optional string   id                       = 1;
+  optional string   account_id               = 2;
+  optional string   aggregation_rule         = 3;
+  optional Datetime creation_time            = 4;
+  optional string   custom_event_type        = 5;
+  optional int64    default_conversion_value = 6;
+  optional string   description              = 7;
+  optional string   event_source_type        = 8;
+  optional Datetime first_fired_time         = 9;
+  optional bool     is_archived              = 10;
+  optional bool     is_unavailable           = 11;
+  optional Datetime last_fired_time          = 12;
+  optional string   name                     = 13;
+  optional int64    retention_days           = 14;
+  optional string   rule                     = 15;
+  optional string   advanced_rule            = 16;
+  optional string   event_source_id          = 17;
+  optional string   custom_conversion_id     = 18;
+}
+
+message CustomConversionArray {
+  repeated CustomConversion array = 1;
+}

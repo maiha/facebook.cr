@@ -1,0 +1,12 @@
+syntax = "proto2";
+
+
+
+message AdCreativeLinkDataTemplateVideoSpec {
+  optional string categorization_criteria = 1;
+  optional string template_id   = 2;
+}
+
+message AdCreativeLinkDataTemplateVideoSpecArray {
+  repeated AdCreativeLinkDataTemplateVideoSpec array = 1;
+}

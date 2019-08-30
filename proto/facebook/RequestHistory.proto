@@ -1,0 +1,15 @@
+syntax = "proto2";
+
+import "Datetime.proto";
+
+message RequestHistory {
+  optional string   api_version  = 1;
+  optional Datetime created_time = 2;
+  optional int64    error_code   = 3;
+  optional string   graph_path   = 4;
+  optional string   http_method  = 5;
+}
+
+message RequestHistoryArray {
+  repeated RequestHistory array = 1;
+}

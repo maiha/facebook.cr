@@ -1,0 +1,19 @@
+syntax = "proto2";
+
+
+
+message ProfilePictureSource {
+  optional int64  bottom        = 1;
+  optional string cache_key     = 2;
+  optional int64  height        = 3;
+  optional bool   is_silhouette = 4;
+  optional int64  left          = 5;
+  optional int64  right         = 6;
+  optional int64  top           = 7;
+  optional string url           = 8;
+  optional int64  width         = 9;
+}
+
+message ProfilePictureSourceArray {
+  repeated ProfilePictureSource array = 1;
+}

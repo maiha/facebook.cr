@@ -23,4 +23,14 @@ module Facebook::Auth
       raise NotAuthorizedError.new
     end
   end
+
+  class Nothing
+    include Auth
+
+    # No needs to authorize.
+    # Maybe global page, or access_key has already been embeded.
+    def authorize!(request) : Bool
+      return true
+    end
+  end
 end

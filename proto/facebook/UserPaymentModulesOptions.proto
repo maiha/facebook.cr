@@ -1,0 +1,13 @@
+syntax = "proto2";
+
+
+
+message UserPaymentModulesOptions {
+  optional string account_id   = 1;
+  optional string country      = 2;
+  optional string currency     = 3;
+}
+
+message UserPaymentModulesOptionsArray {
+  repeated UserPaymentModulesOptions array = 1;
+}

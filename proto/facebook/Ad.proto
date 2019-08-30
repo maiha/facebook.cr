@@ -1,0 +1,35 @@
+syntax = "proto2";
+
+import "Datetime.proto";
+
+message Ad {
+  optional string   id                      = 1;
+  optional string   account_id              = 2;
+  optional string   adset_id                = 3;
+  optional int64    bid_amount              = 4;
+  optional string   bid_type                = 5;
+  optional string   campaign_id             = 6;
+  optional string   configured_status       = 7;
+  optional Datetime created_time            = 8;
+  optional string   demolink_hash           = 9;
+  optional int64    display_sequence        = 10;
+  optional string   effective_status        = 11;
+  optional bool     engagement_audience     = 12;
+  optional bool     is_autobid              = 13;
+  optional string   last_updated_by_app_id  = 14;
+  optional string   name                    = 15;
+  optional string   preview_shareable_link  = 16;
+  optional int64    priority                = 17;
+  optional string   source_ad_id            = 18;
+  optional string   status                  = 19;
+  optional Datetime updated_time            = 20;
+  optional string   audience_id             = 21;
+  optional string   date_format             = 22;
+  optional string   draft_adgroup_id        = 23;
+  repeated string   execution_options       = 24;
+  optional bool     include_demolink_hashes = 25;
+}
+
+message AdArray {
+  repeated Ad array = 1;
+}

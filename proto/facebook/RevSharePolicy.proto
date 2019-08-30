@@ -1,0 +1,12 @@
+syntax = "proto2";
+
+
+
+message RevSharePolicy {
+  optional string policy_id    = 1;
+  optional string policy_name  = 2;
+}
+
+message RevSharePolicyArray {
+  repeated RevSharePolicy array = 1;
+}

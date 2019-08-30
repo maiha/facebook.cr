@@ -1,0 +1,15 @@
+syntax = "proto2";
+
+
+
+message TargetingGeoLocationZip {
+  optional string country         = 1;
+  optional string key             = 2;
+  optional string name            = 3;
+  optional int64  primary_city_id = 4;
+  optional int64  region_id       = 5;
+}
+
+message TargetingGeoLocationZipArray {
+  repeated TargetingGeoLocationZip array = 1;
+}

@@ -1,0 +1,14 @@
+syntax = "proto2";
+
+
+
+message AdRuleHistoryResultAction {
+  optional string action       = 1;
+  optional string field        = 2;
+  optional string new_value    = 3;
+  optional string old_value    = 4;
+}
+
+message AdRuleHistoryResultActionArray {
+  repeated AdRuleHistoryResultAction array = 1;
+}

@@ -1,0 +1,15 @@
+syntax = "proto2";
+
+
+
+message BrandSafetyBlockListUsage {
+  optional int64  current_usage = 1;
+  optional int64  new_usage     = 2;
+  optional string platform      = 3;
+  optional string position      = 4;
+  optional int64  threshold     = 5;
+}
+
+message BrandSafetyBlockListUsageArray {
+  repeated BrandSafetyBlockListUsage array = 1;
+}

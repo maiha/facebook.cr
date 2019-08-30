@@ -1,0 +1,16 @@
+syntax = "proto2";
+
+
+
+message InsightsResult {
+  optional string id           = 1;
+  optional string description  = 2;
+  optional string description_from_api_doc = 3;
+  optional string name         = 4;
+  optional string period       = 5;
+  optional string title        = 6;
+}
+
+message InsightsResultArray {
+  repeated InsightsResult array = 1;
+}

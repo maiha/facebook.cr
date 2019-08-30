@@ -1,0 +1,18 @@
+syntax = "proto2";
+
+
+
+message AdCreativeLinkDataChildAttachment {
+  optional string caption     = 1;
+  optional string description = 2;
+  optional string image_hash  = 3;
+  optional string link        = 4;
+  optional string name        = 5;
+  optional string picture     = 6;
+  optional bool   static_card = 7;
+  optional string video_id    = 8;
+}
+
+message AdCreativeLinkDataChildAttachmentArray {
+  repeated AdCreativeLinkDataChildAttachment array = 1;
+}

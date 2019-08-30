@@ -1,0 +1,14 @@
+syntax = "proto2";
+
+
+
+message AdKeywords {
+  repeated string brands       = 1;
+  repeated string product_categories = 2;
+  repeated string product_names = 3;
+  repeated string search_terms = 4;
+}
+
+message AdKeywordsArray {
+  repeated AdKeywords array = 1;
+}

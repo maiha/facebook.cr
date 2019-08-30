@@ -1,0 +1,11 @@
+syntax = "proto2";
+
+
+
+message AdCreativeTextData {
+  optional string message      = 1;
+}
+
+message AdCreativeTextDataArray {
+  repeated AdCreativeTextData array = 1;
+}

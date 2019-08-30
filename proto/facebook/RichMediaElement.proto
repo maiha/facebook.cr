@@ -1,0 +1,12 @@
+syntax = "proto2";
+
+
+
+message RichMediaElement {
+  optional string element_type = 1;
+  optional string name         = 2;
+}
+
+message RichMediaElementArray {
+  repeated RichMediaElement array = 1;
+}

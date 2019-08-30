@@ -1,0 +1,22 @@
+syntax = "proto2";
+
+
+
+message AgencyClientDeclaration {
+  optional int64  agency_representing_client          = 1;
+  optional int64  client_based_in_france              = 2;
+  optional string client_city                         = 3;
+  optional string client_country_code                 = 4;
+  optional string client_email_address                = 5;
+  optional string client_name                         = 6;
+  optional string client_postal_code                  = 7;
+  optional string client_province                     = 8;
+  optional string client_street                       = 9;
+  optional string client_street2                      = 10;
+  optional int64  has_written_mandate_from_advertiser = 11;
+  optional int64  is_client_paying_invoices           = 12;
+}
+
+message AgencyClientDeclarationArray {
+  repeated AgencyClientDeclaration array = 1;
+}

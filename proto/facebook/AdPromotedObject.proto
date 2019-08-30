@@ -1,0 +1,28 @@
+syntax = "proto2";
+
+
+
+message AdPromotedObject {
+  optional string application_id = 1;
+  optional string custom_conversion_id = 2;
+  optional string custom_event_str = 3;
+  optional string custom_event_type = 4;
+  optional string event_id     = 5;
+  optional string fundraiser_campaign_id = 6;
+  optional string object_store_url = 7;
+  optional string offer_id     = 8;
+  optional string offline_conversion_data_set_id = 9;
+  optional string page_id      = 10;
+  optional string pixel_aggregation_rule = 11;
+  optional string pixel_id     = 12;
+  optional string pixel_rule   = 13;
+  optional string place_page_set_id = 14;
+  optional string product_catalog_id = 15;
+  optional string product_item_id = 16;
+  optional string product_set_id = 17;
+  optional string retention_days = 18;
+}
+
+message AdPromotedObjectArray {
+  repeated AdPromotedObject array = 1;
+}

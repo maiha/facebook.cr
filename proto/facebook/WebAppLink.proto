@@ -1,0 +1,12 @@
+syntax = "proto2";
+
+
+
+message WebAppLink {
+  optional bool   should_fallback = 1;
+  optional string url             = 2;
+}
+
+message WebAppLinkArray {
+  repeated WebAppLink array = 1;
+}

@@ -1,0 +1,21 @@
+syntax = "proto2";
+
+
+
+message BroadTargetingCategories {
+  optional string id   = 1;
+  optional string category_description = 2;
+  optional string name = 3;
+  optional string parent_category = 4;
+  repeated string path = 5;
+  optional int64  size = 6;
+  optional string source = 7;
+  optional int64  type = 8;
+  optional string type_name = 9;
+  optional string untranslated_name = 10;
+  optional string untranslated_parent_name = 11;
+}
+
+message BroadTargetingCategoriesArray {
+  repeated BroadTargetingCategories array = 1;
+}

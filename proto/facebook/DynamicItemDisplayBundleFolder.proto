@@ -1,0 +1,13 @@
+syntax = "proto2";
+
+
+
+message DynamicItemDisplayBundleFolder {
+  optional string id           = 1;
+  optional string categorization_criteria = 2;
+  optional string name         = 3;
+}
+
+message DynamicItemDisplayBundleFolderArray {
+  repeated DynamicItemDisplayBundleFolder array = 1;
+}

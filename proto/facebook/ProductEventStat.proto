@@ -1,0 +1,20 @@
+syntax = "proto2";
+
+
+
+message ProductEventStat {
+  optional string date_start                                = 1;
+  optional string date_stop                                 = 2;
+  optional string device_type                               = 3;
+  optional string event                                     = 4;
+  optional int64  total_content_ids_matched_other_catalogs  = 5;
+  optional int64  total_matched_content_ids                 = 6;
+  optional int64  total_unmatched_content_ids               = 7;
+  optional int64  unique_content_ids_matched_other_catalogs = 8;
+  optional int64  unique_matched_content_ids                = 9;
+  optional int64  unique_unmatched_content_ids              = 10;
+}
+
+message ProductEventStatArray {
+  repeated ProductEventStat array = 1;
+}

@@ -1,0 +1,11 @@
+syntax = "proto2";
+
+
+
+message AdCampaignPacedBidInfo {
+  optional string bidding_status = 1;
+}
+
+message AdCampaignPacedBidInfoArray {
+  repeated AdCampaignPacedBidInfo array = 1;
+}

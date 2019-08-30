@@ -1,0 +1,11 @@
+syntax = "proto2";
+
+
+
+message BusinessAdAccountRequest {
+  optional string id           = 1;
+}
+
+message BusinessAdAccountRequestArray {
+  repeated BusinessAdAccountRequest array = 1;
+}

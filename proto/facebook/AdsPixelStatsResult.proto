@@ -1,0 +1,12 @@
+syntax = "proto2";
+
+import "Datetime.proto";
+
+message AdsPixelStatsResult {
+  optional string   aggregation = 1;
+  optional Datetime start_time  = 2;
+}
+
+message AdsPixelStatsResultArray {
+  repeated AdsPixelStatsResult array = 1;
+}

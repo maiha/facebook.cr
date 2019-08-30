@@ -1,0 +1,14 @@
+syntax = "proto2";
+
+
+
+message PlayableContent {
+  optional string id         = 1;
+  optional string name       = 2;
+  optional string app_id     = 3;
+  optional string source_url = 4;
+}
+
+message PlayableContentArray {
+  repeated PlayableContent array = 1;
+}

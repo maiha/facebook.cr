@@ -1,0 +1,13 @@
+syntax = "proto2";
+
+
+
+message LeadGenConditionalQuestionsGroupQuestions {
+  optional string field_key    = 1;
+  optional string input_type   = 2;
+  optional string name         = 3;
+}
+
+message LeadGenConditionalQuestionsGroupQuestionsArray {
+  repeated LeadGenConditionalQuestionsGroupQuestions array = 1;
+}

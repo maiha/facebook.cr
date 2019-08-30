@@ -3,6 +3,8 @@ Cmds.command "config" do
   usage "show           # show current values"
   usage "check          # verify keys"
 
+  var sample : Facebook::Config = Facebook::Config.sample
+
   def before
     self.logger = Logger.new(nil)
   end
@@ -10,10 +12,10 @@ Cmds.command "config" do
   task sample do
     if field = args.shift?
       k = field.split(".").last
-      v = sample_config[field.gsub(".", "/")]
+      v = sample[field.gsub(".", "/")]
       puts "%s = %s" % [k, v.inspect]
     else
-      puts CONFIG_SAMPLE
+      puts Facebook::Config::SAMPLE
     end
   end
 
@@ -23,7 +25,7 @@ Cmds.command "config" do
   end
 
   task test do
-    src = sample_config.toml
+    src = sample.toml
     dst = config.toml
 
     results = Array(Array(String)).new
@@ -68,10 +70,6 @@ Cmds.command "config" do
     end
   end
 
-  private def sample_config
-    Facebook::Config.parse(CONFIG_SAMPLE)
-  end
-
   private def valid_account_id?(v) : Bool
     !!(v =~ /^\d{1,12}$/)
   end
@@ -99,49 +97,3 @@ Cmds.command "config" do
     end
   end
 end
-
-CONFIG_SAMPLE = <<-EOF
-[api]
-access_token    = ""
-
-url             = "https://graph.facebook.com"
-page_size       = 1000
-max_page        = 1000
-logging         = true
-keep_remaining  = 10
-
-dns_timeout     = 3.0
-connect_timeout = 5.0
-read_timeout    = 300.0
-
-recv_adaccounts = true
-
-[batch]
-work_dir   = "./"
-daily_dir  = "../daily"
-shared_dir = "../shared"
-log        = "../log"
-gc         = true
-
-[clickhouse]
-host  = "localhost"
-port  = 9000
-db    = "facebook"
-
-[[logger]]
-progname = "facebook"
-level    = "DEBUG"
-mode     = "a+"
-
-[[logger]]
-path     = "STDOUT"
-level    = "INFO"
-
-[[logger]]
-path     = "warn"
-level    = "WARN"
-
-[[logger]]
-path     = "err"
-level    = "ERROR"
-EOF

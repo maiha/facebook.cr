@@ -1,0 +1,15 @@
+syntax = "proto2";
+
+
+
+message CheckBatchRequestStatus {
+  optional int64  errors_total_count   = 1;
+  optional string handle               = 2;
+  repeated string ids_of_invalid_requests = 3;
+  optional string status               = 4;
+  optional int64  warnings_total_count = 5;
+}
+
+message CheckBatchRequestStatusArray {
+  repeated CheckBatchRequestStatus array = 1;
+}

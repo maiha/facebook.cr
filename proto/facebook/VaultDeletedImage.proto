@@ -1,0 +1,14 @@
+syntax = "proto2";
+
+import "Datetime.proto";
+
+message VaultDeletedImage {
+  optional string   id                = 1;
+  optional string   client_image_hash = 2;
+  optional Datetime date_taken        = 3;
+  optional string   remote_id         = 4;
+}
+
+message VaultDeletedImageArray {
+  repeated VaultDeletedImage array = 1;
+}

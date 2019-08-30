@@ -1,0 +1,32 @@
+syntax = "proto2";
+
+
+
+message AdCreativeLinkData {
+  optional int64  additional_image_index          = 1;
+  optional string attachment_style                = 2;
+  optional string branded_content_shared_to_sponsor_status = 3;
+  optional string branded_content_sponsor_page_id = 4;
+  optional string caption                         = 5;
+  optional string description                     = 6;
+  optional string event_id                        = 7;
+  optional bool   force_single_link               = 8;
+  optional string format_option                   = 9;
+  optional string image_hash                      = 10;
+  optional string link                            = 11;
+  optional string message                         = 12;
+  optional bool   multi_share_end_card            = 13;
+  optional bool   multi_share_optimized           = 14;
+  optional string name                            = 15;
+  optional string offer_id                        = 16;
+  optional string page_welcome_message            = 17;
+  optional string picture                         = 18;
+  repeated string preferred_image_tags            = 19;
+  repeated string retailer_item_ids               = 20;
+  optional bool   show_multiple_images            = 21;
+  optional bool   use_flexible_image_aspect_ratio = 22;
+}
+
+message AdCreativeLinkDataArray {
+  repeated AdCreativeLinkData array = 1;
+}

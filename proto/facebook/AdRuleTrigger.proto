@@ -1,0 +1,13 @@
+syntax = "proto2";
+
+
+
+message AdRuleTrigger {
+  optional string field        = 1;
+  optional string operator     = 2;
+  optional string type         = 3;
+}
+
+message AdRuleTriggerArray {
+  repeated AdRuleTrigger array = 1;
+}

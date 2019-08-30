@@ -1,0 +1,22 @@
+syntax = "proto2";
+
+
+
+message Destination {
+  optional string id           = 1;
+  optional string address      = 2;
+  optional string currency     = 3;
+  optional string description  = 4;
+  optional string destination_id = 5;
+  repeated string images       = 6;
+  optional string name         = 7;
+  optional string price        = 8;
+  optional string price_change = 9;
+  repeated string sanitized_images = 10;
+  repeated string types        = 11;
+  optional string url          = 12;
+}
+
+message DestinationArray {
+  repeated Destination array = 1;
+}

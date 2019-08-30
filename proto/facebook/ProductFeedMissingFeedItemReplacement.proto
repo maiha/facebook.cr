@@ -1,0 +1,11 @@
+syntax = "proto2";
+
+
+
+message ProductFeedMissingFeedItemReplacement {
+
+}
+
+message ProductFeedMissingFeedItemReplacementArray {
+  repeated ProductFeedMissingFeedItemReplacement array = 1;
+}

@@ -1,0 +1,12 @@
+syntax = "proto2";
+
+
+
+message StreamingReaction {
+  optional int64  count = 1;
+  optional string reaction_type = 2;
+}
+
+message StreamingReactionArray {
+  repeated StreamingReaction array = 1;
+}

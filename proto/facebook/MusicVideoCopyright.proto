@@ -1,0 +1,20 @@
+syntax = "proto2";
+
+import "Datetime.proto";
+
+message MusicVideoCopyright {
+  optional string   id                      = 1;
+  optional Datetime creation_time           = 2;
+  optional int64    displayed_matches_count = 3;
+  optional bool     in_conflict             = 4;
+  optional string   isrc                    = 5;
+  repeated string   ownership_countries     = 6;
+  optional string   reference_file_status   = 7;
+  optional string   ridge_monitoring_status = 8;
+  optional Datetime update_time             = 9;
+  repeated string   whitelisted_ig_users    = 10;
+}
+
+message MusicVideoCopyrightArray {
+  repeated MusicVideoCopyright array = 1;
+}

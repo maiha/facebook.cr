@@ -1,0 +1,16 @@
+syntax = "proto2";
+
+
+
+message DaCheck {
+  optional string action_uri   = 1;
+  optional string description  = 2;
+  optional string key          = 3;
+  optional string result       = 4;
+  optional string title        = 5;
+  optional string user_message = 6;
+}
+
+message DaCheckArray {
+  repeated DaCheck array = 1;
+}

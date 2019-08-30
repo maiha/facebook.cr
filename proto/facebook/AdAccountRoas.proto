@@ -1,0 +1,39 @@
+syntax = "proto2";
+
+
+
+message AdAccountRoas {
+  optional string adgroup_id = 1;
+  optional double arpu_180d = 2;
+  optional double arpu_1d  = 3;
+  optional double arpu_30d = 4;
+  optional double arpu_365d = 5;
+  optional double arpu_3d  = 6;
+  optional double arpu_7d  = 7;
+  optional double arpu_90d = 8;
+  optional string campaign_group_id = 9;
+  optional string campaign_id = 10;
+  optional string date_start = 11;
+  optional string date_stop = 12;
+  optional int64  installs = 13;
+  optional double revenue  = 14;
+  optional double revenue_180d = 15;
+  optional double revenue_1d = 16;
+  optional double revenue_30d = 17;
+  optional double revenue_365d = 18;
+  optional double revenue_3d = 19;
+  optional double revenue_7d = 20;
+  optional double revenue_90d = 21;
+  optional double spend    = 22;
+  optional double yield_180d = 23;
+  optional double yield_1d = 24;
+  optional double yield_30d = 25;
+  optional double yield_365d = 26;
+  optional double yield_3d = 27;
+  optional double yield_7d = 28;
+  optional double yield_90d = 29;
+}
+
+message AdAccountRoasArray {
+  repeated AdAccountRoas array = 1;
+}

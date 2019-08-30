@@ -1,0 +1,15 @@
+syntax = "proto2";
+
+import "Datetime.proto";
+
+message VideoCopyrightRule {
+  optional string   id              = 1;
+  repeated string   copyrights      = 2;
+  optional Datetime created_date    = 3;
+  optional bool     is_in_migration = 4;
+  optional string   name            = 5;
+}
+
+message VideoCopyrightRuleArray {
+  repeated VideoCopyrightRule array = 1;
+}

@@ -1,0 +1,11 @@
+syntax = "proto2";
+
+
+
+message AdCreativeDegreesOfFreedomSpec {
+  optional string degrees_of_freedom_type = 1;
+}
+
+message AdCreativeDegreesOfFreedomSpecArray {
+  repeated AdCreativeDegreesOfFreedomSpec array = 1;
+}

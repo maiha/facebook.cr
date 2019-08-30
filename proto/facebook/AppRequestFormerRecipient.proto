@@ -1,0 +1,12 @@
+syntax = "proto2";
+
+
+
+message AppRequestFormerRecipient {
+  optional string id           = 1;
+  optional string recipient_id = 2;
+}
+
+message AppRequestFormerRecipientArray {
+  repeated AppRequestFormerRecipient array = 1;
+}

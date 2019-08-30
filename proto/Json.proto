@@ -1,0 +1,9 @@
+syntax = "proto2";
+
+message Json {
+  required string value = 1; 
+}
+
+message JsonArray {
+  repeated Json array = 1;
+}

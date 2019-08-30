@@ -1,0 +1,15 @@
+syntax = "proto2";
+
+
+
+message PageChangeProposal {
+  optional string id           = 1;
+  optional string acceptance_status = 2;
+  optional string category     = 3;
+  optional string current_value = 4;
+  optional string proposed_value = 5;
+}
+
+message PageChangeProposalArray {
+  repeated PageChangeProposal array = 1;
+}

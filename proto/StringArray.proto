@@ -1,0 +1,9 @@
+syntax = "proto2";
+
+message StringArray {
+  repeated string array = 1;
+}
+
+message StringArrayArray {
+  repeated StringArray array = 1;
+}

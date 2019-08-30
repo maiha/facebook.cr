@@ -1,0 +1,13 @@
+syntax = "proto2";
+
+
+
+message BusinessOwnedObjectOnBehalfOfRequest {
+  optional string id           = 1;
+  optional string business_owned_object = 2;
+  optional string status       = 3;
+}
+
+message BusinessOwnedObjectOnBehalfOfRequestArray {
+  repeated BusinessOwnedObjectOnBehalfOfRequest array = 1;
+}

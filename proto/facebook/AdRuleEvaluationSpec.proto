@@ -1,0 +1,11 @@
+syntax = "proto2";
+
+
+
+message AdRuleEvaluationSpec {
+  optional string evaluation_type = 1;
+}
+
+message AdRuleEvaluationSpecArray {
+  repeated AdRuleEvaluationSpec array = 1;
+}

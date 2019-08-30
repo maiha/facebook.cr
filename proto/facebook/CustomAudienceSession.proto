@@ -1,0 +1,18 @@
+syntax = "proto2";
+
+
+
+message CustomAudienceSession {
+  optional string end_time     = 1;
+  optional string num_invalid_entries = 2;
+  optional string num_matched  = 3;
+  optional string num_received = 4;
+  optional string progress     = 5;
+  optional string session_id   = 6;
+  optional string stage        = 7;
+  optional string start_time   = 8;
+}
+
+message CustomAudienceSessionArray {
+  repeated CustomAudienceSession array = 1;
+}

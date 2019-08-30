@@ -1,0 +1,17 @@
+syntax = "proto2";
+
+
+
+message ProductCatalog {
+  optional string id                           = 1;
+  optional string default_image_url            = 2;
+  repeated string fallback_image_url           = 3;
+  optional int64  feed_count                   = 4;
+  optional string name                         = 5;
+  optional int64  product_count                = 6;
+  optional string vertical                     = 7;
+}
+
+message ProductCatalogArray {
+  repeated ProductCatalog array = 1;
+}

@@ -1,0 +1,14 @@
+syntax = "proto2";
+
+
+
+message BusinessAssetSharingAgreement {
+  optional string id           = 1;
+  repeated string relationship_type = 2;
+  optional string request_status = 3;
+  optional string request_type = 4;
+}
+
+message BusinessAssetSharingAgreementArray {
+  repeated BusinessAssetSharingAgreement array = 1;
+}

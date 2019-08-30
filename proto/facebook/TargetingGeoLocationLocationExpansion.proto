@@ -1,0 +1,11 @@
+syntax = "proto2";
+
+
+
+message TargetingGeoLocationLocationExpansion {
+  optional bool allowed      = 1;
+}
+
+message TargetingGeoLocationLocationExpansionArray {
+  repeated TargetingGeoLocationLocationExpansion array = 1;
+}

@@ -1,0 +1,13 @@
+syntax = "proto2";
+
+
+
+message ProductItemCommerceInsights {
+  optional int64 message_sends       = 1;
+  optional int64 organic_impressions = 2;
+  optional int64 paid_impressions    = 3;
+}
+
+message ProductItemCommerceInsightsArray {
+  repeated ProductItemCommerceInsights array = 1;
+}

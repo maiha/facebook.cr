@@ -1,0 +1,13 @@
+syntax = "proto2";
+
+
+
+message ProductFeedUploadErrorSample {
+  optional string id         = 1;
+  optional string retailer_id = 2;
+  optional int64  row_number = 3;
+}
+
+message ProductFeedUploadErrorSampleArray {
+  repeated ProductFeedUploadErrorSample array = 1;
+}

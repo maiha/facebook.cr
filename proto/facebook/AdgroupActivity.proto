@@ -1,0 +1,56 @@
+syntax = "proto2";
+
+import "Datetime.proto";
+
+message AdgroupActivity {
+  optional string   id                      = 1;
+  optional string   ad_creative_id_new      = 2;
+  optional string   ad_creative_id_old      = 3;
+  optional string   asset_feed_id_new       = 4;
+  optional string   asset_feed_id_old       = 5;
+  optional int64    bid_amount_new          = 6;
+  optional int64    bid_amount_old          = 7;
+  optional string   bid_type_new            = 8;
+  optional string   bid_type_old            = 9;
+  optional Datetime created_time            = 10;
+  optional int64    display_sequence_new    = 11;
+  optional int64    display_sequence_old    = 12;
+  optional bool     engagement_audience_new = 13;
+  optional bool     engagement_audience_old = 14;
+  optional Datetime event_time              = 15;
+  optional string   event_type              = 16;
+  optional bool     force_run_status_new    = 17;
+  optional bool     force_run_status_old    = 18;
+  optional string   friendly_name_new       = 19;
+  optional string   friendly_name_old       = 20;
+  optional bool     is_reviewer_admin_new   = 21;
+  optional bool     is_reviewer_admin_old   = 22;
+  optional string   objective_new           = 23;
+  optional string   objective_old           = 24;
+  optional string   objective_source_new    = 25;
+  optional string   objective_source_old    = 26;
+  optional int64    priority_new            = 27;
+  optional int64    priority_old            = 28;
+  optional string   reason_new              = 29;
+  optional string   reason_old              = 30;
+  optional string   run_status_new          = 31;
+  optional string   run_status_old          = 32;
+  optional string   source_adgroup_id_new   = 33;
+  optional string   source_adgroup_id_old   = 34;
+  optional Datetime start_time_new          = 35;
+  optional Datetime start_time_old          = 36;
+  optional Datetime stop_time_new           = 37;
+  optional Datetime stop_time_old           = 38;
+  optional string   target_spec_id_new      = 39;
+  optional string   target_spec_id_old      = 40;
+  repeated string   tracking_pixel_ids_new  = 41;
+  repeated string   tracking_pixel_ids_old  = 42;
+  optional Datetime update_time_new         = 43;
+  optional Datetime update_time_old         = 44;
+  repeated string   view_tags_new           = 45;
+  repeated string   view_tags_old           = 46;
+}
+
+message AdgroupActivityArray {
+  repeated AdgroupActivity array = 1;
+}

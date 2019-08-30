@@ -1,0 +1,18 @@
+syntax = "proto2";
+
+
+
+message PlaceTopic {
+  optional string id           = 1;
+  optional int64  count        = 2;
+  optional bool   has_children = 3;
+  optional string icon_url     = 4;
+  optional string name         = 5;
+  repeated string parent_ids   = 6;
+  optional string plural_name  = 7;
+  repeated string top_subtopic_names = 8;
+}
+
+message PlaceTopicArray {
+  repeated PlaceTopic array = 1;
+}

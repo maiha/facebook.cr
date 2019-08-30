@@ -1,0 +1,19 @@
+syntax = "proto2";
+
+import "Datetime.proto";
+
+message LiveEncoder {
+  optional string   id        = 1;
+  optional string   brand     = 2;
+  optional Datetime creation_time = 3;
+  optional string   device_id = 4;
+  optional Datetime last_heartbeat_time = 5;
+  optional string   model     = 6;
+  optional string   name      = 7;
+  optional string   status    = 8;
+  optional string   version   = 9;
+}
+
+message LiveEncoderArray {
+  repeated LiveEncoder array = 1;
+}

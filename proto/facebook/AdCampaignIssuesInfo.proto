@@ -1,0 +1,15 @@
+syntax = "proto2";
+
+
+
+message AdCampaignIssuesInfo {
+  optional int64  error_code = 1;
+  optional string error_message = 2;
+  optional string error_summary = 3;
+  optional string error_type = 4;
+  optional string level      = 5;
+}
+
+message AdCampaignIssuesInfoArray {
+  repeated AdCampaignIssuesInfo array = 1;
+}

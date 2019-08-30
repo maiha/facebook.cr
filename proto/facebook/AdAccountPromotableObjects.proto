@@ -1,0 +1,13 @@
+syntax = "proto2";
+
+
+
+message AdAccountPromotableObjects {
+  repeated string promotable_app_ids = 1;
+  repeated string promotable_page_ids = 2;
+  repeated string promotable_urls = 3;
+}
+
+message AdAccountPromotableObjectsArray {
+  repeated AdAccountPromotableObjects array = 1;
+}

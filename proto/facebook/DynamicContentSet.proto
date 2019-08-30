@@ -1,0 +1,13 @@
+syntax = "proto2";
+
+
+
+message DynamicContentSet {
+  optional string id           = 1;
+  optional string business_id  = 2;
+  optional string name         = 3;
+}
+
+message DynamicContentSetArray {
+  repeated DynamicContentSet array = 1;
+}

@@ -1,0 +1,11 @@
+syntax = "proto2";
+
+
+
+message CustomAudienceAdAccount {
+  optional string id           = 1;
+}
+
+message CustomAudienceAdAccountArray {
+  repeated CustomAudienceAdAccount array = 1;
+}

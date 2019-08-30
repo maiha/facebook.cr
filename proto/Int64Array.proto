@@ -1,0 +1,9 @@
+syntax = "proto2";
+
+message Int64Array {
+  repeated int64 array = 1;
+}
+
+message Int64ArrayArray {
+  repeated Int64Array array = 1;
+}

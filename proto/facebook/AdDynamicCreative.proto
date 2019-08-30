@@ -1,0 +1,11 @@
+syntax = "proto2";
+
+
+
+message AdDynamicCreative {
+  optional string preview_url  = 1;
+}
+
+message AdDynamicCreativeArray {
+  repeated AdDynamicCreative array = 1;
+}

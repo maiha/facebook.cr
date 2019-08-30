@@ -1,0 +1,24 @@
+syntax = "proto2";
+
+
+
+message TargetingGeoLocationCustomLocation {
+  optional string address_string  = 1;
+  optional string country         = 2;
+  optional string country_group   = 3;
+  optional string custom_type     = 4;
+  optional string distance_unit   = 5;
+  optional string key             = 6;
+  optional double latitude        = 7;
+  optional double longitude       = 8;
+  optional int64  max_population  = 9;
+  optional int64  min_population  = 10;
+  optional string name            = 11;
+  optional int64  primary_city_id = 12;
+  optional double radius          = 13;
+  optional int64  region_id       = 14;
+}
+
+message TargetingGeoLocationCustomLocationArray {
+  repeated TargetingGeoLocationCustomLocation array = 1;
+}

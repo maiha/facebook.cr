@@ -50,7 +50,7 @@ $ facebook api adaccounts
 `get` is meta api commands that can invoke arbitrary commands by string.
 
 ```console
-$ facebook api get '/v4.0/act_123456/campaigns'
+$ facebook api get '/v4.0/me/adaccounts -d fields=account_id,name'
 ```
 
 ## Development

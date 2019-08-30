@@ -1,0 +1,26 @@
+syntax = "proto2";
+
+import "Datetime.proto";
+
+message OracleTransaction {
+  optional string   id               = 1;
+  repeated string   ad_account_ids   = 2;
+  optional string   amount           = 3;
+  optional string   billing_period   = 4;
+  optional string   cdn_download_uri = 5;
+  optional string   currency         = 6;
+  optional string   download_uri     = 7;
+  optional Datetime due_date         = 8;
+  optional string   entity           = 9;
+  optional Datetime invoice_date     = 10;
+  optional string   invoice_id       = 11;
+  optional string   invoice_type     = 12;
+  optional string   liability_type   = 13;
+  optional string   payment_status   = 14;
+  optional string   payment_term     = 15;
+  optional string   type             = 16;
+}
+
+message OracleTransactionArray {
+  repeated OracleTransaction array = 1;
+}

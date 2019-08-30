@@ -1,0 +1,14 @@
+syntax = "proto2";
+
+
+
+message FlexibleTargeting {
+  repeated int64 college_years = 1;
+  repeated int64 education_statuses = 2;
+  repeated int64 interested_in = 3;
+  repeated int64 relationship_statuses = 4;
+}
+
+message FlexibleTargetingArray {
+  repeated FlexibleTargeting array = 1;
+}

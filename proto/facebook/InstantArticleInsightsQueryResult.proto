@@ -1,0 +1,13 @@
+syntax = "proto2";
+
+import "Datetime.proto";
+
+message InstantArticleInsightsQueryResult {
+  optional string   name       = 1;
+  optional Datetime time       = 2;
+  optional string   value      = 3;
+}
+
+message InstantArticleInsightsQueryResultArray {
+  repeated InstantArticleInsightsQueryResult array = 1;
+}

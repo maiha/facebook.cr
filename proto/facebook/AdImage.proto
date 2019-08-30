@@ -1,0 +1,26 @@
+syntax = "proto2";
+
+import "Datetime.proto";
+
+message AdImage {
+  optional string   id                                  = 1;
+  optional string   account_id                          = 2;
+  optional Datetime created_time                        = 3;
+  repeated string   creatives                           = 4;
+  optional string   hash                                = 5;
+  optional int64    height                              = 6;
+  optional bool     is_associated_creatives_in_adgroups = 7;
+  optional string   name                                = 8;
+  optional int64    original_height                     = 9;
+  optional int64    original_width                      = 10;
+  optional string   permalink_url                       = 11;
+  optional string   status                              = 12;
+  optional Datetime updated_time                        = 13;
+  optional string   url                                 = 14;
+  optional string   url_128                             = 15;
+  optional int64    width                               = 16;
+}
+
+message AdImageArray {
+  repeated AdImage array = 1;
+}

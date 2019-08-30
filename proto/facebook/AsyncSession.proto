@@ -1,0 +1,22 @@
+syntax = "proto2";
+
+import "Datetime.proto";
+
+message AsyncSession {
+  optional string   id                = 1;
+  optional Datetime complete_time     = 2;
+  optional int64    error_code        = 3;
+  optional string   exception         = 4;
+  optional string   method            = 5;
+  optional string   name              = 6;
+  optional int64    percent_completed = 7;
+  optional string   platform_version  = 8;
+  optional string   result            = 9;
+  optional Datetime start_time        = 10;
+  optional string   status            = 11;
+  optional string   uri               = 12;
+}
+
+message AsyncSessionArray {
+  repeated AsyncSession array = 1;
+}

@@ -1,0 +1,25 @@
+syntax = "proto2";
+
+import "Datetime.proto";
+
+message Comment {
+  optional string   id                         = 1;
+  optional bool     can_comment                = 2;
+  optional bool     can_hide                   = 3;
+  optional bool     can_like                   = 4;
+  optional bool     can_remove                 = 5;
+  optional bool     can_reply_privately        = 6;
+  optional int64    comment_count              = 7;
+  optional Datetime created_time               = 8;
+  optional bool     is_hidden                  = 9;
+  optional bool     is_private                 = 10;
+  optional int64    like_count                 = 11;
+  optional int64    live_broadcast_timestamp   = 12;
+  optional string   message                    = 13;
+  optional string   permalink_url              = 14;
+  optional bool     user_likes                 = 15;
+}
+
+message CommentArray {
+  repeated Comment array = 1;
+}

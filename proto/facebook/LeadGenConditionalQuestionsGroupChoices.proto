@@ -1,0 +1,12 @@
+syntax = "proto2";
+
+
+
+message LeadGenConditionalQuestionsGroupChoices {
+  optional string customized_token = 1;
+  optional string value        = 2;
+}
+
+message LeadGenConditionalQuestionsGroupChoicesArray {
+  repeated LeadGenConditionalQuestionsGroupChoices array = 1;
+}

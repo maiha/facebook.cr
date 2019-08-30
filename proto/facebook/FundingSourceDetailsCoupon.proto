@@ -1,0 +1,14 @@
+syntax = "proto2";
+
+import "Datetime.proto";
+
+message FundingSourceDetailsCoupon {
+  optional int64    amount         = 1;
+  optional string   currency       = 2;
+  optional string   display_amount = 3;
+  optional Datetime expiration     = 4;
+}
+
+message FundingSourceDetailsCouponArray {
+  repeated FundingSourceDetailsCoupon array = 1;
+}

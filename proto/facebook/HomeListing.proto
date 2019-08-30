@@ -1,0 +1,47 @@
+syntax = "proto2";
+
+
+
+message HomeListing {
+  optional string id               = 1;
+  optional string ac_type          = 2;
+  optional string additional_fees_description = 3;
+  optional string agent_company    = 4;
+  optional string agent_email      = 5;
+  optional string agent_name       = 6;
+  optional string agent_phone      = 7;
+  optional int64  area_size        = 8;
+  optional string area_unit        = 9;
+  optional string availability     = 10;
+  optional string currency         = 11;
+  optional int64  days_on_market   = 12;
+  optional string description      = 13;
+  optional string furnish_type     = 14;
+  optional string group_id         = 15;
+  optional string heating_type     = 16;
+  optional string home_listing_id  = 17;
+  repeated string images           = 18;
+  optional string laundry_type     = 19;
+  optional string listing_type     = 20;
+  optional string max_currency     = 21;
+  optional string max_price        = 22;
+  optional string min_currency     = 23;
+  optional string min_price        = 24;
+  optional string name             = 25;
+  optional double num_baths        = 26;
+  optional double num_beds         = 27;
+  optional double num_rooms        = 28;
+  optional int64  num_units        = 29;
+  optional string parking_type     = 30;
+  optional string partner_verification = 31;
+  optional string pet_policy       = 32;
+  optional string price            = 33;
+  optional string property_type    = 34;
+  repeated string sanitized_images = 35;
+  optional string url              = 36;
+  optional int64  year_built       = 37;
+}
+
+message HomeListingArray {
+  repeated HomeListing array = 1;
+}

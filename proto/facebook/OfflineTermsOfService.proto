@@ -1,0 +1,12 @@
+syntax = "proto2";
+
+
+
+message OfflineTermsOfService {
+  optional string id             = 1;
+  optional int64  accept_time    = 2;
+}
+
+message OfflineTermsOfServiceArray {
+  repeated OfflineTermsOfService array = 1;
+}

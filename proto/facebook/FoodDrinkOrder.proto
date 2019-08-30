@@ -1,0 +1,18 @@
+syntax = "proto2";
+
+import "Datetime.proto";
+
+message FoodDrinkOrder {
+  optional string   id                    = 1;
+  optional string   admin_note            = 2;
+  optional Datetime creation_time         = 3;
+  optional string   customer_name         = 4;
+  optional string   customer_phone_number = 5;
+  optional string   note                  = 6;
+  optional string   state                 = 7;
+  optional Datetime update_time           = 8;
+}
+
+message FoodDrinkOrderArray {
+  repeated FoodDrinkOrder array = 1;
+}

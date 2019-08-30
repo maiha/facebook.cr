@@ -1,0 +1,11 @@
+syntax = "proto2";
+
+
+
+message AdBidAdjustments {
+  optional string user_groups = 1;
+}
+
+message AdBidAdjustmentsArray {
+  repeated AdBidAdjustments array = 1;
+}

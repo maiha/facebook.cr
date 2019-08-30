@@ -1,0 +1,11 @@
+syntax = "proto2";
+
+
+
+message ProductCatalogImageSettingsOperation {
+  optional string transformation_type = 1;
+}
+
+message ProductCatalogImageSettingsOperationArray {
+  repeated ProductCatalogImageSettingsOperation array = 1;
+}

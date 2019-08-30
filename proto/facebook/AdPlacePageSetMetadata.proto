@@ -1,0 +1,11 @@
+syntax = "proto2";
+
+
+
+message AdPlacePageSetMetadata {
+  optional string extra_data   = 1;
+}
+
+message AdPlacePageSetMetadataArray {
+  repeated AdPlacePageSetMetadata array = 1;
+}

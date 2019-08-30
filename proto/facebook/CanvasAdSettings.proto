@@ -1,0 +1,17 @@
+syntax = "proto2";
+
+
+
+message CanvasAdSettings {
+  optional bool   is_canvas_collection_eligible = 1;
+  optional int64  lead_form_created_time        = 2;
+  optional string lead_form_name                = 3;
+  optional string lead_gen_form_id              = 4;
+  optional int64  leads_count                   = 5;
+  optional string product_set_id                = 6;
+  optional bool   use_retailer_item_ids         = 7;
+}
+
+message CanvasAdSettingsArray {
+  repeated CanvasAdSettings array = 1;
+}

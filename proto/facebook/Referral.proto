@@ -1,0 +1,21 @@
+syntax = "proto2";
+
+
+
+message Referral {
+  optional string id              = 1;
+  optional int64  invite_limit    = 2;
+  optional string messenger_cta   = 3;
+  optional string messenger_promotion_text = 4;
+  optional string namespace       = 5;
+  optional bool   need_promo_code = 6;
+  optional string offer_origin    = 7;
+  optional string promotion_text  = 8;
+  optional string receiver_benefits_text = 9;
+  optional string referral_link_uri = 10;
+  optional string sender_benefits_text = 11;
+}
+
+message ReferralArray {
+  repeated Referral array = 1;
+}

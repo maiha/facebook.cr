@@ -1,0 +1,13 @@
+syntax = "proto2";
+
+
+
+message AdCampaignOptimizationEvent {
+  optional string custom_conversion_id = 1;
+  optional int64  event_sequence = 2;
+  optional string event_type     = 3;
+}
+
+message AdCampaignOptimizationEventArray {
+  repeated AdCampaignOptimizationEvent array = 1;
+}

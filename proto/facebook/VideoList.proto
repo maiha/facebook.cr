@@ -1,0 +1,18 @@
+syntax = "proto2";
+
+import "Datetime.proto";
+
+message VideoList {
+  optional string   id            = 1;
+  optional Datetime creation_time = 2;
+  optional string   description   = 3;
+  optional Datetime last_modified = 4;
+  optional int64    season_number = 5;
+  optional string   thumbnail     = 6;
+  optional string   title         = 7;
+  optional int64    videos_count  = 8;
+}
+
+message VideoListArray {
+  repeated VideoList array = 1;
+}

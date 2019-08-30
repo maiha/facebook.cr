@@ -1,0 +1,16 @@
+syntax = "proto2";
+
+import "Datetime.proto";
+
+message Recommendation {
+  optional Datetime created_time        = 1;
+  optional bool     has_rating          = 2;
+  optional bool     has_review          = 3;
+  optional int64    rating              = 4;
+  optional string   recommendation_type = 5;
+  optional string   review_text         = 6;
+}
+
+message RecommendationArray {
+  repeated Recommendation array = 1;
+}

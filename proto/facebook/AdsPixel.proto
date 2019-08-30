@@ -1,0 +1,22 @@
+syntax = "proto2";
+
+import "Datetime.proto";
+
+message AdsPixel {
+  optional string   id                        = 1;
+  repeated string   automatic_matching_fields = 2;
+  optional bool     can_proxy                 = 3;
+  optional string   code                      = 4;
+  optional Datetime creation_time             = 5;
+  optional string   data_use_setting          = 6;
+  optional bool     enable_automatic_matching = 7;
+  optional string   first_party_cookie_status = 8;
+  optional bool     is_created_by_business    = 9;
+  optional bool     is_unavailable            = 10;
+  optional Datetime last_fired_time           = 11;
+  optional string   name                      = 12;
+}
+
+message AdsPixelArray {
+  repeated AdsPixel array = 1;
+}

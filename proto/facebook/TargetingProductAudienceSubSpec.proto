@@ -1,0 +1,12 @@
+syntax = "proto2";
+
+
+
+message TargetingProductAudienceSubSpec {
+  optional string retention_seconds = 1;
+  optional string rule         = 2;
+}
+
+message TargetingProductAudienceSubSpecArray {
+  repeated TargetingProductAudienceSubSpec array = 1;
+}

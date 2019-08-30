@@ -1,0 +1,32 @@
+syntax = "proto2";
+
+
+
+message AdAccountTargetingUnified {
+  optional string id                 = 1;
+  optional int64  audience_size      = 2;
+  optional double conversion_lift    = 3;
+  optional string description        = 4;
+  optional string img                = 5;
+  optional string info               = 6;
+  optional string info_title         = 7;
+  optional bool   is_recommendation  = 8;
+  optional string key                = 9;
+  optional string link               = 10;
+  optional string name               = 11;
+  optional string parent             = 12;
+  optional string partner            = 13;
+  repeated string path               = 14;
+  optional int64  performance_rating = 15;
+  optional string raw_name           = 16;
+  optional string recommendation_model = 17;
+  optional string search_interest_id = 18;
+  optional string source             = 19;
+  optional double spend              = 20;
+  optional string type               = 21;
+  optional bool   valid              = 22;
+}
+
+message AdAccountTargetingUnifiedArray {
+  repeated AdAccountTargetingUnified array = 1;
+}

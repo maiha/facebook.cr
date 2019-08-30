@@ -1,0 +1,62 @@
+syntax = "proto2";
+
+
+
+message CustomAudience {
+  optional string id                     = 1;
+  optional string account_id             = 2;
+  optional int64  approximate_count      = 3;
+  optional string customer_file_source   = 4;
+  optional string data_source_types      = 5;
+  optional string datafile_custom_audience_uploading_status = 6;
+  optional string description            = 7;
+  optional int64  household_audience     = 8;
+  optional bool   is_household           = 9;
+  optional bool   is_snapshot            = 10;
+  optional bool   is_value_based         = 11;
+  repeated string lookalike_audience_ids = 12;
+  optional string name                   = 13;
+  optional string opt_out_link           = 14;
+  optional string pixel_id               = 15;
+  optional int64  retention_days         = 16;
+  optional int64  rev_share_policy_id    = 17;
+  optional string rule                   = 18;
+  optional string rule_aggregation       = 19;
+  optional string rule_v2                = 20;
+  optional int64  seed_audience          = 21;
+  optional string subtype                = 22;
+  optional int64  time_content_updated   = 23;
+  optional int64  time_created           = 24;
+  optional int64  time_updated           = 25;
+  optional string accountid              = 26;
+  optional string additionalmetadata     = 27;
+  repeated string allowed_domains        = 28;
+  optional int64  associated_audience_id = 29;
+  optional string claim_objective        = 30;
+  optional string content_type           = 31;
+  optional string countries              = 32;
+  optional string dataset_id             = 33;
+  optional string details                = 34;
+  optional bool   enable_fetch_or_create = 35;
+  optional string event_source_group     = 36;
+  optional int64  expectedsize           = 37;
+  optional string gender                 = 38;
+  optional bool   isprivate              = 39;
+  optional bool   is_household_exclusion = 40;
+  repeated int64  list_of_accounts       = 41;
+  optional int64  maxage                 = 42;
+  optional int64  minage                 = 43;
+  optional string origin_audience_id     = 44;
+  optional int64  parent_audience_id     = 45;
+  optional string partnerid              = 46;
+  optional string partner_reference_key  = 47;
+  optional bool   prefill                = 48;
+  optional string product_set_id         = 49;
+  optional string source                 = 50;
+  repeated string tags                   = 51;
+  repeated string video_group_ids        = 52;
+}
+
+message CustomAudienceArray {
+  repeated CustomAudience array = 1;
+}

@@ -1,0 +1,13 @@
+syntax = "proto2";
+
+
+
+message FundingSourceDetails {
+  optional string id   = 1;
+  optional string display_string = 2;
+  optional int64  type = 3;
+}
+
+message FundingSourceDetailsArray {
+  repeated FundingSourceDetails array = 1;
+}

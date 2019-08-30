@@ -1,0 +1,15 @@
+syntax = "proto2";
+
+
+
+message AudiencePermissionForActions {
+  optional bool can_edit     = 1;
+  optional bool can_see_insight = 2;
+  optional bool can_share    = 3;
+  optional bool subtype_supports_lookalike = 4;
+  optional bool supports_recipient_lookalike = 5;
+}
+
+message AudiencePermissionForActionsArray {
+  repeated AudiencePermissionForActions array = 1;
+}

@@ -1,0 +1,52 @@
+syntax = "proto2";
+
+
+
+message AdContract {
+  optional string account_id           = 1;
+  optional string account_mgr_fbid     = 2;
+  optional string account_mgr_name     = 3;
+  optional string adops_person_name    = 4;
+  optional string advertiser_address_fbid = 5;
+  optional string advertiser_fbid      = 6;
+  optional string advertiser_name      = 7;
+  optional double agency_discount      = 8;
+  optional string agency_name          = 9;
+  optional string bill_to_address_fbid = 10;
+  optional string bill_to_fbid         = 11;
+  optional string campaign_name        = 12;
+  optional string created_by           = 13;
+  optional int64  created_date         = 14;
+  optional string customer_io          = 15;
+  optional int64  io_number            = 16;
+  optional string io_terms             = 17;
+  optional string io_type              = 18;
+  optional string last_updated_by      = 19;
+  optional int64  last_updated_date    = 20;
+  optional int64  max_end_date         = 21;
+  optional string mdc_fbid             = 22;
+  optional string media_plan_number    = 23;
+  optional int64  min_start_date       = 24;
+  optional string msa_contract         = 25;
+  optional string payment_terms        = 26;
+  optional bool   rev_hold_flag        = 27;
+  optional int64  rev_hold_released_by = 28;
+  optional int64  rev_hold_released_on = 29;
+  optional string salesrep_fbid        = 30;
+  optional string salesrep_name        = 31;
+  optional string sold_to_address_fbid = 32;
+  optional string sold_to_fbid         = 33;
+  optional string status               = 34;
+  optional string subvertical          = 35;
+  optional int64  thirdparty_billed    = 36;
+  optional string thirdparty_password  = 37;
+  optional string thirdparty_uid       = 38;
+  optional string thirdparty_url       = 39;
+  optional string vat_country          = 40;
+  optional int64  version              = 41;
+  optional string vertical             = 42;
+}
+
+message AdContractArray {
+  repeated AdContract array = 1;
+}

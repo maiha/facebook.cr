@@ -1,0 +1,12 @@
+syntax = "proto2";
+
+
+
+message AdCreativeCollectionThumbnailInfo {
+  optional int64  element_child_index = 1;
+  optional string element_id          = 2;
+}
+
+message AdCreativeCollectionThumbnailInfoArray {
+  repeated AdCreativeCollectionThumbnailInfo array = 1;
+}

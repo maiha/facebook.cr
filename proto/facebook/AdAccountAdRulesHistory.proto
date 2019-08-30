@@ -1,0 +1,15 @@
+syntax = "proto2";
+
+import "Datetime.proto";
+
+message AdAccountAdRulesHistory {
+  optional int64    exception_code    = 1;
+  optional string   exception_message = 2;
+  optional bool     is_manual         = 3;
+  optional int64    rule_id           = 4;
+  optional Datetime timestamp         = 5;
+}
+
+message AdAccountAdRulesHistoryArray {
+  repeated AdAccountAdRulesHistory array = 1;
+}

@@ -1,0 +1,17 @@
+syntax = "proto2";
+
+
+
+message MailingAddress {
+  optional string id        = 1;
+  optional string city      = 2;
+  optional string country   = 3;
+  optional string postal_code = 4;
+  optional string region    = 5;
+  optional string street1   = 6;
+  optional string street2   = 7;
+}
+
+message MailingAddressArray {
+  repeated MailingAddress array = 1;
+}

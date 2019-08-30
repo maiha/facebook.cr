@@ -1,0 +1,22 @@
+syntax = "proto2";
+
+import "Datetime.proto";
+
+message UnifiedThread {
+  optional string   id                  = 1;
+  optional bool     can_reply           = 2;
+  optional bool     is_subscribed       = 3;
+  optional string   link                = 4;
+  optional int64    message_count       = 5;
+  optional string   name                = 6;
+  optional string   scoped_thread_key   = 7;
+  optional string   snippet             = 8;
+  optional string   subject             = 9;
+  optional int64    unread_count        = 10;
+  optional Datetime updated_time        = 11;
+  optional string   wallpaper           = 12;
+}
+
+message UnifiedThreadArray {
+  repeated UnifiedThread array = 1;
+}

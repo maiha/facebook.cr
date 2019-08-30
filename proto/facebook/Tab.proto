@@ -1,0 +1,19 @@
+syntax = "proto2";
+
+
+
+message Tab {
+  optional string id                            = 1;
+  optional string custom_image_url              = 2;
+  optional string custom_name                   = 3;
+  optional string image_url                     = 4;
+  optional bool   is_non_connection_landing_tab = 5;
+  optional bool   is_permanent                  = 6;
+  optional string link                          = 7;
+  optional string name                          = 8;
+  optional int64  position                      = 9;
+}
+
+message TabArray {
+  repeated Tab array = 1;
+}

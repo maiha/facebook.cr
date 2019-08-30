@@ -1,0 +1,17 @@
+syntax = "proto2";
+
+
+
+message InvoiceCampaign {
+  optional string ad_account_id = 1;
+  optional string campaign_id = 2;
+  optional string campaign_name = 3;
+  optional int64  clicks      = 4;
+  optional int64  conversions = 5;
+  optional int64  impressions = 6;
+  repeated string tags        = 7;
+}
+
+message InvoiceCampaignArray {
+  repeated InvoiceCampaign array = 1;
+}

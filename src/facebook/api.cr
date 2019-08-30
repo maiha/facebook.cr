@@ -2,7 +2,6 @@ module Facebook::Api
   abstract def request_path : String
   abstract def apply_access_token!(token : String)
   abstract def validate!
-  abstract def build_request(http : HTTP::Client)
 
   class Error < Exception
     var response : Response
@@ -29,15 +28,6 @@ module Facebook::Api
   var path : String
   var data : Hash(String, String) = Hash(String, String).new # query parameters
   var form : Hash(String, String) = Hash(String, String).new # form parameters
-
-  # {"method":"GET","relative_url":"v2.10/act_123/campaigns?fields=account_id%2Ceffective_status&effective_status=%5B%22ACTIVE%22%5D"}
-  def batch_value
-    hash = {
-      "method" => method.to_s,
-      "relative_url" => request_path.sub(%r{\A/}, ""),
-    }
-    hash.to_json
-  end
 
   protected def build_request_path
     return path if data.empty?

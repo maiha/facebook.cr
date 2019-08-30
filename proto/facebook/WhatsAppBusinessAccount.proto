@@ -1,0 +1,19 @@
+syntax = "proto2";
+
+
+
+message WhatsAppBusinessAccount {
+  optional string id                                 = 1;
+  optional string currency                           = 2;
+  optional bool   eligible_for_sending_notifications = 3;
+  optional string ineligible_for_sending_notifications_reason = 4;
+  optional string message_template_namespace         = 5;
+  optional string name                               = 6;
+  optional string purchase_order_number              = 7;
+  optional string status                             = 8;
+  optional string timezone_id                        = 9;
+}
+
+message WhatsAppBusinessAccountArray {
+  repeated WhatsAppBusinessAccount array = 1;
+}

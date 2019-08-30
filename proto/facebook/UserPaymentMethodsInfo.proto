@@ -1,0 +1,15 @@
+syntax = "proto2";
+
+
+
+message UserPaymentMethodsInfo {
+  optional string account_id   = 1;
+  repeated string available_card_types = 2;
+  repeated string available_payment_methods = 3;
+  optional string country      = 4;
+  optional string currency     = 5;
+}
+
+message UserPaymentMethodsInfoArray {
+  repeated UserPaymentMethodsInfo array = 1;
+}

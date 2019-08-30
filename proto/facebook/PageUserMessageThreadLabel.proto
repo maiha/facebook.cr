@@ -1,0 +1,12 @@
+syntax = "proto2";
+
+
+
+message PageUserMessageThreadLabel {
+  optional string id           = 1;
+  optional string name         = 2;
+}
+
+message PageUserMessageThreadLabelArray {
+  repeated PageUserMessageThreadLabel array = 1;
+}

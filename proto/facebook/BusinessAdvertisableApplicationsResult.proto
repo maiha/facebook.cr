@@ -1,0 +1,15 @@
+syntax = "proto2";
+
+
+
+message BusinessAdvertisableApplicationsResult {
+  optional string id                         = 1;
+  optional bool   are_app_events_unavailable = 2;
+  optional bool   has_insight_permission     = 3;
+  optional string name                       = 4;
+  optional string photo_url                  = 5;
+}
+
+message BusinessAdvertisableApplicationsResultArray {
+  repeated BusinessAdvertisableApplicationsResult array = 1;
+}

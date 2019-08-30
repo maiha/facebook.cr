@@ -1,0 +1,13 @@
+syntax = "proto2";
+
+
+
+message CustomAudiencePrefillState {
+  optional string description = 1;
+  optional int64  num_added = 2;
+  optional string status    = 3;
+}
+
+message CustomAudiencePrefillStateArray {
+  repeated CustomAudiencePrefillState array = 1;
+}

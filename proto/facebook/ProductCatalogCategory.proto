@@ -1,0 +1,16 @@
+syntax = "proto2";
+
+
+
+message ProductCatalogCategory {
+  optional string criteria_value = 1;
+  optional string description = 2;
+  optional string destination_uri = 3;
+  optional string image_url = 4;
+  optional string name      = 5;
+  optional int64  num_items = 6;
+}
+
+message ProductCatalogCategoryArray {
+  repeated ProductCatalogCategory array = 1;
+}

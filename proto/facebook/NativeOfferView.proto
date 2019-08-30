@@ -1,0 +1,12 @@
+syntax = "proto2";
+
+
+
+message NativeOfferView {
+  optional string id         = 1;
+  optional int64  save_count = 2;
+}
+
+message NativeOfferViewArray {
+  repeated NativeOfferView array = 1;
+}

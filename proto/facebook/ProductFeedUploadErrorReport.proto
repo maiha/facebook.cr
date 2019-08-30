@@ -1,0 +1,12 @@
+syntax = "proto2";
+
+
+
+message ProductFeedUploadErrorReport {
+  optional string file_handle  = 1;
+  optional string report_status = 2;
+}
+
+message ProductFeedUploadErrorReportArray {
+  repeated ProductFeedUploadErrorReport array = 1;
+}

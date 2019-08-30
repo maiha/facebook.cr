@@ -1,0 +1,15 @@
+syntax = "proto2";
+
+
+
+message EntityAtTextRange {
+  optional string id     = 1;
+  optional int64  length = 2;
+  optional string name   = 3;
+  optional int64  offset = 4;
+  optional string type   = 5;
+}
+
+message EntityAtTextRangeArray {
+  repeated EntityAtTextRange array = 1;
+}

@@ -1,0 +1,60 @@
+syntax = "proto2";
+
+
+
+message Targeting {
+  optional string adgroup_id                 = 1;
+  optional int64  age_max                    = 2;
+  optional int64  age_min                    = 3;
+  optional string alternate_auto_targeting_option = 4;
+  optional string app_install_state          = 5;
+  repeated string audience_network_positions = 6;
+  repeated string brand_safety_content_filter_levels = 7;
+  repeated int64  college_years              = 8;
+  repeated string countries                  = 9;
+  repeated string country                    = 10;
+  repeated string country_groups             = 11;
+  repeated string device_platforms           = 12;
+  optional bool   direct_install_devices     = 13;
+  repeated string dynamic_audience_ids       = 14;
+  repeated int64  education_statuses         = 15;
+  repeated string effective_audience_network_positions = 16;
+  repeated string effective_device_platforms = 17;
+  repeated string effective_facebook_positions = 18;
+  repeated string effective_instagram_positions = 19;
+  repeated string effective_messenger_positions = 20;
+  repeated string effective_publisher_platforms = 21;
+  repeated string exclude_reached_since      = 22;
+  repeated string excluded_brand_safety_content_types = 23;
+  repeated string excluded_dynamic_audience_ids = 24;
+  repeated string excluded_mobile_device_model = 25;
+  repeated string excluded_publisher_categories = 26;
+  repeated string excluded_publisher_list_ids = 27;
+  repeated string excluded_user_device       = 28;
+  repeated string facebook_positions         = 29;
+  optional string fb_deal_id                 = 30;
+  repeated int64  genders                    = 31;
+  repeated string instagram_positions        = 32;
+  repeated int64  interested_in              = 33;
+  optional bool   is_whatsapp_destination_ad = 34;
+  repeated string keywords                   = 35;
+  repeated int64  locales                    = 36;
+  repeated string messenger_positions        = 37;
+  repeated string place_page_set_ids         = 38;
+  repeated int64  political_views            = 39;
+  repeated string publisher_platforms        = 40;
+  repeated string publisher_visibility_categories = 41;
+  optional string radius                     = 42;
+  repeated int64  relationship_statuses      = 43;
+  repeated string site_category              = 44;
+  optional string targeting_optimization     = 45;
+  repeated string user_device                = 46;
+  repeated int64  user_event                 = 47;
+  repeated string user_os                    = 48;
+  repeated string wireless_carrier           = 49;
+  repeated string zips                       = 50;
+}
+
+message TargetingArray {
+  repeated Targeting array = 1;
+}

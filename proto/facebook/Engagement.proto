@@ -1,0 +1,17 @@
+syntax = "proto2";
+
+
+
+message Engagement {
+  optional int64  count = 1;
+  optional string count_string = 2;
+  optional string count_string_with_like = 3;
+  optional string count_string_without_like = 4;
+  optional string social_sentence = 5;
+  optional string social_sentence_with_like = 6;
+  optional string social_sentence_without_like = 7;
+}
+
+message EngagementArray {
+  repeated Engagement array = 1;
+}

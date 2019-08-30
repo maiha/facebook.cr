@@ -1,0 +1,12 @@
+syntax = "proto2";
+
+
+
+message UserDevice {
+  optional string hardware     = 1;
+  optional string os           = 2;
+}
+
+message UserDeviceArray {
+  repeated UserDevice array = 1;
+}

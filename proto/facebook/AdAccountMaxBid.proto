@@ -1,0 +1,11 @@
+syntax = "proto2";
+
+
+
+message AdAccountMaxBid {
+  optional int64 max_bid = 1;
+}
+
+message AdAccountMaxBidArray {
+  repeated AdAccountMaxBid array = 1;
+}

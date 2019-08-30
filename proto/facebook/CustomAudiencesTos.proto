@@ -1,0 +1,13 @@
+syntax = "proto2";
+
+
+
+message CustomAudiencesTos {
+  optional string id           = 1;
+  optional string content      = 2;
+  optional string type         = 3;
+}
+
+message CustomAudiencesTosArray {
+  repeated CustomAudiencesTos array = 1;
+}

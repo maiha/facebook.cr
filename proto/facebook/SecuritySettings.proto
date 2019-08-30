@@ -1,0 +1,11 @@
+syntax = "proto2";
+
+
+
+message SecuritySettings {
+
+}
+
+message SecuritySettingsArray {
+  repeated SecuritySettings array = 1;
+}

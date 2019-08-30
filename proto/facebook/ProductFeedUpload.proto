@@ -1,0 +1,22 @@
+syntax = "proto2";
+
+import "Datetime.proto";
+
+message ProductFeedUpload {
+  optional string   id                  = 1;
+  optional Datetime end_time            = 2;
+  optional int64    error_count         = 3;
+  optional string   filename            = 4;
+  optional string   input_method        = 5;
+  optional int64    num_deleted_items   = 6;
+  optional int64    num_detected_items  = 7;
+  optional int64    num_invalid_items   = 8;
+  optional int64    num_persisted_items = 9;
+  optional Datetime start_time          = 10;
+  optional string   url                 = 11;
+  optional int64    warning_count       = 12;
+}
+
+message ProductFeedUploadArray {
+  repeated ProductFeedUpload array = 1;
+}

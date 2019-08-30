@@ -1,0 +1,11 @@
+syntax = "proto2";
+
+
+
+message AdPreview {
+  optional string body         = 1;
+}
+
+message AdPreviewArray {
+  repeated AdPreview array = 1;
+}

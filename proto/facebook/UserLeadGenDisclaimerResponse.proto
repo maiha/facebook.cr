@@ -1,0 +1,12 @@
+syntax = "proto2";
+
+
+
+message UserLeadGenDisclaimerResponse {
+  optional string checkbox_key = 1;
+  optional string is_checked   = 2;
+}
+
+message UserLeadGenDisclaimerResponseArray {
+  repeated UserLeadGenDisclaimerResponse array = 1;
+}

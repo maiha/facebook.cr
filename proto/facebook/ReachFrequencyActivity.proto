@@ -1,0 +1,20 @@
+syntax = "proto2";
+
+
+
+message ReachFrequencyActivity {
+  optional string account_id                 = 1;
+  optional bool   campaign_active            = 2;
+  optional bool   campaign_started           = 3;
+  optional bool   creative_uploaded          = 4;
+  optional int64  delivered_budget           = 5;
+  optional int64  delivered_impression       = 6;
+  optional int64  delivered_reach            = 7;
+  optional int64  delivered_total_impression = 8;
+  optional bool   io_approved                = 9;
+  optional string sf_link                    = 10;
+}
+
+message ReachFrequencyActivityArray {
+  repeated ReachFrequencyActivity array = 1;
+}

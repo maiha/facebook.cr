@@ -1,0 +1,13 @@
+syntax = "proto2";
+
+
+
+message ProductCatalogProductSetsBatch {
+  optional int64  errors_total_count = 1;
+  optional string handle             = 2;
+  optional string status             = 3;
+}
+
+message ProductCatalogProductSetsBatchArray {
+  repeated ProductCatalogProductSetsBatch array = 1;
+}

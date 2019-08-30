@@ -1,0 +1,11 @@
+syntax = "proto2";
+
+
+
+message PaymentPricepoints {
+
+}
+
+message PaymentPricepointsArray {
+  repeated PaymentPricepoints array = 1;
+}

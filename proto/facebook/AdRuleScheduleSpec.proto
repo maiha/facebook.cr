@@ -1,0 +1,11 @@
+syntax = "proto2";
+
+
+
+message AdRuleScheduleSpec {
+  optional string schedule_type = 1;
+}
+
+message AdRuleScheduleSpecArray {
+  repeated AdRuleScheduleSpec array = 1;
+}

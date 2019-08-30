@@ -1,0 +1,19 @@
+syntax = "proto2";
+
+import "Datetime.proto";
+
+message Link {
+  optional string   id                    = 1;
+  optional string   caption               = 2;
+  optional Datetime created_time          = 3;
+  optional string   description           = 4;
+  optional string   icon                  = 5;
+  optional string   link                  = 6;
+  optional string   message               = 7;
+  optional bool     multi_share_optimized = 8;
+  optional string   name                  = 9;
+}
+
+message LinkArray {
+  repeated Link array = 1;
+}

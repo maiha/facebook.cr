@@ -1,0 +1,11 @@
+syntax = "proto2";
+
+
+
+message BusinessPageRequest {
+  optional string id   = 1;
+}
+
+message BusinessPageRequestArray {
+  repeated BusinessPageRequest array = 1;
+}

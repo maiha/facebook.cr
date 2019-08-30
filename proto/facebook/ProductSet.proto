@@ -1,0 +1,15 @@
+syntax = "proto2";
+
+
+
+message ProductSet {
+  optional string id            = 1;
+  optional string auto_creation_url = 2;
+  optional string filter        = 3;
+  optional string name          = 4;
+  optional int64  product_count = 5;
+}
+
+message ProductSetArray {
+  repeated ProductSet array = 1;
+}

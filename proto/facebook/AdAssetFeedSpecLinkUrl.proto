@@ -1,0 +1,15 @@
+syntax = "proto2";
+
+
+
+message AdAssetFeedSpecLinkUrl {
+  optional string carousel_see_more_url = 1;
+  optional string deeplink_url = 2;
+  optional string display_url  = 3;
+  optional string url_tags     = 4;
+  optional string website_url  = 5;
+}
+
+message AdAssetFeedSpecLinkUrlArray {
+  repeated AdAssetFeedSpecLinkUrl array = 1;
+}

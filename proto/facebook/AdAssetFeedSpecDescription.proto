@@ -1,0 +1,12 @@
+syntax = "proto2";
+
+
+
+message AdAssetFeedSpecDescription {
+  optional string text         = 1;
+  optional string url_tags     = 2;
+}
+
+message AdAssetFeedSpecDescriptionArray {
+  repeated AdAssetFeedSpecDescription array = 1;
+}

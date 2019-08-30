@@ -1,0 +1,11 @@
+syntax = "proto2";
+
+
+
+message PageSettings {
+  optional string setting      = 1;
+}
+
+message PageSettingsArray {
+  repeated PageSettings array = 1;
+}

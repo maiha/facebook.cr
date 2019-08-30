@@ -1,0 +1,27 @@
+syntax = "proto2";
+
+import "Datetime.proto";
+
+message PartnerStudy {
+  optional string   id                                 = 1;
+  optional string   additional_info                    = 2;
+  optional string   brand                              = 3;
+  optional string   client_name                        = 4;
+  optional string   emails                             = 5;
+  repeated string   input_ids                          = 6;
+  optional bool     is_export                          = 7;
+  optional string   location                           = 8;
+  optional string   match_file_ds                      = 9;
+  optional string   name                               = 10;
+  optional string   partner_defined_id                 = 11;
+  optional string   partner_household_graph_dataset_id = 12;
+  optional string   status                             = 13;
+  optional Datetime study_end_date                     = 14;
+  optional Datetime study_start_date                   = 15;
+  optional string   study_type                         = 16;
+  optional Datetime submit_date                        = 17;
+}
+
+message PartnerStudyArray {
+  repeated PartnerStudy array = 1;
+}

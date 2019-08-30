@@ -1,0 +1,15 @@
+syntax = "proto2";
+
+
+
+message ExtendedCreditInvoiceGroup {
+  optional string id          = 1;
+  optional bool   auto_enroll = 2;
+  optional string customer_po_number = 3;
+  repeated string emails      = 4;
+  optional string name        = 5;
+}
+
+message ExtendedCreditInvoiceGroupArray {
+  repeated ExtendedCreditInvoiceGroup array = 1;
+}

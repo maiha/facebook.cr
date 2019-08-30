@@ -1,0 +1,12 @@
+syntax = "proto2";
+
+
+
+message CustomAudienceStatus {
+  optional int64  code = 1;
+  optional string description = 2;
+}
+
+message CustomAudienceStatusArray {
+  repeated CustomAudienceStatus array = 1;
+}

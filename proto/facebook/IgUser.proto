@@ -1,0 +1,20 @@
+syntax = "proto2";
+
+
+
+message IgUser {
+  optional string id              = 1;
+  optional string biography       = 2;
+  optional int64  followers_count = 3;
+  optional int64  follows_count   = 4;
+  optional int64  ig_id           = 5;
+  optional int64  media_count     = 6;
+  optional string name            = 7;
+  optional string profile_picture_url = 8;
+  optional string username        = 9;
+  optional string website         = 10;
+}
+
+message IgUserArray {
+  repeated IgUser array = 1;
+}

@@ -1,0 +1,21 @@
+syntax = "proto2";
+
+import "Datetime.proto";
+
+message BusinessCreative {
+  optional string   id        = 1;
+  optional Datetime creation_time = 2;
+  optional int64    duration  = 3;
+  optional string   hash      = 4;
+  optional int64    height    = 5;
+  optional string   name      = 6;
+  optional string   thumbnail = 7;
+  optional string   type      = 8;
+  optional string   url       = 9;
+  optional string   video_id  = 10;
+  optional int64    width     = 11;
+}
+
+message BusinessCreativeArray {
+  repeated BusinessCreative array = 1;
+}

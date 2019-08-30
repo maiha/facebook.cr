@@ -1,0 +1,12 @@
+syntax = "proto2";
+
+
+
+message SplitTestWinner {
+  optional string ad_object_level = 1;
+  optional string winner_ad_object_id = 2;
+}
+
+message SplitTestWinnerArray {
+  repeated SplitTestWinner array = 1;
+}

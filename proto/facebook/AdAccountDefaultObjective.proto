@@ -1,0 +1,12 @@
+syntax = "proto2";
+
+
+
+message AdAccountDefaultObjective {
+  optional string default_objective_for_user = 1;
+  optional string objective_for_level = 2;
+}
+
+message AdAccountDefaultObjectiveArray {
+  repeated AdAccountDefaultObjective array = 1;
+}

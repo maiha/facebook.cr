@@ -1,0 +1,15 @@
+syntax = "proto2";
+
+import "Datetime.proto";
+
+message VideoGameShow {
+  optional string   id          = 1;
+  optional Datetime end_time    = 2;
+  optional string   game_status = 3;
+  optional string   game_type   = 4;
+  optional Datetime start_time  = 5;
+}
+
+message VideoGameShowArray {
+  repeated VideoGameShow array = 1;
+}

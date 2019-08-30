@@ -1,0 +1,12 @@
+syntax = "proto2";
+
+
+
+message WhatsAppBusinessProfile {
+  optional string id           = 1;
+  optional string verified_name = 2;
+}
+
+message WhatsAppBusinessProfileArray {
+  repeated WhatsAppBusinessProfile array = 1;
+}

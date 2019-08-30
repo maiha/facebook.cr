@@ -1,0 +1,12 @@
+syntax = "proto2";
+
+
+
+message AdsTalHealthCheckError {
+  optional int64  error_code = 1;
+  optional string target_id  = 2;
+}
+
+message AdsTalHealthCheckErrorArray {
+  repeated AdsTalHealthCheckError array = 1;
+}

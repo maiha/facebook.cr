@@ -1,0 +1,12 @@
+syntax = "proto2";
+
+
+
+message ReachFrequencySpec {
+  repeated string countries                       = 1;
+  optional int64  global_io_max_campaign_duration = 2;
+}
+
+message ReachFrequencySpecArray {
+  repeated ReachFrequencySpec array = 1;
+}

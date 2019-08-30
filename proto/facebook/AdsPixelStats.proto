@@ -1,0 +1,14 @@
+syntax = "proto2";
+
+import "Datetime.proto";
+
+message AdsPixelStats {
+  optional int64    count = 1;
+  optional Datetime diagnostics_hourly_last_timestamp = 2;
+  optional string   event = 3;
+  optional string   value = 4;
+}
+
+message AdsPixelStatsArray {
+  repeated AdsPixelStats array = 1;
+}

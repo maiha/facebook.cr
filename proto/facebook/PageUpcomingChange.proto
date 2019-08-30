@@ -1,0 +1,14 @@
+syntax = "proto2";
+
+import "Datetime.proto";
+
+message PageUpcomingChange {
+  optional string   id           = 1;
+  optional string   change_type  = 2;
+  optional Datetime effective_time = 3;
+  optional string   timer_status = 4;
+}
+
+message PageUpcomingChangeArray {
+  repeated PageUpcomingChange array = 1;
+}

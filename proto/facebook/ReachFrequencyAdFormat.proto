@@ -1,0 +1,11 @@
+syntax = "proto2";
+
+
+
+message ReachFrequencyAdFormat {
+  optional string type         = 1;
+}
+
+message ReachFrequencyAdFormatArray {
+  repeated ReachFrequencyAdFormat array = 1;
+}

@@ -1,0 +1,60 @@
+syntax = "proto2";
+
+import "Datetime.proto";
+
+message AdAccount {
+  optional string   id                                     = 1;
+  optional string   account_id                             = 2;
+  optional int64    account_status                         = 3;
+  optional double   age                                    = 4;
+  optional string   amount_spent                           = 5;
+  optional string   balance                                = 6;
+  optional string   business_city                          = 7;
+  optional string   business_country_code                  = 8;
+  optional string   business_name                          = 9;
+  optional string   business_state                         = 10;
+  optional string   business_street                        = 11;
+  optional string   business_street2                       = 12;
+  optional string   business_zip                           = 13;
+  optional bool     can_create_brand_lift_study            = 14;
+  repeated string   capabilities                           = 15;
+  optional Datetime created_time                           = 16;
+  optional string   currency                               = 17;
+  optional int64    disable_reason                         = 18;
+  optional string   end_advertiser                         = 19;
+  optional string   end_advertiser_name                    = 20;
+  optional int64    fb_entity                              = 21;
+  optional string   funding_source                         = 22;
+  optional bool     has_migrated_permissions               = 23;
+  optional bool     has_page_authorized_adaccount          = 24;
+  optional string   io_number                              = 25;
+  optional bool     is_attribution_spec_system_default     = 26;
+  optional bool     is_direct_deals_enabled                = 27;
+  optional bool     is_in_3ds_authorization_enabled_market = 28;
+  optional bool     is_in_middle_of_local_entity_migration = 29;
+  optional bool     is_notifications_enabled               = 30;
+  optional int64    is_personal                            = 31;
+  optional bool     is_prepay_account                      = 32;
+  optional bool     is_tax_id_required                     = 33;
+  repeated int64    line_numbers                           = 34;
+  optional string   media_agency                           = 35;
+  optional string   min_campaign_group_spend_cap           = 36;
+  optional int64    min_daily_budget                       = 37;
+  optional string   name                                   = 38;
+  optional bool     offsite_pixels_tos_accepted            = 39;
+  optional string   owner                                  = 40;
+  optional string   partner                                = 41;
+  optional bool     show_checkout_experience               = 42;
+  optional string   spend_cap                              = 43;
+  optional string   tax_id                                 = 44;
+  optional int64    tax_id_status                          = 45;
+  optional string   tax_id_type                            = 46;
+  optional int64    timezone_id                            = 47;
+  optional string   timezone_name                          = 48;
+  optional double   timezone_offset_hours_utc              = 49;
+  optional string   user_role                              = 50;
+}
+
+message AdAccountArray {
+  repeated AdAccount array = 1;
+}

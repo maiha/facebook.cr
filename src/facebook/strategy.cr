@@ -16,12 +16,16 @@ module Facebook::Strategy
     validate(req)
 
     before_execute.each &.call(req)
-    http_res = execute(req)
+
+    begin
+      res = execute(req)
+      return res
+    ensure
+      after_execute.each(&.call(req, res))
+    end
   end
 
   def execute(req : Request) : Response
-    res = strategy.execute(req)
-    after_execute.each(&.call(req, res))
-    return res
+    strategy.execute(req)
   end
 end

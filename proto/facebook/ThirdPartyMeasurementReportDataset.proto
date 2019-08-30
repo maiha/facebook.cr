@@ -1,0 +1,13 @@
+syntax = "proto2";
+
+
+
+message ThirdPartyMeasurementReportDataset {
+  optional string id           = 1;
+  optional string category     = 2;
+  optional string product      = 3;
+}
+
+message ThirdPartyMeasurementReportDatasetArray {
+  repeated ThirdPartyMeasurementReportDataset array = 1;
+}

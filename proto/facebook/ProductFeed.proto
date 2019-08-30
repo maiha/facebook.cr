@@ -1,0 +1,24 @@
+syntax = "proto2";
+
+import "Datetime.proto";
+
+message ProductFeed {
+  optional string   id               = 1;
+  optional string   country          = 2;
+  optional Datetime created_time     = 3;
+  optional string   default_currency = 4;
+  optional bool     deletion_enabled = 5;
+  optional string   delimiter        = 6;
+  optional string   encoding         = 7;
+  optional string   file_name        = 8;
+  optional string   name             = 9;
+  optional string   override_type    = 10;
+  optional int64    product_count    = 11;
+  optional string   quoted_fields_mode = 12;
+  optional string   feed_type        = 13;
+  repeated string   rules            = 14;
+}
+
+message ProductFeedArray {
+  repeated ProductFeed array = 1;
+}

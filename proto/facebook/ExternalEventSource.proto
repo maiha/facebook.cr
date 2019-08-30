@@ -1,0 +1,13 @@
+syntax = "proto2";
+
+
+
+message ExternalEventSource {
+  optional string id           = 1;
+  optional string name         = 2;
+  optional string source_type  = 3;
+}
+
+message ExternalEventSourceArray {
+  repeated ExternalEventSource array = 1;
+}

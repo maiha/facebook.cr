@@ -1,0 +1,12 @@
+syntax = "proto2";
+
+
+
+message MessengerProfile {
+  optional string account_linking_url = 1;
+  repeated string whitelisted_domains = 2;
+}
+
+message MessengerProfileArray {
+  repeated MessengerProfile array = 1;
+}

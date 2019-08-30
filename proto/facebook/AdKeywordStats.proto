@@ -1,0 +1,28 @@
+syntax = "proto2";
+
+
+
+message AdKeywordStats {
+  optional string id                   = 1;
+  optional int64  clicks               = 2;
+  optional double cost_per_total_action = 3;
+  optional double cost_per_unique_click = 4;
+  optional double cpc                  = 5;
+  optional double cpm                  = 6;
+  optional double cpp                  = 7;
+  optional double ctr                  = 8;
+  optional double frequency            = 9;
+  optional int64  impressions          = 10;
+  optional string name                 = 11;
+  optional int64  reach                = 12;
+  optional double spend                = 13;
+  optional int64  total_actions        = 14;
+  optional int64  total_unique_actions = 15;
+  optional int64  unique_clicks        = 16;
+  optional double unique_ctr           = 17;
+  optional int64  unique_impressions   = 18;
+}
+
+message AdKeywordStatsArray {
+  repeated AdKeywordStats array = 1;
+}

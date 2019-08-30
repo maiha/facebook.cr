@@ -1,0 +1,12 @@
+syntax = "proto2";
+
+
+
+message Permission {
+  optional string permission   = 1;
+  optional string status       = 2;
+}
+
+message PermissionArray {
+  repeated Permission array = 1;
+}

@@ -1,0 +1,22 @@
+syntax = "proto2";
+
+import "Datetime.proto";
+
+message AdActivity {
+  optional string   actor_id              = 1;
+  optional string   actor_name            = 2;
+  optional string   application_id        = 3;
+  optional string   application_name      = 4;
+  optional string   date_time_in_timezone = 5;
+  optional Datetime event_time            = 6;
+  optional string   event_type            = 7;
+  optional string   extra_data            = 8;
+  optional string   object_id             = 9;
+  optional string   object_name           = 10;
+  optional string   object_type           = 11;
+  optional string   translated_event_type = 12;
+}
+
+message AdActivityArray {
+  repeated AdActivity array = 1;
+}

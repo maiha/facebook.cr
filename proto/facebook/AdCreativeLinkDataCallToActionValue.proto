@@ -1,0 +1,21 @@
+syntax = "proto2";
+
+
+
+message AdCreativeLinkDataCallToActionValue {
+  optional string app_destination = 1;
+  optional string app_link     = 2;
+  optional string application  = 3;
+  optional string event_id     = 4;
+  optional string lead_gen_form_id = 5;
+  optional string link         = 6;
+  optional string link_caption = 7;
+  optional string link_format  = 8;
+  optional string page         = 9;
+  optional string product_link = 10;
+  optional string whatsapp_number = 11;
+}
+
+message AdCreativeLinkDataCallToActionValueArray {
+  repeated AdCreativeLinkDataCallToActionValue array = 1;
+}

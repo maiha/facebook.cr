@@ -1,0 +1,13 @@
+syntax = "proto2";
+
+
+
+message ProductFeedRule {
+  optional string id     = 1;
+  optional string attribute = 2;
+  optional string rule_type = 3;
+}
+
+message ProductFeedRuleArray {
+  repeated ProductFeedRule array = 1;
+}

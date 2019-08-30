@@ -1,0 +1,12 @@
+syntax = "proto2";
+
+
+
+message VideoCopyrightConditionGroup {
+  optional string action       = 1;
+  optional string validity_status = 2;
+}
+
+message VideoCopyrightConditionGroupArray {
+  repeated VideoCopyrightConditionGroup array = 1;
+}

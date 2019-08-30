@@ -1,0 +1,57 @@
+syntax = "proto2";
+
+import "Datetime.proto";
+import "Int64Array.proto";
+
+message AdSet {
+  optional string     id                           = 1;
+  optional string     account_id                   = 2;
+  optional string     asset_feed_id                = 3;
+  optional int64      bid_amount                   = 4;
+  optional string     bid_strategy                 = 5;
+  optional string     billing_event                = 6;
+  optional string     budget_remaining             = 7;
+  optional string     campaign_id                  = 8;
+  optional string     configured_status            = 9;
+  optional Datetime   created_time                 = 10;
+  repeated string     creative_sequence            = 11;
+  optional string     daily_budget                 = 12;
+  optional string     daily_min_spend_target       = 13;
+  optional string     daily_spend_cap              = 14;
+  optional string     destination_type             = 15;
+  optional string     effective_status             = 16;
+  optional Datetime   end_time                     = 17;
+  optional string     full_funnel_exploration_mode = 18;
+  optional string     instagram_actor_id           = 19;
+  optional bool       is_dynamic_creative          = 20;
+  optional string     lifetime_budget              = 21;
+  optional int64      lifetime_imps                = 22;
+  optional string     lifetime_min_spend_target    = 23;
+  optional string     lifetime_spend_cap           = 24;
+  optional string     name                         = 25;
+  optional string     optimization_goal            = 26;
+  optional string     optimization_sub_event       = 27;
+  repeated string     pacing_type                  = 28;
+  optional bool       recurring_budget_semantics   = 29;
+  optional string     review_feedback              = 30;
+  optional string     rf_prediction_id             = 31;
+  optional string     source_adset_id              = 32;
+  optional Datetime   start_time                   = 33;
+  optional string     status                       = 34;
+  repeated Int64Array time_based_ad_rotation_id_blocks = 35;
+  repeated int64      time_based_ad_rotation_intervals = 36;
+  optional Datetime   updated_time                 = 37;
+  optional bool       use_new_app_click            = 38;
+  optional int64      daily_imps                   = 39;
+  optional string     date_format                  = 40;
+  repeated string     execution_options            = 41;
+  optional int64      line_number                  = 42;
+  optional string     rb_prediction_id             = 43;
+  optional Datetime   time_start                   = 44;
+  optional Datetime   time_stop                    = 45;
+  optional string     topline_id                   = 46;
+}
+
+message AdSetArray {
+  repeated AdSet array = 1;
+}

@@ -1,0 +1,11 @@
+syntax = "proto2";
+
+
+
+message AdCampaignBidConstraint {
+  optional int64 roas_average_floor = 1;
+}
+
+message AdCampaignBidConstraintArray {
+  repeated AdCampaignBidConstraint array = 1;
+}

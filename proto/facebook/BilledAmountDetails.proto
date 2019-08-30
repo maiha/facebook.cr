@@ -1,0 +1,14 @@
+syntax = "proto2";
+
+
+
+message BilledAmountDetails {
+  optional string currency     = 1;
+  optional string net_amount   = 2;
+  optional string tax_amount   = 3;
+  optional string total_amount = 4;
+}
+
+message BilledAmountDetailsArray {
+  repeated BilledAmountDetails array = 1;
+}

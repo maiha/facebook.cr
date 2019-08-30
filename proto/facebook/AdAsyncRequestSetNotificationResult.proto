@@ -1,0 +1,12 @@
+syntax = "proto2";
+
+
+
+message AdAsyncRequestSetNotificationResult {
+  optional string response     = 1;
+  optional string status       = 2;
+}
+
+message AdAsyncRequestSetNotificationResultArray {
+  repeated AdAsyncRequestSetNotificationResult array = 1;
+}

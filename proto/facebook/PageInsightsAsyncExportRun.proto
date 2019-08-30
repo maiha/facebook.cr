@@ -1,0 +1,17 @@
+syntax = "proto2";
+
+
+
+message PageInsightsAsyncExportRun {
+  optional string id                = 1;
+  optional string data_level        = 2;
+  optional string format            = 3;
+  optional int64  gen_report_date   = 4;
+  optional int64  report_end_date   = 5;
+  optional int64  report_start_date = 6;
+  optional string status            = 7;
+}
+
+message PageInsightsAsyncExportRunArray {
+  repeated PageInsightsAsyncExportRun array = 1;
+}

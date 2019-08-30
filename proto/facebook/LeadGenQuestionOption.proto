@@ -1,0 +1,12 @@
+syntax = "proto2";
+
+
+
+message LeadGenQuestionOption {
+  optional string key          = 1;
+  optional string value        = 2;
+}
+
+message LeadGenQuestionOptionArray {
+  repeated LeadGenQuestionOption array = 1;
+}

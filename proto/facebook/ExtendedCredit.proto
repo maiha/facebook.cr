@@ -1,0 +1,20 @@
+syntax = "proto2";
+
+import "Datetime.proto";
+
+message ExtendedCredit {
+  optional string   id                      = 1;
+  optional string   credit_type             = 2;
+  optional bool     is_access_revoked       = 3;
+  optional bool     is_automated_experience = 4;
+  optional Datetime last_payment_time       = 5;
+  optional string   legal_entity_name       = 6;
+  optional string   liable_biz_name         = 7;
+  optional string   owner_business_name     = 8;
+  optional string   partition_from          = 9;
+  optional string   send_bill_to_biz_name   = 10;
+}
+
+message ExtendedCreditArray {
+  repeated ExtendedCredit array = 1;
+}

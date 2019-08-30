@@ -1,0 +1,16 @@
+syntax = "proto2";
+
+
+
+message NativeOfferDiscount {
+  optional string currency     = 1;
+  optional string override     = 2;
+  optional string text         = 3;
+  optional string type         = 4;
+  optional double value1       = 5;
+  optional double value2       = 6;
+}
+
+message NativeOfferDiscountArray {
+  repeated NativeOfferDiscount array = 1;
+}

@@ -1,0 +1,12 @@
+syntax = "proto2";
+
+
+
+message AdRuleFilters {
+  optional string field        = 1;
+  optional string operator     = 2;
+}
+
+message AdRuleFiltersArray {
+  repeated AdRuleFilters array = 1;
+}

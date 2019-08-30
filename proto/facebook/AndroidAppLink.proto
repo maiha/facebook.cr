@@ -1,0 +1,14 @@
+syntax = "proto2";
+
+
+
+message AndroidAppLink {
+  optional string app_name     = 1;
+  optional string _class       = 2;
+  optional string package      = 3;
+  optional string url          = 4;
+}
+
+message AndroidAppLinkArray {
+  repeated AndroidAppLink array = 1;
+}

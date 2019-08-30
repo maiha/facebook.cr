@@ -1,0 +1,13 @@
+syntax = "proto2";
+
+import "Datetime.proto";
+
+message ClientTransparencyStatus {
+  optional Datetime grace_period_expiration_date = 1;
+  optional bool     has_owning_business          = 2;
+  optional bool     is_satisfied                 = 3;
+}
+
+message ClientTransparencyStatusArray {
+  repeated ClientTransparencyStatus array = 1;
+}

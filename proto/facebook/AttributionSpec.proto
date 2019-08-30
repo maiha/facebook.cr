@@ -1,0 +1,12 @@
+syntax = "proto2";
+
+
+
+message AttributionSpec {
+  optional string event_type  = 1;
+  optional int64  window_days = 2;
+}
+
+message AttributionSpecArray {
+  repeated AttributionSpec array = 1;
+}

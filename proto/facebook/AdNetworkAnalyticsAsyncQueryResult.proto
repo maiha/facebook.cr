@@ -1,0 +1,12 @@
+syntax = "proto2";
+
+
+
+message AdNetworkAnalyticsAsyncQueryResult {
+  optional string query_id     = 1;
+  optional string status       = 2;
+}
+
+message AdNetworkAnalyticsAsyncQueryResultArray {
+  repeated AdNetworkAnalyticsAsyncQueryResult array = 1;
+}

@@ -1,0 +1,25 @@
+syntax = "proto2";
+
+import "Datetime.proto";
+
+message AdStudy {
+  optional string   id                           = 1;
+  optional Datetime canceled_time                = 2;
+  optional Datetime cooldown_start_time          = 3;
+  optional Datetime created_time                 = 4;
+  optional string   description                  = 5;
+  optional Datetime end_time                     = 6;
+  optional string   name                         = 7;
+  optional Datetime observation_end_time         = 8;
+  optional string   results_first_available_date = 9;
+  optional Datetime start_time                   = 10;
+  optional string   type                         = 11;
+  optional Datetime updated_time                 = 12;
+  optional string   client_business              = 13;
+  optional double   confidence_level             = 14;
+  repeated int64    viewers                      = 15;
+}
+
+message AdStudyArray {
+  repeated AdStudy array = 1;
+}

@@ -1,0 +1,12 @@
+syntax = "proto2";
+
+import "Datetime.proto";
+
+message CustomConversionStatsResult {
+  optional string   aggregation  = 1;
+  optional Datetime timestamp    = 2;
+}
+
+message CustomConversionStatsResultArray {
+  repeated CustomConversionStatsResult array = 1;
+}

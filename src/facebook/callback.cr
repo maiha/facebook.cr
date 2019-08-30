@@ -16,10 +16,10 @@ module Facebook::Callback
   end
 
   def after_execute
-    @after_execute ||= [] of ((Request, Response) ->)
+    @after_execute ||= [] of ((Request, Response?) ->)
   end
 
-  def after_execute(&callback : (Request, Response) ->)
+  def after_execute(&callback : (Request, Response?) ->)
     after_execute << callback
   end
 end

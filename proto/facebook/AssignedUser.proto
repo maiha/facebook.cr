@@ -1,0 +1,13 @@
+syntax = "proto2";
+
+
+
+message AssignedUser {
+  optional string id           = 1;
+  optional string name         = 2;
+  optional string user_type    = 3;
+}
+
+message AssignedUserArray {
+  repeated AssignedUser array = 1;
+}

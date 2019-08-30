@@ -1,0 +1,17 @@
+syntax = "proto2";
+
+
+
+message Canvas {
+  optional string id           = 1;
+  optional string background_color = 2;
+  optional string canvas_link  = 3;
+  optional bool   is_hidden    = 4;
+  optional bool   is_published = 5;
+  optional string name         = 6;
+  optional int64  update_time  = 7;
+}
+
+message CanvasArray {
+  repeated Canvas array = 1;
+}

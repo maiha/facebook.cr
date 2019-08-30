@@ -1,3 +1,5 @@
+require "./response/*"
+
 module Facebook
   class Response
     var requested_at : Time
@@ -25,7 +27,7 @@ module Facebook
 
     private def build_headers : HTTP::Headers
       headers = HTTP::Headers.new
-      header.scan(/^(.*?):\s*(.*?)\r?$/m) do
+      header.scan(/^([^\n]+?):\s*([^\n]+?)\r?$/m) do
         headers[$1] = $2
       end
 

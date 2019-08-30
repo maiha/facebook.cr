@@ -1,0 +1,11 @@
+syntax = "proto2";
+
+
+
+message AdsOptimalDeliveryGrowthOpportunity {
+  optional string optimization_type = 1;
+}
+
+message AdsOptimalDeliveryGrowthOpportunityArray {
+  repeated AdsOptimalDeliveryGrowthOpportunity array = 1;
+}

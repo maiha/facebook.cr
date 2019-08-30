@@ -1,0 +1,14 @@
+syntax = "proto2";
+
+
+
+message FriendList {
+  optional string id           = 1;
+  optional string list_type    = 2;
+  optional string name         = 3;
+  optional string owner        = 4;
+}
+
+message FriendListArray {
+  repeated FriendList array = 1;
+}

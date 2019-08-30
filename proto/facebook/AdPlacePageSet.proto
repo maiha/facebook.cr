@@ -1,0 +1,15 @@
+syntax = "proto2";
+
+
+
+message AdPlacePageSet {
+  optional string id          = 1;
+  optional string account_id  = 2;
+  repeated string location_types = 3;
+  optional string name        = 4;
+  optional int64  pages_count = 5;
+}
+
+message AdPlacePageSetArray {
+  repeated AdPlacePageSet array = 1;
+}

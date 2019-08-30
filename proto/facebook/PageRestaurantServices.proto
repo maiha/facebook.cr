@@ -1,0 +1,20 @@
+syntax = "proto2";
+
+
+
+message PageRestaurantServices {
+  optional bool catering     = 1;
+  optional bool delivery     = 2;
+  optional bool groups       = 3;
+  optional bool kids         = 4;
+  optional bool outdoor      = 5;
+  optional bool pickup       = 6;
+  optional bool reserve      = 7;
+  optional bool takeout      = 8;
+  optional bool waiter       = 9;
+  optional bool walkins      = 10;
+}
+
+message PageRestaurantServicesArray {
+  repeated PageRestaurantServices array = 1;
+}

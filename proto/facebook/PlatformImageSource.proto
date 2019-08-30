@@ -1,0 +1,13 @@
+syntax = "proto2";
+
+
+
+message PlatformImageSource {
+  optional int64  height = 1;
+  optional string source = 2;
+  optional int64  width  = 3;
+}
+
+message PlatformImageSourceArray {
+  repeated PlatformImageSource array = 1;
+}

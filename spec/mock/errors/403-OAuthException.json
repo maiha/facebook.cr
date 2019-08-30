@@ -1,0 +1,8 @@
+{
+  "error": {
+    "message": "(#210) A page access token is required to request this resource.",
+    "type": "OAuthException",
+    "code": 210,
+    "fbtrace_id": "xxx"
+  }
+}

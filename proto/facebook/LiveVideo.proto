@@ -1,0 +1,29 @@
+syntax = "proto2";
+
+import "Datetime.proto";
+
+message LiveVideo {
+  optional string   id                      = 1;
+  optional string   ad_break_failure_reason = 2;
+  optional Datetime broadcast_start_time    = 3;
+  optional Datetime creation_time           = 4;
+  optional string   dash_ingest_url         = 5;
+  optional string   dash_preview_url        = 6;
+  optional string   description             = 7;
+  optional string   embed_html              = 8;
+  optional bool     is_manual_mode          = 9;
+  optional bool     is_reference_only       = 10;
+  optional int64    live_views              = 11;
+  optional string   permalink_url           = 12;
+  optional Datetime planned_start_time      = 13;
+  optional int64    seconds_left            = 14;
+  optional string   secure_stream_url       = 15;
+  optional string   status                  = 16;
+  optional string   stream_url              = 17;
+  optional string   title                   = 18;
+  optional string   total_views             = 19;
+}
+
+message LiveVideoArray {
+  repeated LiveVideo array = 1;
+}

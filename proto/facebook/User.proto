@@ -1,0 +1,49 @@
+syntax = "proto2";
+
+import "Datetime.proto";
+
+message User {
+  optional string   id                                  = 1;
+  optional string   about                               = 2;
+  optional string   auth_method                         = 3;
+  optional string   birthday                            = 4;
+  optional bool     can_review_measurement_request      = 5;
+  optional string   email                               = 6;
+  optional string   first_name                          = 7;
+  optional string   gender                              = 8;
+  optional string   install_type                        = 9;
+  optional bool     installed                           = 10;
+  repeated string   interested_in                       = 11;
+  optional bool     is_famedeeplinkinguser              = 12;
+  optional bool     is_shared_login                     = 13;
+  optional bool     is_verified                         = 14;
+  optional string   last_name                           = 15;
+  optional string   link                                = 16;
+  optional bool     local_news_megaphone_dismiss_status = 17;
+  optional bool     local_news_subscription_status      = 18;
+  optional string   locale                              = 19;
+  repeated string   meeting_for                         = 20;
+  optional string   middle_name                         = 21;
+  optional string   name                                = 22;
+  optional string   name_format                         = 23;
+  optional string   political                           = 24;
+  optional string   profile_pic                         = 25;
+  optional string   public_key                          = 26;
+  optional string   quotes                              = 27;
+  optional string   relationship_status                 = 28;
+  optional string   religion                            = 29;
+  optional Datetime shared_login_upgrade_required_by    = 30;
+  optional string   short_name                          = 31;
+  optional int64    test_group                          = 32;
+  optional string   third_party_id                      = 33;
+  optional double   timezone                            = 34;
+  optional string   token_for_business                  = 35;
+  optional Datetime updated_time                        = 36;
+  optional bool     verified                            = 37;
+  optional bool     viewer_can_send_gift                = 38;
+  optional string   website                             = 39;
+}
+
+message UserArray {
+  repeated User array = 1;
+}

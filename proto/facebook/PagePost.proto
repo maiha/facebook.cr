@@ -1,0 +1,50 @@
+syntax = "proto2";
+
+import "Datetime.proto";
+
+message PagePost {
+  optional string   id                        = 1;
+  repeated string   actions                   = 2;
+  repeated string   allowed_advertising_objectives = 3;
+  optional Datetime backdated_time            = 4;
+  optional bool     can_reply_privately       = 5;
+  repeated string   child_attachments         = 6;
+  optional string   comments_mirroring_domain = 7;
+  optional Datetime created_time              = 8;
+  optional int64    expanded_height           = 9;
+  optional int64    expanded_width            = 10;
+  optional string   full_picture              = 11;
+  optional int64    height                    = 12;
+  optional string   icon                      = 13;
+  optional string   instagram_eligibility     = 14;
+  optional bool     is_app_share              = 15;
+  optional bool     is_eligible_for_promotion = 16;
+  optional bool     is_expired                = 17;
+  optional bool     is_hidden                 = 18;
+  optional bool     is_instagram_eligible     = 19;
+  optional bool     is_popular                = 20;
+  optional bool     is_published              = 21;
+  optional bool     is_spherical              = 22;
+  optional string   message                   = 23;
+  repeated string   message_tags              = 24;
+  optional bool     multi_share_end_card      = 25;
+  optional bool     multi_share_optimized     = 26;
+  optional string   parent_id                 = 27;
+  optional string   picture                   = 28;
+  optional string   promotable_id             = 29;
+  optional string   promotion_status          = 30;
+  repeated string   properties                = 31;
+  optional double   scheduled_publish_time    = 32;
+  optional string   status_type               = 33;
+  optional string   story                     = 34;
+  repeated string   story_tags                = 35;
+  optional bool     subscribed                = 36;
+  optional string   timeline_visibility       = 37;
+  optional Datetime updated_time              = 38;
+  repeated string   video_buying_eligibility  = 39;
+  optional int64    width                     = 40;
+}
+
+message PagePostArray {
+  repeated PagePost array = 1;
+}

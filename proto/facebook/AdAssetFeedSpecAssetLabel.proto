@@ -1,0 +1,12 @@
+syntax = "proto2";
+
+
+
+message AdAssetFeedSpecAssetLabel {
+  optional string id           = 1;
+  optional string name         = 2;
+}
+
+message AdAssetFeedSpecAssetLabelArray {
+  repeated AdAssetFeedSpecAssetLabel array = 1;
+}

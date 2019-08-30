@@ -1,0 +1,23 @@
+syntax = "proto2";
+
+import "Datetime.proto";
+
+message IgMedia {
+  optional string   id                 = 1;
+  optional string   caption            = 2;
+  optional int64    comments_count     = 3;
+  optional string   ig_id              = 4;
+  optional bool     is_comment_enabled = 5;
+  optional int64    like_count         = 6;
+  optional string   media_type         = 7;
+  optional string   media_url          = 8;
+  optional string   permalink          = 9;
+  optional string   shortcode          = 10;
+  optional string   thumbnail_url      = 11;
+  optional Datetime timestamp          = 12;
+  optional string   username           = 13;
+}
+
+message IgMediaArray {
+  repeated IgMedia array = 1;
+}

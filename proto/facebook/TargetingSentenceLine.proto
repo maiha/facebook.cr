@@ -1,0 +1,12 @@
+syntax = "proto2";
+
+
+
+message TargetingSentenceLine {
+  optional string id           = 1;
+  repeated string targetingsentencelines = 2;
+}
+
+message TargetingSentenceLineArray {
+  repeated TargetingSentenceLine array = 1;
+}

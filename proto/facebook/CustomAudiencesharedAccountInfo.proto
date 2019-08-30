@@ -1,0 +1,15 @@
+syntax = "proto2";
+
+
+
+message CustomAudiencesharedAccountInfo {
+  optional string account_id   = 1;
+  optional string account_name = 2;
+  optional string business_id  = 3;
+  optional string business_name = 4;
+  optional string sharing_status = 5;
+}
+
+message CustomAudiencesharedAccountInfoArray {
+  repeated CustomAudiencesharedAccountInfo array = 1;
+}

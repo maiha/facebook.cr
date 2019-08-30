@@ -1,0 +1,12 @@
+syntax = "proto2";
+
+
+
+message LeadGenAppointmentBookingInfo {
+  optional string advertiser_timezone_offset = 1;
+  repeated string appointment_durations = 2;
+}
+
+message LeadGenAppointmentBookingInfoArray {
+  repeated LeadGenAppointmentBookingInfo array = 1;
+}

@@ -1,0 +1,14 @@
+syntax = "proto2";
+
+
+
+message CurrencyAmount {
+  optional string amount       = 1;
+  optional string amount_in_hundredths = 2;
+  optional string currency     = 3;
+  optional string offsetted_amount = 4;
+}
+
+message CurrencyAmountArray {
+  repeated CurrencyAmount array = 1;
+}

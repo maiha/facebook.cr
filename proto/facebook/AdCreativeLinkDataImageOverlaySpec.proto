@@ -1,0 +1,18 @@
+syntax = "proto2";
+
+
+
+message AdCreativeLinkDataImageOverlaySpec {
+  optional string custom_text_type  = 1;
+  optional bool   float_with_margin = 2;
+  optional string overlay_template  = 3;
+  optional string position          = 4;
+  optional string text_font         = 5;
+  repeated string text_template_tags = 6;
+  optional string text_type         = 7;
+  optional string theme_color       = 8;
+}
+
+message AdCreativeLinkDataImageOverlaySpecArray {
+  repeated AdCreativeLinkDataImageOverlaySpec array = 1;
+}

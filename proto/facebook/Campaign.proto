@@ -1,0 +1,36 @@
+syntax = "proto2";
+
+import "Datetime.proto";
+
+message Campaign {
+  optional string   id                          = 1;
+  optional string   account_id                  = 2;
+  optional string   bid_strategy                = 3;
+  optional string   boosted_object_id           = 4;
+  optional bool     budget_rebalance_flag       = 5;
+  optional string   budget_remaining            = 6;
+  optional string   buying_type                 = 7;
+  optional bool     can_create_brand_lift_study = 8;
+  optional bool     can_use_spend_cap           = 9;
+  optional string   configured_status           = 10;
+  optional Datetime created_time                = 11;
+  optional string   daily_budget                = 12;
+  optional string   effective_status            = 13;
+  optional Datetime last_budget_toggling_time   = 14;
+  optional string   lifetime_budget             = 15;
+  optional string   name                        = 16;
+  optional string   objective                   = 17;
+  repeated string   pacing_type                 = 18;
+  optional string   source_campaign_id          = 19;
+  optional string   spend_cap                   = 20;
+  optional Datetime start_time                  = 21;
+  optional string   status                      = 22;
+  optional Datetime stop_time                   = 23;
+  optional string   topline_id                  = 24;
+  optional Datetime updated_time                = 25;
+  repeated string   execution_options           = 26;
+}
+
+message CampaignArray {
+  repeated Campaign array = 1;
+}

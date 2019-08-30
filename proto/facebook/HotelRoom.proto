@@ -1,0 +1,20 @@
+syntax = "proto2";
+
+
+
+message HotelRoom {
+  optional string id           = 1;
+  optional string base_price   = 2;
+  optional string currency     = 3;
+  optional string description  = 4;
+  repeated string images       = 5;
+  optional string margin_level = 6;
+  optional string name         = 7;
+  optional string room_id      = 8;
+  optional string sale_price   = 9;
+  optional string url          = 10;
+}
+
+message HotelRoomArray {
+  repeated HotelRoom array = 1;
+}

@@ -1,0 +1,16 @@
+syntax = "proto2";
+
+
+
+message Privacy {
+  optional string allow        = 1;
+  optional string deny         = 2;
+  optional string description  = 3;
+  optional string friends      = 4;
+  optional string networks     = 5;
+  optional string value        = 6;
+}
+
+message PrivacyArray {
+  repeated Privacy array = 1;
+}

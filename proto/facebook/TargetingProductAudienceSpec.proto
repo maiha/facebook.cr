@@ -1,0 +1,11 @@
+syntax = "proto2";
+
+
+
+message TargetingProductAudienceSpec {
+  optional string product_set_id = 1;
+}
+
+message TargetingProductAudienceSpecArray {
+  repeated TargetingProductAudienceSpec array = 1;
+}

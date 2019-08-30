@@ -1,0 +1,11 @@
+syntax = "proto2";
+
+
+
+message Url {
+  optional string id           = 1;
+}
+
+message UrlArray {
+  repeated Url array = 1;
+}

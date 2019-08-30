@@ -1,0 +1,11 @@
+syntax = "proto2";
+
+
+
+message AdRuleExecutionSpec {
+  optional string execution_type = 1;
+}
+
+message AdRuleExecutionSpecArray {
+  repeated AdRuleExecutionSpec array = 1;
+}

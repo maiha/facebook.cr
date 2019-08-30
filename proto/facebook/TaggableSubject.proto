@@ -1,0 +1,12 @@
+syntax = "proto2";
+
+
+
+message TaggableSubject {
+  optional string id           = 1;
+  optional string name         = 2;
+}
+
+message TaggableSubjectArray {
+  repeated TaggableSubject array = 1;
+}

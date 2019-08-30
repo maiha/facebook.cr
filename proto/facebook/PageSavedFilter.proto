@@ -1,0 +1,16 @@
+syntax = "proto2";
+
+
+
+message PageSavedFilter {
+  optional string id           = 1;
+  optional string display_name = 2;
+  optional string page_id      = 3;
+  optional string section      = 4;
+  optional int64  time_created = 5;
+  optional int64  time_updated = 6;
+}
+
+message PageSavedFilterArray {
+  repeated PageSavedFilter array = 1;
+}

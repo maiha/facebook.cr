@@ -1,0 +1,11 @@
+syntax = "proto2";
+
+
+
+message CatalogBasedTargeting {
+  optional string geo_targeting_type = 1;
+}
+
+message CatalogBasedTargetingArray {
+  repeated CatalogBasedTargeting array = 1;
+}

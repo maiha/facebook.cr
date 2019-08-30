@@ -1,0 +1,13 @@
+syntax = "proto2";
+
+
+
+message CustomAudienceDataSource {
+  optional string creation_params = 1;
+  optional string sub_type     = 2;
+  optional string type         = 3;
+}
+
+message CustomAudienceDataSourceArray {
+  repeated CustomAudienceDataSource array = 1;
+}

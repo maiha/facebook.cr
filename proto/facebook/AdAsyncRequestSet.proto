@@ -1,0 +1,25 @@
+syntax = "proto2";
+
+import "Datetime.proto";
+
+message AdAsyncRequestSet {
+  optional string   id                = 1;
+  optional int64    canceled_count    = 2;
+  optional Datetime created_time      = 3;
+  optional int64    error_count       = 4;
+  optional int64    in_progress_count = 5;
+  optional int64    initial_count     = 6;
+  optional bool     is_completed      = 7;
+  optional string   name              = 8;
+  optional string   notification_mode = 9;
+  optional string   notification_status = 10;
+  optional string   notification_uri  = 11;
+  optional string   owner_id          = 12;
+  optional int64    success_count     = 13;
+  optional int64    total_count       = 14;
+  optional Datetime updated_time      = 15;
+}
+
+message AdAsyncRequestSetArray {
+  repeated AdAsyncRequestSet array = 1;
+}

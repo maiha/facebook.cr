@@ -1,0 +1,31 @@
+syntax = "proto2";
+
+
+
+message DirectDeal {
+  optional string id                          = 1;
+  optional bool   adbreaks_enabled            = 2;
+  optional string advertiser_lead_email       = 3;
+  optional string advertiser_page             = 4;
+  optional int64  cpe_amount                  = 5;
+  optional string cpe_currency                = 6;
+  optional int64  end_time                    = 7;
+  optional int64  lifetime_budget_amount      = 8;
+  optional string lifetime_budget_currency    = 9;
+  optional int64  lifetime_impressions        = 10;
+  optional string name                        = 11;
+  repeated string pages                       = 12;
+  repeated string placements                  = 13;
+  optional string priced_by                   = 14;
+  optional string publisher_name              = 15;
+  optional string review_requirement          = 16;
+  optional string sales_lead_email            = 17;
+  optional int64  start_time                  = 18;
+  optional string status                      = 19;
+  repeated string third_party_ids             = 20;
+  optional bool   third_party_integrated_deal = 21;
+}
+
+message DirectDealArray {
+  repeated DirectDeal array = 1;
+}

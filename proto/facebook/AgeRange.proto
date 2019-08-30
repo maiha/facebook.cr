@@ -1,0 +1,12 @@
+syntax = "proto2";
+
+
+
+message AgeRange {
+  optional int64 max = 1;
+  optional int64 min = 2;
+}
+
+message AgeRangeArray {
+  repeated AgeRange array = 1;
+}

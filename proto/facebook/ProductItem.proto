@@ -1,0 +1,73 @@
+syntax = "proto2";
+
+import "Datetime.proto";
+
+message ProductItem {
+  optional string   id                            = 1;
+  repeated string   additional_image_urls         = 2;
+  optional string   age_group                     = 3;
+  optional string   availability                  = 4;
+  optional string   brand                         = 5;
+  optional string   category                      = 6;
+  optional string   color                         = 7;
+  optional string   condition                     = 8;
+  optional string   currency                      = 9;
+  optional string   custom_label_0                = 10;
+  optional string   custom_label_1                = 11;
+  optional string   custom_label_2                = 12;
+  optional string   custom_label_3                = 13;
+  optional string   custom_label_4                = 14;
+  optional string   description                   = 15;
+  optional string   expiration_date               = 16;
+  optional string   gender                        = 17;
+  optional string   gtin                          = 18;
+  optional string   image_url                     = 19;
+  optional int64    inventory                     = 20;
+  optional string   manufacturer_part_number      = 21;
+  optional string   material                      = 22;
+  optional string   mobile_link                   = 23;
+  optional string   name                          = 24;
+  optional int64    ordering_index                = 25;
+  optional string   pattern                       = 26;
+  optional string   price                         = 27;
+  optional string   product_type                  = 28;
+  optional string   retailer_id                   = 29;
+  optional string   retailer_product_group_id     = 30;
+  repeated string   review_rejection_reasons      = 31;
+  optional string   review_status                 = 32;
+  optional string   sale_price                    = 33;
+  optional string   sale_price_end_date           = 34;
+  optional string   sale_price_start_date         = 35;
+  optional string   shipping_weight_unit          = 36;
+  optional double   shipping_weight_value         = 37;
+  optional string   short_description             = 38;
+  optional string   size                          = 39;
+  optional string   start_date                    = 40;
+  optional string   url                           = 41;
+  optional string   visibility                    = 42;
+  optional string   android_app_name              = 43;
+  optional string   android_class                 = 44;
+  optional string   android_package               = 45;
+  optional string   android_url                   = 46;
+  optional string   checkout_url                  = 47;
+  optional string   ios_app_name                  = 48;
+  optional int64    ios_app_store_id              = 49;
+  optional string   ios_url                       = 50;
+  optional string   ipad_app_name                 = 51;
+  optional int64    ipad_app_store_id             = 52;
+  optional string   ipad_url                      = 53;
+  optional string   iphone_app_name               = 54;
+  optional int64    iphone_app_store_id           = 55;
+  optional string   iphone_url                    = 56;
+  optional string   launch_date                   = 57;
+  optional int64    offer_price_amount            = 58;
+  optional Datetime offer_price_end_date          = 59;
+  optional Datetime offer_price_start_date        = 60;
+  optional string   windows_phone_app_id          = 61;
+  optional string   windows_phone_app_name        = 62;
+  optional string   windows_phone_url             = 63;
+}
+
+message ProductItemArray {
+  repeated ProductItem array = 1;
+}

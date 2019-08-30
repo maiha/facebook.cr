@@ -1,0 +1,12 @@
+syntax = "proto2";
+
+
+
+message MessagingFeatureReview {
+  optional string feature      = 1;
+  optional string status       = 2;
+}
+
+message MessagingFeatureReviewArray {
+  repeated MessagingFeatureReview array = 1;
+}

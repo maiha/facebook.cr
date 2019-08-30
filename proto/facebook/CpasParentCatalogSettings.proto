@@ -1,0 +1,13 @@
+syntax = "proto2";
+
+
+
+message CpasParentCatalogSettings {
+  optional string id           = 1;
+  repeated string attribution_windows = 2;
+  optional string default_currency = 3;
+}
+
+message CpasParentCatalogSettingsArray {
+  repeated CpasParentCatalogSettings array = 1;
+}

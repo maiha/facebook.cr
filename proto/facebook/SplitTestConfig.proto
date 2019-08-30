@@ -1,0 +1,17 @@
+syntax = "proto2";
+
+import "Datetime.proto";
+
+message SplitTestConfig {
+  optional string   id                               = 1;
+  optional int64    budget                           = 2;
+  optional bool     early_winner_declaration_enabled = 3;
+  optional Datetime end_time                         = 4;
+  repeated int64    splits                           = 5;
+  optional Datetime start_time                       = 6;
+  optional string   test_variable                    = 7;
+}
+
+message SplitTestConfigArray {
+  repeated SplitTestConfig array = 1;
+}

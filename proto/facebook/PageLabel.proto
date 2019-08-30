@@ -1,0 +1,13 @@
+syntax = "proto2";
+
+import "Datetime.proto";
+
+message PageLabel {
+  optional string   id         = 1;
+  optional Datetime creation_time = 2;
+  optional string   name       = 3;
+}
+
+message PageLabelArray {
+  repeated PageLabel array = 1;
+}

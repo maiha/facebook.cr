@@ -1,0 +1,11 @@
+syntax = "proto2";
+
+import "Datetime.proto";
+
+message InstagramInsightsValue {
+  optional Datetime end_time = 1;
+}
+
+message InstagramInsightsValueArray {
+  repeated InstagramInsightsValue array = 1;
+}

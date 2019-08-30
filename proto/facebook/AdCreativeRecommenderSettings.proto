@@ -1,0 +1,12 @@
+syntax = "proto2";
+
+
+
+message AdCreativeRecommenderSettings {
+  repeated string preferred_events = 1;
+  optional string product_sales_channel = 2;
+}
+
+message AdCreativeRecommenderSettingsArray {
+  repeated AdCreativeRecommenderSettings array = 1;
+}

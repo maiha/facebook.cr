@@ -1,0 +1,15 @@
+syntax = "proto2";
+
+
+
+message ExtendedCreditAllocationConfig {
+  optional string id           = 1;
+  optional string liability_type = 2;
+  optional string partition_type = 3;
+  optional string request_status = 4;
+  optional string send_bill_to = 5;
+}
+
+message ExtendedCreditAllocationConfigArray {
+  repeated ExtendedCreditAllocationConfig array = 1;
+}

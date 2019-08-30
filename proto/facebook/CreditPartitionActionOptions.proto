@@ -1,0 +1,11 @@
+syntax = "proto2";
+
+
+
+message CreditPartitionActionOptions {
+
+}
+
+message CreditPartitionActionOptionsArray {
+  repeated CreditPartitionActionOptions array = 1;
+}

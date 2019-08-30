@@ -1,0 +1,15 @@
+syntax = "proto2";
+
+
+
+message AdCreativeStaticFallbackSpec {
+  optional string description  = 1;
+  optional string image_hash   = 2;
+  optional string link         = 3;
+  optional string message      = 4;
+  optional string name         = 5;
+}
+
+message AdCreativeStaticFallbackSpecArray {
+  repeated AdCreativeStaticFallbackSpec array = 1;
+}

@@ -1,0 +1,13 @@
+syntax = "proto2";
+
+
+
+message UserInfluence {
+  optional string trust      = 1;
+  optional int64  trust_code = 2;
+  optional int64  version    = 3;
+}
+
+message UserInfluenceArray {
+  repeated UserInfluence array = 1;
+}

@@ -1,0 +1,11 @@
+syntax = "proto2";
+
+
+
+message AdCreativeInteractiveComponentsSpec {
+
+}
+
+message AdCreativeInteractiveComponentsSpecArray {
+  repeated AdCreativeInteractiveComponentsSpec array = 1;
+}

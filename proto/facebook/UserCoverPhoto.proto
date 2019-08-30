@@ -1,0 +1,13 @@
+syntax = "proto2";
+
+
+
+message UserCoverPhoto {
+  optional double offset_x     = 1;
+  optional double offset_y     = 2;
+  optional string source       = 3;
+}
+
+message UserCoverPhotoArray {
+  repeated UserCoverPhoto array = 1;
+}

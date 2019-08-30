@@ -1,0 +1,13 @@
+syntax = "proto2";
+
+
+
+message PageCategory {
+  optional string id           = 1;
+  optional string api_enum     = 2;
+  optional string name         = 3;
+}
+
+message PageCategoryArray {
+  repeated PageCategory array = 1;
+}

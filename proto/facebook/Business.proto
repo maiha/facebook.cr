@@ -1,0 +1,25 @@
+syntax = "proto2";
+
+import "Datetime.proto";
+
+message Business {
+  optional string   id                                   = 1;
+  optional bool     block_offline_analytics              = 2;
+  optional Datetime created_time                         = 3;
+  optional Datetime extended_updated_time                = 4;
+  optional bool     is_hidden                            = 5;
+  optional bool     is_instagram_enabled_in_fb_analytics = 6;
+  optional string   link                                 = 7;
+  optional string   name                                 = 8;
+  optional string   payment_account_id                   = 9;
+  optional string   profile_picture_uri                  = 10;
+  optional int64    timezone_id                          = 11;
+  optional string   two_factor_type                      = 12;
+  optional Datetime updated_time                         = 13;
+  optional string   verification_status                  = 14;
+  optional int64    vertical_id                          = 15;
+}
+
+message BusinessArray {
+  repeated Business array = 1;
+}

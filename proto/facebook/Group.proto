@@ -1,0 +1,25 @@
+syntax = "proto2";
+
+import "Datetime.proto";
+
+message Group {
+  optional string   id                   = 1;
+  optional bool     archived             = 2;
+  optional Datetime created_time         = 3;
+  optional string   description          = 4;
+  optional string   email                = 5;
+  optional string   icon                 = 6;
+  optional string   link                 = 7;
+  optional int64    member_count         = 8;
+  optional int64    member_request_count = 9;
+  optional string   name                 = 10;
+  repeated string   permissions          = 11;
+  optional string   privacy              = 12;
+  optional string   purpose              = 13;
+  optional string   subdomain            = 14;
+  optional Datetime updated_time         = 15;
+}
+
+message GroupArray {
+  repeated Group array = 1;
+}

@@ -1,0 +1,12 @@
+syntax = "proto2";
+
+
+
+message VideoUploadLimits {
+  optional int64 length = 1;
+  optional int64 size   = 2;
+}
+
+message VideoUploadLimitsArray {
+  repeated VideoUploadLimits array = 1;
+}

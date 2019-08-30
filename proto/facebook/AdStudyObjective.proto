@@ -1,0 +1,16 @@
+syntax = "proto2";
+
+
+
+message AdStudyObjective {
+  optional string id         = 1;
+  optional bool   is_primary = 2;
+  optional string last_updated_results = 3;
+  optional string name       = 4;
+  repeated string results    = 5;
+  optional string type       = 6;
+}
+
+message AdStudyObjectiveArray {
+  repeated AdStudyObjective array = 1;
+}

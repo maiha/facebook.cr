@@ -1,0 +1,16 @@
+syntax = "proto2";
+
+
+
+message AdCreativePlaceData {
+  optional string address_string = 1;
+  optional string label        = 2;
+  optional double latitude     = 3;
+  optional string location_source_id = 4;
+  optional double longitude    = 5;
+  optional string type         = 6;
+}
+
+message AdCreativePlaceDataArray {
+  repeated AdCreativePlaceData array = 1;
+}

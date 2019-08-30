@@ -1,0 +1,57 @@
+syntax = "proto2";
+
+import "Datetime.proto";
+
+message Post {
+  optional string   id                        = 1;
+  repeated string   actions                   = 2;
+  repeated string   allowed_advertising_objectives = 3;
+  optional Datetime backdated_time            = 4;
+  optional bool     can_reply_privately       = 5;
+  optional string   caption                   = 6;
+  repeated string   child_attachments         = 7;
+  optional string   comments_mirroring_domain = 8;
+  optional Datetime created_time              = 9;
+  optional string   description               = 10;
+  optional int64    expanded_height           = 11;
+  optional int64    expanded_width            = 12;
+  optional string   full_picture              = 13;
+  optional int64    height                    = 14;
+  optional string   icon                      = 15;
+  optional string   instagram_eligibility     = 16;
+  optional bool     is_app_share              = 17;
+  optional bool     is_eligible_for_promotion = 18;
+  optional bool     is_expired                = 19;
+  optional bool     is_hidden                 = 20;
+  optional bool     is_instagram_eligible     = 21;
+  optional bool     is_popular                = 22;
+  optional bool     is_published              = 23;
+  optional bool     is_spherical              = 24;
+  optional string   link                      = 25;
+  optional string   message                   = 26;
+  repeated string   message_tags              = 27;
+  optional bool     multi_share_end_card      = 28;
+  optional bool     multi_share_optimized     = 29;
+  optional string   name                      = 30;
+  optional string   object_id                 = 31;
+  optional string   parent_id                 = 32;
+  optional string   picture                   = 33;
+  optional string   promotable_id             = 34;
+  optional string   promotion_status          = 35;
+  repeated string   properties                = 36;
+  optional double   scheduled_publish_time    = 37;
+  optional string   source                    = 38;
+  optional string   status_type               = 39;
+  optional string   story                     = 40;
+  repeated string   story_tags                = 41;
+  optional bool     subscribed                = 42;
+  optional string   timeline_visibility       = 43;
+  optional string   type                      = 44;
+  optional Datetime updated_time              = 45;
+  repeated string   video_buying_eligibility  = 46;
+  optional int64    width                     = 47;
+}
+
+message PostArray {
+  repeated Post array = 1;
+}

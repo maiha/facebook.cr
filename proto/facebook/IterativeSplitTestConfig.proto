@@ -1,0 +1,16 @@
+syntax = "proto2";
+
+import "Datetime.proto";
+
+message IterativeSplitTestConfig {
+  optional string   id                                            = 1;
+  optional int64    budget                                        = 2;
+  optional Datetime end_time                                      = 3;
+  optional string   iterative_split_test_original_variant_id      = 4;
+  repeated int64    splits                                        = 5;
+  optional Datetime start_time                                    = 6;
+}
+
+message IterativeSplitTestConfigArray {
+  repeated IterativeSplitTestConfig array = 1;
+}

@@ -1,0 +1,33 @@
+syntax = "proto2";
+
+
+
+message ConversionActionQuery {
+  repeated string conversion_id = 1;
+  repeated string dataset      = 2;
+  repeated string event        = 3;
+  repeated string _event_creator = 4;
+  repeated string event_type   = 5;
+  repeated string fb_pixel     = 6;
+  repeated string fb_pixel_event = 7;
+  repeated string leadgen      = 8;
+  repeated string object       = 9;
+  repeated string _object_domain = 10;
+  repeated string offer        = 11;
+  repeated string _offer_creator = 12;
+  repeated string offsite_pixel = 13;
+  repeated string page         = 14;
+  repeated string _page_parent = 15;
+  repeated string post         = 16;
+  repeated string _post_object = 17;
+  repeated string _post_object_wall = 18;
+  repeated string _post_wall   = 19;
+  repeated string question     = 20;
+  repeated string _question_creator = 21;
+  repeated string response     = 22;
+  repeated string subtype      = 23;
+}
+
+message ConversionActionQueryArray {
+  repeated ConversionActionQuery array = 1;
+}

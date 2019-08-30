@@ -1,0 +1,16 @@
+syntax = "proto2";
+
+
+
+message AdCustomizationRuleSpec {
+  optional string caption  = 1;
+  optional string description = 2;
+  optional string link     = 3;
+  optional string message  = 4;
+  optional string name     = 5;
+  optional int64  priority = 6;
+}
+
+message AdCustomizationRuleSpecArray {
+  repeated AdCustomizationRuleSpec array = 1;
+}

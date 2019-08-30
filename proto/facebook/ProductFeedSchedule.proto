@@ -1,0 +1,19 @@
+syntax = "proto2";
+
+
+
+message ProductFeedSchedule {
+  optional int64  day_of_month   = 1;
+  optional string day_of_week    = 2;
+  optional int64  hour           = 3;
+  optional string interval       = 4;
+  optional int64  interval_count = 5;
+  optional int64  minute         = 6;
+  optional string timezone       = 7;
+  optional string url            = 8;
+  optional string username       = 9;
+}
+
+message ProductFeedScheduleArray {
+  repeated ProductFeedSchedule array = 1;
+}

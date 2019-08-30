@@ -1,0 +1,13 @@
+syntax = "proto2";
+
+
+
+message Experience {
+  optional string id   = 1;
+  optional string description = 2;
+  optional string name = 3;
+}
+
+message ExperienceArray {
+  repeated Experience array = 1;
+}

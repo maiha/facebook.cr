@@ -1,0 +1,17 @@
+syntax = "proto2";
+
+
+
+message ProductFeedUploadError {
+  optional string id          = 1;
+  repeated string affected_surfaces = 2;
+  optional string description = 3;
+  optional string error_type  = 4;
+  optional string severity    = 5;
+  optional string summary     = 6;
+  optional int64  total_count = 7;
+}
+
+message ProductFeedUploadErrorArray {
+  repeated ProductFeedUploadError array = 1;
+}

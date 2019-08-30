@@ -1,0 +1,21 @@
+syntax = "proto2";
+
+
+
+message Location {
+  optional int64  city_id   = 1;
+  optional string country   = 2;
+  optional string country_code = 3;
+  optional double latitude  = 4;
+  optional string located_in = 5;
+  optional double longitude = 6;
+  optional string name      = 7;
+  optional int64  region_id = 8;
+  optional string state     = 9;
+  optional string street    = 10;
+  optional string zip       = 11;
+}
+
+message LocationArray {
+  repeated Location array = 1;
+}

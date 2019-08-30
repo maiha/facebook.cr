@@ -1,0 +1,21 @@
+syntax = "proto2";
+
+import "Datetime.proto";
+
+message BusinessRoleRequest {
+  optional string   id           = 1;
+  optional Datetime created_time = 2;
+  optional string   email        = 3;
+  optional Datetime expiration_time = 4;
+  optional Datetime expiry_time  = 5;
+  optional string   finance_role = 6;
+  optional string   invite_link  = 7;
+  optional string   ip_role      = 8;
+  optional string   role         = 9;
+  optional string   status       = 10;
+  optional Datetime updated_time = 11;
+}
+
+message BusinessRoleRequestArray {
+  repeated BusinessRoleRequest array = 1;
+}

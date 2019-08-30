@@ -1,0 +1,18 @@
+syntax = "proto2";
+
+import "Datetime.proto";
+
+message LifeEvent {
+  optional string   id          = 1;
+  optional Datetime created_time = 2;
+  optional string   description = 3;
+  optional Datetime end_time    = 4;
+  optional bool     is_hidden   = 5;
+  optional Datetime start_time  = 6;
+  optional string   title       = 7;
+  optional Datetime updated_time = 8;
+}
+
+message LifeEventArray {
+  repeated LifeEvent array = 1;
+}

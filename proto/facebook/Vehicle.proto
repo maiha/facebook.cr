@@ -1,0 +1,48 @@
+syntax = "proto2";
+
+
+
+message Vehicle {
+  optional string id         = 1;
+  optional string availability = 2;
+  optional string body_style = 3;
+  optional string condition  = 4;
+  optional string currency   = 5;
+  optional string custom_label_0 = 6;
+  optional string date_first_on_lot = 7;
+  optional string dealer_communication_channel = 8;
+  optional string dealer_email = 9;
+  optional string dealer_id  = 10;
+  optional string dealer_name = 11;
+  optional string dealer_phone = 12;
+  optional string dealer_privacy_policy_url = 13;
+  optional string description = 14;
+  optional string drivetrain = 15;
+  optional string exterior_color = 16;
+  optional string fuel_type  = 17;
+  repeated string images     = 18;
+  optional string interior_color = 19;
+  optional string legal_disclosure_impressum_url = 20;
+  optional string make       = 21;
+  optional string model      = 22;
+  optional string previous_currency = 23;
+  optional string previous_price = 24;
+  optional string price      = 25;
+  optional string sale_currency = 26;
+  optional string sale_price = 27;
+  repeated string sanitized_images = 28;
+  optional string state_of_vehicle = 29;
+  optional string title      = 30;
+  optional string transmission = 31;
+  optional string trim       = 32;
+  optional string url        = 33;
+  optional string vehicle_id = 34;
+  optional string vehicle_registration_plate = 35;
+  optional string vehicle_type = 36;
+  optional string vin        = 37;
+  optional int64  year       = 38;
+}
+
+message VehicleArray {
+  repeated Vehicle array = 1;
+}

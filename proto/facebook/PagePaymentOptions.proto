@@ -1,0 +1,15 @@
+syntax = "proto2";
+
+
+
+message PagePaymentOptions {
+  optional int64 amex       = 1;
+  optional int64 cash_only  = 2;
+  optional int64 discover   = 3;
+  optional int64 mastercard = 4;
+  optional int64 visa       = 5;
+}
+
+message PagePaymentOptionsArray {
+  repeated PagePaymentOptions array = 1;
+}

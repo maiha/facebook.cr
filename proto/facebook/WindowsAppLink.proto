@@ -1,0 +1,14 @@
+syntax = "proto2";
+
+
+
+message WindowsAppLink {
+  optional string app_id       = 1;
+  optional string app_name     = 2;
+  optional string package_family_name = 3;
+  optional string url          = 4;
+}
+
+message WindowsAppLinkArray {
+  repeated WindowsAppLink array = 1;
+}

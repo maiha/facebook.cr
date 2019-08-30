@@ -1,0 +1,12 @@
+syntax = "proto2";
+
+
+
+message BusinessAssetGroup {
+  optional string id           = 1;
+  optional string name         = 2;
+}
+
+message BusinessAssetGroupArray {
+  repeated BusinessAssetGroup array = 1;
+}

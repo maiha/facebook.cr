@@ -1,0 +1,16 @@
+syntax = "proto2";
+
+
+
+message InstantArticle {
+  optional string id               = 1;
+  optional string canonical_url    = 2;
+  optional bool   development_mode = 3;
+  optional string html_source      = 4;
+  optional string publish_status   = 5;
+  optional bool   published        = 6;
+}
+
+message InstantArticleArray {
+  repeated InstantArticle array = 1;
+}

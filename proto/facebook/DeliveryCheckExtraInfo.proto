@@ -1,0 +1,13 @@
+syntax = "proto2";
+
+
+
+message DeliveryCheckExtraInfo {
+  repeated string adgroup_ids  = 1;
+  repeated string campaign_ids = 2;
+  repeated string countries    = 3;
+}
+
+message DeliveryCheckExtraInfoArray {
+  repeated DeliveryCheckExtraInfo array = 1;
+}

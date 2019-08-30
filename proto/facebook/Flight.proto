@@ -1,0 +1,24 @@
+syntax = "proto2";
+
+
+
+message Flight {
+  optional string id           = 1;
+  optional string currency     = 2;
+  optional string description  = 3;
+  optional string destination_airport = 4;
+  optional string destination_city = 5;
+  optional string flight_id    = 6;
+  repeated string images       = 7;
+  optional string oneway_currency = 8;
+  optional string oneway_price = 9;
+  optional string origin_airport = 10;
+  optional string origin_city  = 11;
+  optional string price        = 12;
+  repeated string sanitized_images = 13;
+  optional string url          = 14;
+}
+
+message FlightArray {
+  repeated Flight array = 1;
+}

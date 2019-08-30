@@ -1,0 +1,16 @@
+syntax = "proto2";
+
+
+
+message TargetingGeoLocationCity {
+  optional string country = 1;
+  optional string distance_unit = 2;
+  optional string key    = 3;
+  optional string name   = 4;
+  optional int64  radius = 5;
+  optional string region_id = 6;
+}
+
+message TargetingGeoLocationCityArray {
+  repeated TargetingGeoLocationCity array = 1;
+}

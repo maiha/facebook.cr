@@ -1,0 +1,19 @@
+syntax = "proto2";
+
+import "Datetime.proto";
+
+message HttpCall {
+  required string url            = 1;
+  required string method         = 2;
+  required string header         = 3;
+  required string body           = 4;
+  required Datetime requested_at = 5;
+  optional Datetime responsed_at = 6;
+  optional int32  status         = 7;
+  optional string res_header     = 8;
+  optional string res_body       = 9;
+}
+
+message HttpCallArray {
+  repeated HttpCall array = 1;
+}

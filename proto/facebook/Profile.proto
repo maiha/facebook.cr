@@ -1,0 +1,20 @@
+syntax = "proto2";
+
+
+
+message Profile {
+  optional string id       = 1;
+  optional bool   can_post = 2;
+  optional string link     = 3;
+  optional string name     = 4;
+  optional string pic      = 5;
+  optional string pic_large = 6;
+  optional string pic_small = 7;
+  optional string pic_square = 8;
+  optional string profile_type = 9;
+  optional string username = 10;
+}
+
+message ProfileArray {
+  repeated Profile array = 1;
+}

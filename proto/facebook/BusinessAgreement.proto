@@ -1,0 +1,12 @@
+syntax = "proto2";
+
+
+
+message BusinessAgreement {
+  optional string id           = 1;
+  optional string request_status = 2;
+}
+
+message BusinessAgreementArray {
+  repeated BusinessAgreement array = 1;
+}

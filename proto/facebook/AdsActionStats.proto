@@ -1,0 +1,36 @@
+syntax = "proto2";
+
+
+
+message AdsActionStats {
+  optional string _1d_click    = 1;
+  optional string _1d_view     = 2;
+  optional string _28d_click   = 3;
+  optional string _28d_view    = 4;
+  optional string _7d_click    = 5;
+  optional string _7d_view     = 6;
+  optional string action_canvas_component_id = 7;
+  optional string action_canvas_component_name = 8;
+  optional string action_carousel_card_id = 9;
+  optional string action_carousel_card_name = 10;
+  optional string action_converted_product_id = 11;
+  optional string action_destination = 12;
+  optional string action_device = 13;
+  optional string action_event_channel = 14;
+  optional string action_link_click_destination = 15;
+  optional string action_location_code = 16;
+  optional string action_reaction = 17;
+  optional string action_target_id = 18;
+  optional string action_type  = 19;
+  optional string action_video_asset_id = 20;
+  optional string action_video_sound = 21;
+  optional string action_video_type = 22;
+  optional string inline       = 23;
+  optional string interactive_component_sticker_id = 24;
+  optional string interactive_component_sticker_response = 25;
+  optional string value        = 26;
+}
+
+message AdsActionStatsArray {
+  repeated AdsActionStats array = 1;
+}

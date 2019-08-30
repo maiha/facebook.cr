@@ -1,0 +1,13 @@
+syntax = "proto2";
+
+
+
+message ProductVariant {
+  optional string label        = 1;
+  repeated string options      = 2;
+  optional string product_field = 3;
+}
+
+message ProductVariantArray {
+  repeated ProductVariant array = 1;
+}

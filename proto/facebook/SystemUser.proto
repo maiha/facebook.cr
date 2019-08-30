@@ -1,0 +1,17 @@
+syntax = "proto2";
+
+import "Datetime.proto";
+
+message SystemUser {
+  optional string   id                 = 1;
+  optional Datetime created_time       = 2;
+  optional string   finance_permission = 3;
+  optional string   ip_permission      = 4;
+  optional string   name               = 5;
+  optional string   role               = 6;
+  optional int64    system_user_id     = 7;
+}
+
+message SystemUserArray {
+  repeated SystemUser array = 1;
+}

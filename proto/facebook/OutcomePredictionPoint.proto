@@ -1,0 +1,14 @@
+syntax = "proto2";
+
+
+
+message OutcomePredictionPoint {
+  optional double actions = 1;
+  optional double impressions = 2;
+  optional double reach = 3;
+  optional int64  spend = 4;
+}
+
+message OutcomePredictionPointArray {
+  repeated OutcomePredictionPoint array = 1;
+}

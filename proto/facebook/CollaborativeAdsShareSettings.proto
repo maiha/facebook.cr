@@ -1,0 +1,15 @@
+syntax = "proto2";
+
+
+
+message CollaborativeAdsShareSettings {
+  optional string id           = 1;
+  optional string product_catalog_proxy_id = 2;
+  optional string utm_campaign = 3;
+  optional string utm_medium   = 4;
+  optional string utm_source   = 5;
+}
+
+message CollaborativeAdsShareSettingsArray {
+  repeated CollaborativeAdsShareSettings array = 1;
+}

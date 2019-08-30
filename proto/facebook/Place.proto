@@ -1,0 +1,13 @@
+syntax = "proto2";
+
+
+
+message Place {
+  optional string id           = 1;
+  optional string name         = 2;
+  optional double overall_rating = 3;
+}
+
+message PlaceArray {
+  repeated Place array = 1;
+}

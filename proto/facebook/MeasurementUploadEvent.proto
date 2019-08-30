@@ -1,0 +1,19 @@
+syntax = "proto2";
+
+
+
+message MeasurementUploadEvent {
+  optional string id           = 1;
+  optional string aggregation_level = 2;
+  optional string conversion_end_date = 3;
+  optional string conversion_start_date = 4;
+  optional string event_status = 5;
+  optional string lookback_window = 6;
+  optional string match_universe = 7;
+  optional string timezone     = 8;
+  optional string upload_tag   = 9;
+}
+
+message MeasurementUploadEventArray {
+  repeated MeasurementUploadEvent array = 1;
+}

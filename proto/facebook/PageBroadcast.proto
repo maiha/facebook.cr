@@ -1,0 +1,13 @@
+syntax = "proto2";
+
+
+
+message PageBroadcast {
+  optional string id           = 1;
+  optional string scheduled_time = 2;
+  optional string status       = 3;
+}
+
+message PageBroadcastArray {
+  repeated PageBroadcast array = 1;
+}

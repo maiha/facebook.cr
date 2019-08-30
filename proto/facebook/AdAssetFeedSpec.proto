@@ -1,0 +1,13 @@
+syntax = "proto2";
+
+
+
+message AdAssetFeedSpec {
+  repeated string ad_formats   = 1;
+  repeated string call_to_action_types = 2;
+  optional string optimization_type = 3;
+}
+
+message AdAssetFeedSpecArray {
+  repeated AdAssetFeedSpec array = 1;
+}

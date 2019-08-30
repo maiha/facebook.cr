@@ -1,0 +1,12 @@
+syntax = "proto2";
+
+
+
+message AdAccountDefaultDestination {
+  optional string destination_id = 1;
+  optional string destination_url = 2;
+}
+
+message AdAccountDefaultDestinationArray {
+  repeated AdAccountDefaultDestination array = 1;
+}

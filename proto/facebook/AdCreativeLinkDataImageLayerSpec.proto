@@ -1,0 +1,22 @@
+syntax = "proto2";
+
+
+
+message AdCreativeLinkDataImageLayerSpec {
+  optional string blending_mode = 1;
+  optional string frame_image_hash = 2;
+  optional string frame_source = 3;
+  optional string image_source = 4;
+  optional string layer_type = 5;
+  optional int64  opacity = 6;
+  optional string overlay_position = 7;
+  optional string overlay_shape = 8;
+  optional int64  scale   = 9;
+  optional string shape_color = 10;
+  optional string text_color = 11;
+  optional string text_font = 12;
+}
+
+message AdCreativeLinkDataImageLayerSpecArray {
+  repeated AdCreativeLinkDataImageLayerSpec array = 1;
+}

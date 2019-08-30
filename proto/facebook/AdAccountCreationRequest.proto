@@ -1,0 +1,36 @@
+syntax = "proto2";
+
+import "Datetime.proto";
+
+message AdAccountCreationRequest {
+  optional string   id                                  = 1;
+  optional string   ad_accounts_currency                = 2;
+  optional string   additional_comment                  = 3;
+  optional string   address_in_chinese                  = 4;
+  optional string   address_in_local_language           = 5;
+  optional string   business_registration_id            = 6;
+  optional string   chinese_legal_entity_name           = 7;
+  optional string   credit_card_id                      = 8;
+  optional string   english_legal_entity_name           = 9;
+  optional string   extended_credit_id                  = 10;
+  optional bool     is_smb                              = 11;
+  optional bool     is_test                             = 12;
+  optional bool     is_under_authorization              = 13;
+  optional string   legal_entity_name_in_local_language = 14;
+  optional string   oe_request_id                       = 15;
+  optional string   official_website_url                = 16;
+  optional string   planning_agency_business_id         = 17;
+  repeated string   promotable_app_ids                  = 18;
+  repeated string   promotable_page_ids                 = 19;
+  repeated string   promotable_urls                     = 20;
+  optional string   status                              = 21;
+  optional string   subvertical                         = 22;
+  optional Datetime time_created                        = 23;
+  optional string   vertical                            = 24;
+  optional string   advertiser_business_id              = 25;
+  repeated string   promotable_page_urls                = 26;
+}
+
+message AdAccountCreationRequestArray {
+  repeated AdAccountCreationRequest array = 1;
+}

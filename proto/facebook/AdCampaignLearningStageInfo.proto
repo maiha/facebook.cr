@@ -1,0 +1,16 @@
+syntax = "proto2";
+
+
+
+message AdCampaignLearningStageInfo {
+  repeated string attribution_windows = 1;
+  optional int64  conversions      = 2;
+  optional string exit_reason      = 3;
+  optional int64  last_sig_edit_ts = 4;
+  optional string status           = 5;
+  repeated string types            = 6;
+}
+
+message AdCampaignLearningStageInfoArray {
+  repeated AdCampaignLearningStageInfo array = 1;
+}

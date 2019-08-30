@@ -1,0 +1,12 @@
+syntax = "proto2";
+
+
+
+message IdName {
+  optional string id           = 1;
+  optional string name         = 2;
+}
+
+message IdNameArray {
+  repeated IdName array = 1;
+}

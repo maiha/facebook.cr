@@ -52,6 +52,17 @@ module Facebook
       self.strategy= Facebook::Strategy::Libcurl.new
     end
 
+    def paging_next!(url : String)
+      @auth = Facebook::Auth::Nothing.new
+      case url
+      when %r{\Ahttps?://(.*?)(/.*)\Z}
+        @api = Facebook::Api::GetFixed.new($2)
+        self.host = url
+      else
+        @api = Facebook::Api::GetFixed.new(url)
+      end
+    end
+
     def logger=(v : Logger)
       @logger = v
       strategy.logger = v

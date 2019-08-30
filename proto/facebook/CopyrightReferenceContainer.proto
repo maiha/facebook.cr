@@ -1,0 +1,22 @@
+syntax = "proto2";
+
+import "Datetime.proto";
+
+message CopyrightReferenceContainer {
+  optional string   id                   = 1;
+  optional string   content_type         = 2;
+  optional Datetime copyright_creation_time = 3;
+  optional string   download_hd_url      = 4;
+  optional double   duration_in_sec      = 5;
+  optional string   fingerprint_validity = 6;
+  optional string   iswc                 = 7;
+  optional Datetime published_time       = 8;
+  optional string   thumbnail_url        = 9;
+  optional string   title                = 10;
+  optional string   universal_content_id = 11;
+  repeated string   writer_names         = 12;
+}
+
+message CopyrightReferenceContainerArray {
+  repeated CopyrightReferenceContainer array = 1;
+}

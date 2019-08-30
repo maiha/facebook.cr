@@ -1,0 +1,15 @@
+syntax = "proto2";
+
+
+
+message AdEntityTargetSpend {
+  optional string amount      = 1;
+  optional bool   has_error   = 2;
+  optional bool   is_accurate = 3;
+  optional bool   is_prorated = 4;
+  optional bool   is_updating = 5;
+}
+
+message AdEntityTargetSpendArray {
+  repeated AdEntityTargetSpend array = 1;
+}

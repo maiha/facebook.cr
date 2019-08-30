@@ -1,0 +1,52 @@
+syntax = "proto2";
+
+import "Datetime.proto";
+
+message AdCampaignActivity {
+  optional string   id                        = 1;
+  optional bool     auto_create_lookalike_new = 2;
+  optional bool     auto_create_lookalike_old = 3;
+  optional string   bid_adjustments_spec_new  = 4;
+  optional string   bid_adjustments_spec_old  = 5;
+  optional int64    bid_amount_new            = 6;
+  optional int64    bid_amount_old            = 7;
+  optional string   bid_strategy_new          = 8;
+  optional string   bid_strategy_old          = 9;
+  optional string   bid_type_new              = 10;
+  optional string   bid_type_old              = 11;
+  optional string   billing_event_new         = 12;
+  optional string   billing_event_old         = 13;
+  optional string   brande_audience_id_new    = 14;
+  optional string   brande_audience_id_old    = 15;
+  optional Datetime created_time              = 16;
+  optional int64    daily_impressions_new     = 17;
+  optional int64    daily_impressions_old     = 18;
+  optional string   dco_mode_new              = 19;
+  optional string   dco_mode_old              = 20;
+  optional string   delivery_behavior_new     = 21;
+  optional string   delivery_behavior_old     = 22;
+  optional string   destination_type_new      = 23;
+  optional string   destination_type_old      = 24;
+  optional Datetime event_time                = 25;
+  optional string   event_type                = 26;
+  optional int64    invoicing_limit_new       = 27;
+  optional int64    invoicing_limit_old       = 28;
+  optional string   name_new                  = 29;
+  optional string   name_old                  = 30;
+  optional string   optimization_goal_new     = 31;
+  optional string   optimization_goal_old     = 32;
+  optional int64    pacing_type_new           = 33;
+  optional int64    pacing_type_old           = 34;
+  optional string   run_status_new            = 35;
+  optional string   run_status_old            = 36;
+  optional Datetime start_time_new            = 37;
+  optional Datetime start_time_old            = 38;
+  optional Datetime stop_time_new             = 39;
+  optional Datetime stop_time_old             = 40;
+  optional Datetime updated_time_new          = 41;
+  optional Datetime updated_time_old          = 42;
+}
+
+message AdCampaignActivityArray {
+  repeated AdCampaignActivity array = 1;
+}

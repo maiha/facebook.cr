@@ -1,0 +1,17 @@
+syntax = "proto2";
+
+import "StringArray.proto";
+
+message AdsImageCrops {
+  repeated StringArray _100x100     = 1;
+  repeated StringArray _100x72      = 2;
+  repeated StringArray _191x100     = 3;
+  repeated StringArray _400x150     = 4;
+  repeated StringArray _400x500     = 5;
+  repeated StringArray _600x360     = 6;
+  repeated StringArray _90x160      = 7;
+}
+
+message AdsImageCropsArray {
+  repeated AdsImageCrops array = 1;
+}

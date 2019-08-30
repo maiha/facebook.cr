@@ -1,0 +1,26 @@
+syntax = "proto2";
+
+import "Datetime.proto";
+
+message PageCallToAction {
+  optional string   id                       = 1;
+  optional string   android_deeplink         = 2;
+  optional string   android_destination_type = 3;
+  optional string   android_package_name     = 4;
+  optional string   android_url              = 5;
+  optional Datetime created_time             = 6;
+  optional string   email_address            = 7;
+  optional string   intl_number_with_plus    = 8;
+  optional string   iphone_deeplink          = 9;
+  optional string   iphone_destination_type  = 10;
+  optional string   iphone_url               = 11;
+  optional string   status                   = 12;
+  optional string   type                     = 13;
+  optional Datetime updated_time             = 14;
+  optional string   web_destination_type     = 15;
+  optional string   web_url                  = 16;
+}
+
+message PageCallToActionArray {
+  repeated PageCallToAction array = 1;
+}

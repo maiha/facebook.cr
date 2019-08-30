@@ -1,0 +1,27 @@
+syntax = "proto2";
+
+import "Datetime.proto";
+
+message Album {
+  optional string   id                         = 1;
+  optional Datetime backdated_time             = 2;
+  optional string   backdated_time_granularity = 3;
+  optional bool     can_backdate               = 4;
+  optional bool     can_upload                 = 5;
+  optional int64    count                      = 6;
+  optional Datetime created_time               = 7;
+  optional string   description                = 8;
+  optional bool     is_user_facing             = 9;
+  optional string   location                   = 10;
+  optional Datetime modified_major             = 11;
+  optional string   name                       = 12;
+  optional int64    photo_count                = 13;
+  optional string   privacy                    = 14;
+  optional string   type                       = 15;
+  optional Datetime updated_time               = 16;
+  optional int64    video_count                = 17;
+}
+
+message AlbumArray {
+  repeated Album array = 1;
+}

@@ -45,7 +45,7 @@ Cmds.command "api" do
   end
 
   private def show_body(res : Facebook::Response)
-    puts Pretty.json(res.body, color: true)
+    puts Pretty.json(res.body, color: config.colorize?)
   rescue Facebook::Api::Error
     puts "N/A"
   rescue

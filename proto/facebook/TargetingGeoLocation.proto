@@ -1,0 +1,14 @@
+syntax = "proto2";
+
+
+
+message TargetingGeoLocation {
+  repeated string countries    = 1;
+  repeated string country_groups = 2;
+  repeated string location_set_ids = 3;
+  repeated string location_types = 4;
+}
+
+message TargetingGeoLocationArray {
+  repeated TargetingGeoLocation array = 1;
+}

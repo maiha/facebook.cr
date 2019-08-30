@@ -1,0 +1,16 @@
+syntax = "proto2";
+
+import "Datetime.proto";
+
+message OffsitePixel {
+  optional string   id       = 1;
+  optional string   creator  = 2;
+  optional string   js_pixel = 3;
+  optional Datetime last_firing_time = 4;
+  optional string   name     = 5;
+  optional string   tag      = 6;
+}
+
+message OffsitePixelArray {
+  repeated OffsitePixel array = 1;
+}

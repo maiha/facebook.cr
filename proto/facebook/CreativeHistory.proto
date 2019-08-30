@@ -1,0 +1,11 @@
+syntax = "proto2";
+
+
+
+message CreativeHistory {
+  optional int64 creative_fingerprint = 1;
+}
+
+message CreativeHistoryArray {
+  repeated CreativeHistory array = 1;
+}

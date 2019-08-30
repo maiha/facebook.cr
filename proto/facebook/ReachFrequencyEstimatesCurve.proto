@@ -1,0 +1,18 @@
+syntax = "proto2";
+
+
+
+message ReachFrequencyEstimatesCurve {
+  repeated int64  budget     = 1;
+  repeated int64  conversion = 2;
+  repeated int64  impression = 3;
+  optional double interpolated_reach = 4;
+  optional int64  num_points = 5;
+  repeated int64  raw_impression = 6;
+  repeated int64  raw_reach  = 7;
+  repeated int64  reach      = 8;
+}
+
+message ReachFrequencyEstimatesCurveArray {
+  repeated ReachFrequencyEstimatesCurve array = 1;
+}

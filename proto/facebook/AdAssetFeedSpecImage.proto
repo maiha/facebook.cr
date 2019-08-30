@@ -1,0 +1,13 @@
+syntax = "proto2";
+
+
+
+message AdAssetFeedSpecImage {
+  optional string hash         = 1;
+  optional string url          = 2;
+  optional string url_tags     = 3;
+}
+
+message AdAssetFeedSpecImageArray {
+  repeated AdAssetFeedSpecImage array = 1;
+}

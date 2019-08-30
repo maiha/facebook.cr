@@ -1,0 +1,13 @@
+syntax = "proto2";
+
+
+
+message DeliveryCheck {
+  optional string check_name   = 1;
+  optional string description  = 2;
+  optional string summary      = 3;
+}
+
+message DeliveryCheckArray {
+  repeated DeliveryCheck array = 1;
+}

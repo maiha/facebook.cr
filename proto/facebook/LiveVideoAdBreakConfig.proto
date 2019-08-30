@@ -1,0 +1,20 @@
+syntax = "proto2";
+
+
+
+message LiveVideoAdBreakConfig {
+  optional int64  default_ad_break_duration       = 1;
+  optional int64  failure_reason_polling_interval = 2;
+  optional int64  first_break_eligible_secs       = 3;
+  optional string guide_url                       = 4;
+  optional bool   is_eligible_to_onboard          = 5;
+  optional bool   is_enabled                      = 6;
+  optional string onboarding_url                  = 7;
+  optional int64  preparing_duration              = 8;
+  optional int64  time_between_ad_breaks_secs     = 9;
+  optional int64  viewer_count_threshold          = 10;
+}
+
+message LiveVideoAdBreakConfigArray {
+  repeated LiveVideoAdBreakConfig array = 1;
+}

@@ -1,0 +1,31 @@
+syntax = "proto2";
+
+import "Datetime.proto";
+
+message AdCampaignGroupActivity {
+  optional string   id                          = 1;
+  optional string   buying_type_new             = 2;
+  optional string   buying_type_old             = 3;
+  optional Datetime event_time                  = 4;
+  optional string   event_type                  = 5;
+  optional bool     is_autobid_new              = 6;
+  optional bool     is_autobid_old              = 7;
+  optional bool     is_average_price_pacing_new = 8;
+  optional bool     is_average_price_pacing_old = 9;
+  optional string   name_new                    = 10;
+  optional string   name_old                    = 11;
+  optional string   objective_new               = 12;
+  optional string   objective_old               = 13;
+  optional int64    pacing_type                 = 14;
+  optional string   run_status_new              = 15;
+  optional string   run_status_old              = 16;
+  optional int64    spend_cap_new               = 17;
+  optional int64    spend_cap_old               = 18;
+  optional Datetime time_created                = 19;
+  optional Datetime time_updated_new            = 20;
+  optional Datetime time_updated_old            = 21;
+}
+
+message AdCampaignGroupActivityArray {
+  repeated AdCampaignGroupActivity array = 1;
+}

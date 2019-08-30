@@ -1,0 +1,11 @@
+syntax = "proto2";
+
+
+
+message AdCampaignDeliveryStatsUnsupportedReasons {
+  optional string reason_type = 1;
+}
+
+message AdCampaignDeliveryStatsUnsupportedReasonsArray {
+  repeated AdCampaignDeliveryStatsUnsupportedReasons array = 1;
+}

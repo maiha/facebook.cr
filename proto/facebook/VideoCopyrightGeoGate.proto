@@ -1,0 +1,12 @@
+syntax = "proto2";
+
+
+
+message VideoCopyrightGeoGate {
+  repeated string excluded_countries = 1;
+  repeated string included_countries = 2;
+}
+
+message VideoCopyrightGeoGateArray {
+  repeated VideoCopyrightGeoGate array = 1;
+}

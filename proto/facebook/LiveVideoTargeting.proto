@@ -1,0 +1,13 @@
+syntax = "proto2";
+
+
+
+message LiveVideoTargeting {
+  optional int64  age_max = 1;
+  optional int64  age_min = 2;
+  repeated string excluded_countries = 3;
+}
+
+message LiveVideoTargetingArray {
+  repeated LiveVideoTargeting array = 1;
+}

@@ -1,0 +1,13 @@
+syntax = "proto2";
+
+
+
+message Persona {
+  optional string id           = 1;
+  optional string name         = 2;
+  optional string profile_picture_url = 3;
+}
+
+message PersonaArray {
+  repeated Persona array = 1;
+}

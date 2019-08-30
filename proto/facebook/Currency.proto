@@ -1,0 +1,14 @@
+syntax = "proto2";
+
+
+
+message Currency {
+  optional int64  currency_offset = 1;
+  optional double usd_exchange    = 2;
+  optional double usd_exchange_inverse = 3;
+  optional string user_currency   = 4;
+}
+
+message CurrencyArray {
+  repeated Currency array = 1;
+}

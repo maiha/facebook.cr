@@ -1,0 +1,16 @@
+syntax = "proto2";
+
+
+
+message ReachFrequencyCurveUpperConfidenceRange {
+  repeated int64 impression_upper = 1;
+  optional int64 num_points = 2;
+  repeated int64 reach      = 3;
+  repeated int64 reach_upper = 4;
+  repeated int64 uniq_video_views_2s_upper = 5;
+  repeated int64 video_views_2s_upper = 6;
+}
+
+message ReachFrequencyCurveUpperConfidenceRangeArray {
+  repeated ReachFrequencyCurveUpperConfidenceRange array = 1;
+}

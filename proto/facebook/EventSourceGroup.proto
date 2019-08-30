@@ -1,0 +1,12 @@
+syntax = "proto2";
+
+
+
+message EventSourceGroup {
+  optional string id           = 1;
+  optional string name         = 2;
+}
+
+message EventSourceGroupArray {
+  repeated EventSourceGroup array = 1;
+}

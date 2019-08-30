@@ -1,0 +1,17 @@
+syntax = "proto2";
+
+import "Datetime.proto";
+
+message BrandAudience {
+  optional string   id          = 1;
+  optional string   description = 2;
+  optional string   name        = 3;
+  repeated string   sentence_lines = 4;
+  optional string   status      = 5;
+  optional Datetime time_created = 6;
+  optional Datetime time_updated = 7;
+}
+
+message BrandAudienceArray {
+  repeated BrandAudience array = 1;
+}

@@ -1,0 +1,11 @@
+syntax = "proto2";
+
+
+
+message AppLinks {
+  optional string id           = 1;
+}
+
+message AppLinksArray {
+  repeated AppLinks array = 1;
+}

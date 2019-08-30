@@ -1,0 +1,11 @@
+syntax = "proto2";
+
+
+
+message AdCreativeLinkDataAppLinkSpec {
+
+}
+
+message AdCreativeLinkDataAppLinkSpecArray {
+  repeated AdCreativeLinkDataAppLinkSpec array = 1;
+}

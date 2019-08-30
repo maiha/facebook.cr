@@ -1,0 +1,13 @@
+syntax = "proto2";
+
+
+
+message UserPaymentMobilePricepoints {
+  optional string mobile_country = 1;
+  optional string phone_number_last4 = 2;
+  optional string user_currency = 3;
+}
+
+message UserPaymentMobilePricepointsArray {
+  repeated UserPaymentMobilePricepoints array = 1;
+}

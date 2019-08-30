@@ -1,0 +1,15 @@
+syntax = "proto2";
+
+
+
+message InstagramInsightsResult {
+  optional string id           = 1;
+  optional string description  = 2;
+  optional string name         = 3;
+  optional string period       = 4;
+  optional string title        = 5;
+}
+
+message InstagramInsightsResultArray {
+  repeated InstagramInsightsResult array = 1;
+}

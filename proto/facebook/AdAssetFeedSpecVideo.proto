@@ -1,0 +1,15 @@
+syntax = "proto2";
+
+
+
+message AdAssetFeedSpecVideo {
+  repeated string caption_ids  = 1;
+  optional string thumbnail_hash = 2;
+  optional string thumbnail_url = 3;
+  optional string url_tags     = 4;
+  optional string video_id     = 5;
+}
+
+message AdAssetFeedSpecVideoArray {
+  repeated AdAssetFeedSpecVideo array = 1;
+}

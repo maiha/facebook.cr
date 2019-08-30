@@ -1,0 +1,12 @@
+syntax = "proto2";
+
+
+
+message PageAdminNote {
+  optional string id   = 1;
+  optional string body = 2;
+}
+
+message PageAdminNoteArray {
+  repeated PageAdminNote array = 1;
+}

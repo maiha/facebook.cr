@@ -1,0 +1,15 @@
+syntax = "proto2";
+
+
+
+message PageRestaurantSpecialties {
+  optional int64 breakfast = 1;
+  optional int64 coffee    = 2;
+  optional int64 dinner    = 3;
+  optional int64 drinks    = 4;
+  optional int64 lunch     = 5;
+}
+
+message PageRestaurantSpecialtiesArray {
+  repeated PageRestaurantSpecialties array = 1;
+}

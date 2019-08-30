@@ -1,0 +1,18 @@
+syntax = "proto2";
+
+
+
+message TargetingDynamicRule {
+  optional string _action_type = 1;
+  optional string ad_group_id  = 2;
+  optional string campaign_group_id = 3;
+  optional string campaign_id  = 4;
+  optional string impression_count = 5;
+  optional string page_id      = 6;
+  optional string post         = 7;
+  optional string retention_seconds = 8;
+}
+
+message TargetingDynamicRuleArray {
+  repeated TargetingDynamicRule array = 1;
+}

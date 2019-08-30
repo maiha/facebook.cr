@@ -1,0 +1,16 @@
+syntax = "proto2";
+
+import "Datetime.proto";
+
+message PartnerCouponOffer {
+  optional string   id              = 1;
+  optional Datetime claim_by        = 2;
+  optional string   currency        = 3;
+  optional int64    expiration_days = 4;
+  optional int64    minimum_spend   = 5;
+  optional int64    offer_amount    = 6;
+}
+
+message PartnerCouponOfferArray {
+  repeated PartnerCouponOffer array = 1;
+}

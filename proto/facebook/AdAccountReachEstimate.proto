@@ -1,0 +1,12 @@
+syntax = "proto2";
+
+
+
+message AdAccountReachEstimate {
+  optional bool  estimate_ready = 1;
+  optional int64 users          = 2;
+}
+
+message AdAccountReachEstimateArray {
+  repeated AdAccountReachEstimate array = 1;
+}

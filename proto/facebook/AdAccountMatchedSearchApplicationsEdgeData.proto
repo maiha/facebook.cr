@@ -1,0 +1,17 @@
+syntax = "proto2";
+
+
+
+message AdAccountMatchedSearchApplicationsEdgeData {
+  optional string app_id       = 1;
+  optional string icon_url     = 2;
+  optional string name         = 3;
+  optional string search_source_store = 4;
+  optional string store        = 5;
+  optional string unique_id    = 6;
+  optional string url          = 7;
+}
+
+message AdAccountMatchedSearchApplicationsEdgeDataArray {
+  repeated AdAccountMatchedSearchApplicationsEdgeData array = 1;
+}

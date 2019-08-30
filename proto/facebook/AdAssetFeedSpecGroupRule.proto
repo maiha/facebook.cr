@@ -1,0 +1,11 @@
+syntax = "proto2";
+
+
+
+message AdAssetFeedSpecGroupRule {
+
+}
+
+message AdAssetFeedSpecGroupRuleArray {
+  repeated AdAssetFeedSpecGroupRule array = 1;
+}

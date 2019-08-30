@@ -1,0 +1,14 @@
+syntax = "proto2";
+
+
+
+message DynamicItemDisplayBundle {
+  optional string id              = 1;
+  optional string description     = 2;
+  optional string name            = 3;
+  optional string url             = 4;
+}
+
+message DynamicItemDisplayBundleArray {
+  repeated DynamicItemDisplayBundle array = 1;
+}

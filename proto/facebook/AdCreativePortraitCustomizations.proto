@@ -1,0 +1,11 @@
+syntax = "proto2";
+
+
+
+message AdCreativePortraitCustomizations {
+
+}
+
+message AdCreativePortraitCustomizationsArray {
+  repeated AdCreativePortraitCustomizations array = 1;
+}

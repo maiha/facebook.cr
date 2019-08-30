@@ -1,0 +1,15 @@
+syntax = "proto2";
+
+
+
+message MessengerPlatformReferral {
+  optional string id           = 1;
+  optional string ad_id        = 2;
+  optional string ref          = 3;
+  optional string source       = 4;
+  optional string type         = 5;
+}
+
+message MessengerPlatformReferralArray {
+  repeated MessengerPlatformReferral array = 1;
+}

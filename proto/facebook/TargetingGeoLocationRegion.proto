@@ -1,0 +1,13 @@
+syntax = "proto2";
+
+
+
+message TargetingGeoLocationRegion {
+  optional string country      = 1;
+  optional string key          = 2;
+  optional string name         = 3;
+}
+
+message TargetingGeoLocationRegionArray {
+  repeated TargetingGeoLocationRegion array = 1;
+}

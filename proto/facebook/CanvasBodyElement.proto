@@ -1,0 +1,11 @@
+syntax = "proto2";
+
+
+
+message CanvasBodyElement {
+
+}
+
+message CanvasBodyElementArray {
+  repeated CanvasBodyElement array = 1;
+}

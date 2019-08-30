@@ -1,0 +1,12 @@
+syntax = "proto2";
+
+
+
+message AdRuleHistoryResult {
+  optional string object_id    = 1;
+  optional string object_type  = 2;
+}
+
+message AdRuleHistoryResultArray {
+  repeated AdRuleHistoryResult array = 1;
+}

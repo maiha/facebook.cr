@@ -1,0 +1,13 @@
+syntax = "proto2";
+
+
+
+message CampaignGroupBrandConfiguration {
+  optional string brand_product_name = 1;
+  optional string locale       = 2;
+  optional string vertical     = 3;
+}
+
+message CampaignGroupBrandConfigurationArray {
+  repeated CampaignGroupBrandConfiguration array = 1;
+}

@@ -1,0 +1,15 @@
+syntax = "proto2";
+
+
+
+message LeadGenDraftQuestion {
+  optional string conditional_questions_group_id = 1;
+  optional string inline_context = 2;
+  optional string key          = 3;
+  optional string label        = 4;
+  optional string type         = 5;
+}
+
+message LeadGenDraftQuestionArray {
+  repeated LeadGenDraftQuestion array = 1;
+}

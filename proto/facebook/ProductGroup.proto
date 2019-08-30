@@ -1,0 +1,12 @@
+syntax = "proto2";
+
+
+
+message ProductGroup {
+  optional string id           = 1;
+  optional string retailer_id  = 2;
+}
+
+message ProductGroupArray {
+  repeated ProductGroup array = 1;
+}

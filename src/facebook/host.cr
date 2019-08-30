@@ -5,7 +5,8 @@ class Facebook::Host
 
   var uri : URI
 
-  def initialize(@uri)
+  def initialize(uri)
+    @uri = URI.new(scheme: uri.scheme, host: uri.host, port: uri.port)
   end
 
   def self.new(url : String)

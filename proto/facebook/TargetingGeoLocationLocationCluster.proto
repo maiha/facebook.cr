@@ -1,0 +1,11 @@
+syntax = "proto2";
+
+
+
+message TargetingGeoLocationLocationCluster {
+  optional int64 key = 1;
+}
+
+message TargetingGeoLocationLocationClusterArray {
+  repeated TargetingGeoLocationLocationCluster array = 1;
+}

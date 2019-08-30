@@ -1,0 +1,12 @@
+syntax = "proto2";
+
+
+
+message CustomAudienceSharingStatus {
+  optional int64  sharing_relationship_id = 1;
+  optional string status                  = 2;
+}
+
+message CustomAudienceSharingStatusArray {
+  repeated CustomAudienceSharingStatus array = 1;
+}

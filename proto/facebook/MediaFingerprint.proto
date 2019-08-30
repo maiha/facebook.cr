@@ -1,0 +1,16 @@
+syntax = "proto2";
+
+
+
+message MediaFingerprint {
+  optional string id           = 1;
+  optional double duration_in_sec = 2;
+  optional string fingerprint_content_type = 3;
+  optional string fingerprint_type = 4;
+  optional string title        = 5;
+  optional string universal_content_id = 6;
+}
+
+message MediaFingerprintArray {
+  repeated MediaFingerprint array = 1;
+}

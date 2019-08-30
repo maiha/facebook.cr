@@ -1,0 +1,11 @@
+syntax = "proto2";
+
+
+
+message AdAccountTrackingData {
+
+}
+
+message AdAccountTrackingDataArray {
+  repeated AdAccountTrackingData array = 1;
+}

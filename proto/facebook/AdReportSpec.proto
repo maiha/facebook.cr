@@ -1,0 +1,23 @@
+syntax = "proto2";
+
+
+
+message AdReportSpec {
+  optional string id             = 1;
+  optional string account_id     = 2;
+  repeated string actions_group_by = 3;
+  optional string creation_source = 4;
+  repeated string data_columns   = 5;
+  optional string date_preset    = 6;
+  repeated string export_columns = 7;
+  optional int64  format_version = 8;
+  optional string name           = 9;
+  optional string report_schedule_id = 10;
+  optional string sort_by        = 11;
+  optional string sort_dir       = 12;
+  optional string time_increment = 13;
+}
+
+message AdReportSpecArray {
+  repeated AdReportSpec array = 1;
+}

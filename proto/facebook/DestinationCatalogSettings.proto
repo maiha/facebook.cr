@@ -1,0 +1,12 @@
+syntax = "proto2";
+
+
+
+message DestinationCatalogSettings {
+  optional string id                        = 1;
+  optional bool   generate_items_from_pages = 2;
+}
+
+message DestinationCatalogSettingsArray {
+  repeated DestinationCatalogSettings array = 1;
+}

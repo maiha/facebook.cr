@@ -1,0 +1,16 @@
+syntax = "proto2";
+
+
+
+message AdRecommendation {
+  optional string blame_field = 1;
+  optional int64  code = 2;
+  optional string confidence = 3;
+  optional string importance = 4;
+  optional string message = 5;
+  optional string title = 6;
+}
+
+message AdRecommendationArray {
+  repeated AdRecommendation array = 1;
+}

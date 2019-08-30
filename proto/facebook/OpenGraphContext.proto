@@ -1,0 +1,11 @@
+syntax = "proto2";
+
+
+
+message OpenGraphContext {
+  optional string id           = 1;
+}
+
+message OpenGraphContextArray {
+  repeated OpenGraphContext array = 1;
+}

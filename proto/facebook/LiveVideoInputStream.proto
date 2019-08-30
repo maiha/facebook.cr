@@ -1,0 +1,17 @@
+syntax = "proto2";
+
+
+
+message LiveVideoInputStream {
+  optional string id        = 1;
+  optional string dash_ingest_url = 2;
+  optional string dash_preview_url = 3;
+  optional bool   is_master = 4;
+  optional string secure_stream_url = 5;
+  optional string stream_id = 6;
+  optional string stream_url = 7;
+}
+
+message LiveVideoInputStreamArray {
+  repeated LiveVideoInputStream array = 1;
+}

@@ -1,0 +1,13 @@
+syntax = "proto2";
+
+
+
+message AdAccountDeliveryEstimate {
+  optional int64 estimate_dau   = 1;
+  optional int64 estimate_mau   = 2;
+  optional bool  estimate_ready = 3;
+}
+
+message AdAccountDeliveryEstimateArray {
+  repeated AdAccountDeliveryEstimate array = 1;
+}

@@ -1,0 +1,13 @@
+syntax = "proto2";
+
+
+
+message AdStudyObjectiveId {
+  optional string id           = 1;
+  repeated string event_names  = 2;
+  optional string type         = 3;
+}
+
+message AdStudyObjectiveIdArray {
+  repeated AdStudyObjectiveId array = 1;
+}

@@ -1,0 +1,14 @@
+syntax = "proto2";
+
+
+
+message ChildEvent {
+  optional string id           = 1;
+  optional string end_time     = 2;
+  optional string start_time   = 3;
+  optional string ticket_uri   = 4;
+}
+
+message ChildEventArray {
+  repeated ChildEvent array = 1;
+}

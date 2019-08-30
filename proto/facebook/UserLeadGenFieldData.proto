@@ -1,0 +1,12 @@
+syntax = "proto2";
+
+
+
+message UserLeadGenFieldData {
+  optional string name         = 1;
+  repeated string values       = 2;
+}
+
+message UserLeadGenFieldDataArray {
+  repeated UserLeadGenFieldData array = 1;
+}

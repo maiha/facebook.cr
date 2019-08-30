@@ -1,0 +1,11 @@
+syntax = "proto2";
+
+
+
+message PageThreadOwner {
+
+}
+
+message PageThreadOwnerArray {
+  repeated PageThreadOwner array = 1;
+}

@@ -1,0 +1,34 @@
+syntax = "proto2";
+
+import "Datetime.proto";
+
+message NativeOffer {
+  optional string   id                              = 1;
+  optional string   barcode_photo                   = 2;
+  optional string   barcode_photo_uri               = 3;
+  optional string   barcode_type                    = 4;
+  optional string   barcode_value                   = 5;
+  optional bool     block_reshares                  = 6;
+  optional string   details                         = 7;
+  optional bool     disable_location                = 8;
+  optional Datetime expiration_time                 = 9;
+  optional string   instore_code                    = 10;
+  optional string   location_type                   = 11;
+  optional int64    max_save_count                  = 12;
+  optional string   online_code                     = 13;
+  optional string   page_set_id                     = 14;
+  optional string   redemption_code                 = 15;
+  optional string   redemption_link                 = 16;
+  optional int64    save_count                      = 17;
+  optional string   terms                           = 18;
+  optional string   title                           = 19;
+  optional string   total_unique_codes              = 20;
+  optional string   unique_codes                    = 21;
+  optional string   unique_codes_file_code_type     = 22;
+  optional string   unique_codes_file_name          = 23;
+  optional string   unique_codes_file_upload_status = 24;
+}
+
+message NativeOfferArray {
+  repeated NativeOffer array = 1;
+}

@@ -1,0 +1,11 @@
+syntax = "proto2";
+
+
+
+message AdCreativeLinkDataCallToAction {
+  optional string type         = 1;
+}
+
+message AdCreativeLinkDataCallToActionArray {
+  repeated AdCreativeLinkDataCallToAction array = 1;
+}

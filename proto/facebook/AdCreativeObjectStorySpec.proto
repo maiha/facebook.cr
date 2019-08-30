@@ -1,0 +1,12 @@
+syntax = "proto2";
+
+
+
+message AdCreativeObjectStorySpec {
+  optional string instagram_actor_id = 1;
+  optional string page_id      = 2;
+}
+
+message AdCreativeObjectStorySpecArray {
+  repeated AdCreativeObjectStorySpec array = 1;
+}

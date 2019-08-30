@@ -1,0 +1,13 @@
+syntax = "proto2";
+
+import "Datetime.proto";
+
+message BusinessUnit {
+  optional string   id   = 1;
+  optional Datetime creation_time = 2;
+  optional string   name = 3;
+}
+
+message BusinessUnitArray {
+  repeated BusinessUnit array = 1;
+}

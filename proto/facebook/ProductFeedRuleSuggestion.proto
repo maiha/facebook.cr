@@ -1,0 +1,12 @@
+syntax = "proto2";
+
+
+
+message ProductFeedRuleSuggestion {
+  optional string attribute = 1;
+  optional string type   = 2;
+}
+
+message ProductFeedRuleSuggestionArray {
+  repeated ProductFeedRuleSuggestion array = 1;
+}

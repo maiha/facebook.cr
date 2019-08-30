@@ -1,0 +1,13 @@
+syntax = "proto2";
+
+
+
+message PageParking {
+  optional int64 lot    = 1;
+  optional int64 street = 2;
+  optional int64 valet  = 3;
+}
+
+message PageParkingArray {
+  repeated PageParking array = 1;
+}

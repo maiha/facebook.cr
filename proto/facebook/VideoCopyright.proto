@@ -1,0 +1,21 @@
+syntax = "proto2";
+
+
+
+message VideoCopyright {
+  optional string id                             = 1;
+  optional string content_category               = 2;
+  optional string copyright_content_id           = 3;
+  optional bool   in_conflict                    = 4;
+  optional string monitoring_status              = 5;
+  optional string monitoring_type                = 6;
+  optional bool   reference_file_disabled        = 7;
+  optional bool   reference_file_disabled_by_ops = 8;
+  optional bool   reference_file_expired         = 9;
+  optional string reference_owner_id             = 10;
+  repeated string whitelisted_ids                = 11;
+}
+
+message VideoCopyrightArray {
+  repeated VideoCopyright array = 1;
+}

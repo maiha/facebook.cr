@@ -1,0 +1,12 @@
+syntax = "proto2";
+
+
+
+message ReadOnlyAnalyticsUserPropertyConfig {
+  optional string id           = 1;
+  repeated string active_properties = 2;
+}
+
+message ReadOnlyAnalyticsUserPropertyConfigArray {
+  repeated ReadOnlyAnalyticsUserPropertyConfig array = 1;
+}

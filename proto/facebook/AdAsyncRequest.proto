@@ -1,0 +1,16 @@
+syntax = "proto2";
+
+import "Datetime.proto";
+
+message AdAsyncRequest {
+  optional string   id              = 1;
+  optional Datetime created_time    = 2;
+  optional string   scope_object_id = 3;
+  optional string   status          = 4;
+  optional string   type            = 5;
+  optional Datetime updated_time    = 6;
+}
+
+message AdAsyncRequestArray {
+  repeated AdAsyncRequest array = 1;
+}

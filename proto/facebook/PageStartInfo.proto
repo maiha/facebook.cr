@@ -1,0 +1,11 @@
+syntax = "proto2";
+
+
+
+message PageStartInfo {
+  optional string type         = 1;
+}
+
+message PageStartInfoArray {
+  repeated PageStartInfo array = 1;
+}

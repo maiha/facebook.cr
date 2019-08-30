@@ -6,11 +6,16 @@ authors:
 
 targets:
   facebook:
-    main: src/bin/facebook.cr
+    main: src/cli/bin/facebook.cr
+  facebook-dev:
+    main: src/cli/bin/facebook.cr
   fbget:
     main: samples/fbget.cr
 
 dependencies:
+  protobuf:
+    github: maiha/protobuf.cr
+    branch: json
   protobuf-storage:
     github: maiha/protobuf-storage.cr
     version: ">= 0.3.1"
@@ -19,7 +24,7 @@ dependencies:
     version: ">= 1.2.0"
   pretty:
     github: maiha/pretty.cr
-    version: ">= 0.7.4"
+    version: ">= 0.7.5"
   retriable:
     github: Sija/retriable.cr
     branch: develop
