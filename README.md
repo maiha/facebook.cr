@@ -4,7 +4,7 @@ facebook api for [Crystal](http://crystal-lang.org/).
 
 - crystal: 0.30.0
 
-## Usage
+## Usage (library)
 
 ```crystal
 require "facebook"
@@ -13,6 +13,25 @@ client = Facebook::Client.new(auth: "xxxxxx")
 res = client.get("/me")
 puts res.body
 ```
+
+## Usage (facebook application)
+
+#### setup config (first time only)
+
+Generate sample by `config`, then set `access_token`. That's all.
+
+```console
+$ facebook config sample > .facebookrc
+$ vi .facebookrc
+access_token    = "xxxxxx"
+```
+
+You can verify the access_key by invoking `api me`.
+
+```console
+$ facebook api me
+```
+
 
 ## Development
 

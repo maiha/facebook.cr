@@ -51,17 +51,13 @@ describe Facebook::Client do
     end
 
     context "(http connection error)" do
-      it "returns response" do
+      it "raises with connection info" do
         client = Facebook::Client.new(api: "/me", auth: "xxx")
         client.host = "http://localhost:4"
-        res = client.execute
-        res.should be_a Facebook::Response
 
-        res.code.should eq -1
-        res.success?.should be_false
-        expect_raises(Facebook::Api::Error) { res.body }
-        expect_raises(Facebook::Api::Error) { res.headers }
-        expect_raises(Facebook::Api::Error) { res.success! }
+        expect_raises(Exception, "Failed to connect localhost port 4") do
+          client.execute
+        end
       end
     end
   end
