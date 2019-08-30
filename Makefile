@@ -6,17 +6,16 @@ GUESSED_VERSION=$(shell git tag -l | sort -V | tail -1 | awk 'BEGIN { FS="." } {
 
 .SHELLFLAGS = -o pipefail -c
 
+.PHONY : progs
+progs:
+	shards build
 
 .PHONY : facebook
 facebook:
 	shards build facebook
 
-.PHONY : fbget
-fbget:
-	shards build fbget
-
 .PHONY : test
-test: check_version_mismatch spec
+test: check_version_mismatch spec progs
 
 .PHONY : spec
 spec:

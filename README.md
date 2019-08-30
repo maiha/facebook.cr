@@ -61,6 +61,7 @@ $ facebook api get '/v4.0/act_123456/campaigns'
 dependencies:
   facebook:
     github: maiha/facebook
+	version: 0.2.0
 ```
 
 2. Run `shards install`

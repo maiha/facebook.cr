@@ -1,9 +1,4 @@
-# ```console
-# $ fbget /me
-# $ fbget '/v4.0/me/adaccounts -d limit 10'
-# ```
-
-require "../facebook"
+require "../src/facebook"
 require "composite_logger"
 
 def show_headers(res : Facebook::Response)
