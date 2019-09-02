@@ -16,9 +16,11 @@ module Facebook
       @responsed_at = Time.now
     end
 
-    def success?
-      200 <= code <= 299
-    end
+    def informational? ; 100 <= code <= 199; end
+    def success?       ; 200 <= code <= 299; end
+    def redirection?   ; 300 <= code <= 399; end
+    def client_error?  ; 400 <= code <= 499; end
+    def server_error?  ; 500 <= code <= 599; end
 
     def success! : Response
       success? || raise Facebook::Api::Error.new(self)

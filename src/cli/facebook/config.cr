@@ -28,6 +28,7 @@ class Facebook::Config < TOML::Config
   str  "batch/shared_dir"
   str  "batch/log"
   bool "batch/gc"
+  bool "batch/skip_400"
   
   # clickhouse
   str "clickhouse/host"
@@ -157,10 +158,12 @@ work_dir   = "tmp"
 shared_dir = "tmp/shared"
 log        = "log"
 gc         = true
+skip_400   = true
 
 recv_ad_account = true
 recv_ad_set     = true
 recv_campaign   = true
+recv_ad         = true
 
 [clickhouse]
 host  = "localhost"
@@ -192,5 +195,8 @@ cmd = "/v4.0/{{ad_account.id}}/adsets -d limit=100 -d fields=id,account_id,asset
 
 [campaign]
 cmd = "/v4.0/{{ad_account.id}}/campaigns -d fields=id,account_id,bid_strategy,boosted_object_id,budget_rebalance_flag,budget_remaining,buying_type,can_create_brand_lift_study,can_use_spend_cap,configured_status,created_time,daily_budget,effective_status,last_budget_toggling_time,lifetime_budget,name,objective,pacing_type,source_campaign_id,spend_cap,start_time,status,stop_time,topline_id,updated_time,execution_options"
+
+[ad]
+cmd = "/v4.0/{{ad_account.id}}/ads -d limit=100 -d fields=id,account_id,adset_id,bid_amount,bid_type,campaign_id,configured_status,created_time,demolink_hash,display_sequence,effective_status,engagement_audience,is_autobid,last_updated_by_app_id,name,preview_shareable_link,priority,source_ad_id,status,targeting,updated_time,audience_id,date_format,draft_adgroup_id,execution_options,include_demolink_hashes"
 
 EOF

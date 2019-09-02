@@ -5,6 +5,7 @@ class Cmds::BatchCmd
   CMD_PARAM_ACCOUNT_ID = "ad_account.id"
   META_PAGING_NEXT = "paging_next"
   META_WARN        = "warn"
+  META_ERR         = "err"
 
   RECV_IMPLS = [] of String
   
@@ -78,6 +79,7 @@ class Cmds::BatchCmd
 
         parser = Facebook::Response::Parser({{proto}}).from_json(res.body)
         if error = parser.error
+          house.meta[META_ERR] = error.inspect
           raise error.inspect
         end
 
@@ -112,6 +114,7 @@ class Cmds::BatchCmd
 
       hint  = "[recv] {{name.id}}"
       house = storage({{proto}})
+      paging_next : String? = nil
       
       count = house.count
       if count > 0
@@ -126,14 +129,24 @@ class Cmds::BatchCmd
       )
       logger.debug "%s (cmd found: %s)" % [hint, cmd]
 
-      cmd.params.any? ||
-        raise ArgumentError.new("%s: no params in cmd: %s" % [hint, cmd.to_s.inspect])
+      cmd.params.any? || (
+        msg = "%s: no params in cmd: %s" % [hint, cmd.to_s.inspect]
+        house.meta[META_ERR] = msg
+        raise ArgumentError.new(msg)
+      )
 
-      cmd.params == [CMD_PARAM_ACCOUNT_ID] ||
-        raise ArgumentError.new("%s: ParamsCmd now supports only %s" % [hint, CMD_PARAM_ACCOUNT_ID])
-
+      cmd.params == [CMD_PARAM_ACCOUNT_ID] || (
+        msg = "%s: ParamsCmd now supports only %s" % [hint, CMD_PARAM_ACCOUNT_ID]
+        house.meta[META_ERR] = msg
+        raise ArgumentError.new(msg)
+      )
+ 
       parent_ids = storage(Facebook::Proto::AdAccount).load.map{|pb|
-        pb.id || raise ArgumentError.new("%s: ad_account.id is nil (%s)" % [hint, pb.to_hash.inspect])
+        pb.id || (
+          msg = "%s: ad_account.id is nil (%s)" % [hint, pb.to_hash.inspect]
+          house.meta[META_ERR] = msg
+          raise ArgumentError.new(msg)
+        )
       }
       # TODO: use field name in `cmd.params` rather than fixed `id`.
       if parent_ids.empty?
@@ -159,7 +172,7 @@ class Cmds::BatchCmd
         skipped_count = parent_ids.size - target_ids.size
         logger.info "%s: found suspended job[%s] (skip: %s)" % [hint, current_id, skipped_count]
       end
-      
+
       target_ids.each_with_index do |parent_id, target_idx|
         paging_index = 0
         recv.start
@@ -169,7 +182,9 @@ class Cmds::BatchCmd
           label = "#{hint}(#{target_idx+1}/#{target_ids.size})##{paging_index}"
         
           if paging_index > paging_limit
-            logger.warn "#{label}: reached max loop limit(#{paging_limit})"
+            msg = "#{label}: reached max loop limit(#{paging_limit})"
+            logger.warn msg
+            house.meta[META_WARN] = msg
             break
           end
 
@@ -190,21 +205,36 @@ class Cmds::BatchCmd
             end
           }
 
-          #      res = retry(label, api) {
           api.start
           res = client.execute
-          #      }
           api.stop
           mark_visited!(res.req.full_url)
 
           parser = Facebook::Response::Parser({{proto}}).from_json(res.body)
-          if error = parser.error
+          paging_next = parser.paging.try(&.next)
+
+          if res.client_error?
+            msg = "%s: [%s]" % [label, res.code]
+            if error = parser.error
+              msg = "%s %s" % [msg, error.inspect]
+            end
+            if config.batch_skip_400?
+              logger.warn msg
+              house.meta[META_WARN] = msg
+              paging_next = nil
+            else
+              house.meta[META_ERR] = error.inspect
+              raise error.inspect
+            end
+
+          elsif error = parser.error
+            house.meta[META_ERR] = error.inspect
             raise error.inspect
           end
 
           fetched = parser.to_a
           house.tmp(fetched, {
-            META_PAGING_NEXT => parser.paging.try(&.next),
+            META_PAGING_NEXT => paging_next,
           })
           house.checkin(group: job_group, value: parent_id)
                           
@@ -241,6 +271,7 @@ class Cmds::BatchCmd
   api AdAccount
   api AdSet, :accounted
   api Campaign, :accounted
+  api Ad, :accounted
 
   {% begin %}
   def recv_impl
