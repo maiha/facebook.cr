@@ -20,11 +20,15 @@ PB_ALIAS = {
 #  "object"   => "Json",
 }
 
-# PB_CUSTOM_TYPES = Set{"Datetime", "Json", "Int64Array", "StringArray"}
+# Name of type allowed to use. It would be AdObject, but free from circular reference.
+PB_ALLOWED_TYPES = Set{"Targeting"}
+
+# Name of type defined by us.
 PB_CUSTOM_TYPES = Set{"Datetime", "Int64Array", "StringArray"}
 
 AVAILABLE_TYPES = Set(String).new
 AVAILABLE_TYPES.concat PB_TYPES
+AVAILABLE_TYPES.concat PB_ALLOWED_TYPES
 AVAILABLE_TYPES.concat PB_CUSTOM_TYPES
 AVAILABLE_TYPES.concat PB_ALIAS.keys
 
@@ -163,7 +167,7 @@ def adjust_schema_fields_respect_id!(schema)
 end
 
 def write_proto(schema)
-  custom_types = Set(String).new
+  dependencies = Set(String).new
   type_max_len = 0
 
   fields = Array(Array(String)).new
@@ -183,24 +187,26 @@ def write_proto(schema)
     rule = f.resolved_rule
     name = f.resolved_name
 
-    if type =~ /^[A-Z]/
-      unless PB_CUSTOM_TYPES.includes?(type)
+    case type
+    when PB_ALLOWED_TYPES, PB_CUSTOM_TYPES
+      # OK
+      dependencies << type
+    when /^[A-Z]/
+      # NG (AdObject is rejected in default)
+      REMOVED_LOGS << "#{schema.klass}: ignore '#{name} : #{type}' # ad objects"
+      next
+    else
+      # check by name
+      if resources.includes?(name)
         # NG
-        REMOVED_LOGS << "#{schema.klass}: ignore '#{name} : #{type}' # ad objects"
+        REMOVED_LOGS << "#{schema.klass}: ignore '#{name} : #{type}' # FK"
         next
       end
-    elsif resources.includes?(name)
-      # NG
-      REMOVED_LOGS << "#{schema.klass}: ignore '#{name} : #{type}' # FK"
-      next
     end
 
     index += 1
     type_max_len = [type_max_len, type.size].max
     fields << [rule, type, name, index.to_s]
-    if PB_CUSTOM_TYPES.includes?(type)
-      custom_types << type
-    end
   end
 
   # limit max indent size to 20 to avoid too long name
@@ -213,7 +219,7 @@ def write_proto(schema)
     "  %s %-#{type_max_len}s %-#{name_max}s = %s;" % ary
   }.join("\n")
   
-  import = custom_types.map{|type| %(import "#{type}.proto";)}.join("\n")
+  import = dependencies.map{|type| %(import "#{type}.proto";)}.join("\n")
 
   data = <<-EOF
     syntax = "proto2";

@@ -1,20 +1,21 @@
 syntax = "proto2";
 
-
+import "Targeting.proto";
 
 message AdCreativeVideoData {
-  optional int64  additional_image_index = 1;
-  optional string branded_content_shared_to_sponsor_status = 2;
-  optional string branded_content_sponsor_page_id = 3;
-  optional string image_hash             = 4;
-  optional string image_url              = 5;
-  optional string link_description       = 6;
-  optional string message                = 7;
-  optional string offer_id               = 8;
-  optional string page_welcome_message   = 9;
-  repeated string retailer_item_ids      = 10;
-  optional string title                  = 11;
-  optional string video_id               = 12;
+  optional int64     additional_image_index                   = 1;
+  optional string    branded_content_shared_to_sponsor_status = 2;
+  optional string    branded_content_sponsor_page_id          = 3;
+  optional string    image_hash                               = 4;
+  optional string    image_url                                = 5;
+  optional string    link_description                         = 6;
+  optional string    message                                  = 7;
+  optional string    offer_id                                 = 8;
+  optional string    page_welcome_message                     = 9;
+  repeated string    retailer_item_ids                        = 10;
+  optional Targeting targeting                                = 11;
+  optional string    title                                    = 12;
+  optional string    video_id                                 = 13;
 }
 
 message AdCreativeVideoDataArray {

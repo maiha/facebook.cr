@@ -42,18 +42,19 @@ module Facebook
         optional :source_adset_id, :string, 32
         optional :start_time, Datetime, 33
         optional :status, :string, 34
-        repeated :time_based_ad_rotation_id_blocks, Int64Array, 35
-        repeated :time_based_ad_rotation_intervals, :int64, 36
-        optional :updated_time, Datetime, 37
-        optional :use_new_app_click, :bool, 38
-        optional :daily_imps, :int64, 39
-        optional :date_format, :string, 40
-        repeated :execution_options, :string, 41
-        optional :line_number, :int64, 42
-        optional :rb_prediction_id, :string, 43
-        optional :time_start, Datetime, 44
-        optional :time_stop, Datetime, 45
-        optional :topline_id, :string, 46
+        optional :targeting, Targeting, 35
+        repeated :time_based_ad_rotation_id_blocks, Int64Array, 36
+        repeated :time_based_ad_rotation_intervals, :int64, 37
+        optional :updated_time, Datetime, 38
+        optional :use_new_app_click, :bool, 39
+        optional :daily_imps, :int64, 40
+        optional :date_format, :string, 41
+        repeated :execution_options, :string, 42
+        optional :line_number, :int64, 43
+        optional :rb_prediction_id, :string, 44
+        optional :time_start, Datetime, 45
+        optional :time_stop, Datetime, 46
+        optional :topline_id, :string, 47
       end
     end
     

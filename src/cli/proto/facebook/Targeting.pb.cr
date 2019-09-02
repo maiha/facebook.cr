@@ -1,4 +1,4 @@
-## Generated from facebook/Targeting.proto
+## Generated from Targeting.proto
 require "protobuf"
 
 module Facebook

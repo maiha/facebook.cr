@@ -27,8 +27,9 @@ module Facebook
         optional :sales_lead_email, :string, 17
         optional :start_time, :int64, 18
         optional :status, :string, 19
-        repeated :third_party_ids, :string, 20
-        optional :third_party_integrated_deal, :bool, 21
+        optional :targeting, Targeting, 20
+        repeated :third_party_ids, :string, 21
+        optional :third_party_integrated_deal, :bool, 22
       end
     end
     

@@ -18,8 +18,9 @@ module Facebook
         optional :offer_id, :string, 8
         optional :page_welcome_message, :string, 9
         repeated :retailer_item_ids, :string, 10
-        optional :title, :string, 11
-        optional :video_id, :string, 12
+        optional :targeting, Targeting, 11
+        optional :title, :string, 12
+        optional :video_id, :string, 13
       end
     end
     

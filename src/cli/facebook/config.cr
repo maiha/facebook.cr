@@ -159,6 +159,7 @@ log        = "log"
 gc         = true
 
 recv_ad_account = true
+recv_campaign   = true
 
 [clickhouse]
 host  = "localhost"
@@ -184,4 +185,7 @@ level    = "ERROR"
 
 [ad_account]
 cmd = "/v4.0/me/adaccounts -d fields=account_id,name,account_status -d limit=100"
+
+[campaign]
+cmd = "/v4.0/{{ad_account.id}}/campaigns -d fields=id,name"
 EOF

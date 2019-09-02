@@ -27,12 +27,13 @@ module Facebook
         optional :priority, :int64, 17
         optional :source_ad_id, :string, 18
         optional :status, :string, 19
-        optional :updated_time, Datetime, 20
-        optional :audience_id, :string, 21
-        optional :date_format, :string, 22
-        optional :draft_adgroup_id, :string, 23
-        repeated :execution_options, :string, 24
-        optional :include_demolink_hashes, :bool, 25
+        optional :targeting, Targeting, 20
+        optional :updated_time, Datetime, 21
+        optional :audience_id, :string, 22
+        optional :date_format, :string, 23
+        optional :draft_adgroup_id, :string, 24
+        repeated :execution_options, :string, 25
+        optional :include_demolink_hashes, :bool, 26
       end
     end
     

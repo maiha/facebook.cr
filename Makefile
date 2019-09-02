@@ -37,17 +37,44 @@ gen-proto: .facebook-ruby-business-sdk
 	@crystal gen/proto-facebook.cr
 
 .PHONY: proto
-proto:
+proto: proto_each proto_remove_duplicated
+
+# [proto_at_once] fails
+# facebook/Targeting.proto:6:19: "Targeting.adgroup_id" is already defined in file "Targeting.proto".
+# facebook/Targeting.proto:59:12: "Targeting" seems to be defined in "Targeting.proto", which is not imported by "facebook/Targeting.proto".  To use it here, please add the necessary import.
+# Makefile:44: recipe for target 'proto_at_once' failed
+# make: *** [proto_at_once] Error 1
+.PHONY: proto_at_once
+proto_at_once:
 	@mkdir -p src/cli/proto
 	protoc -I proto --crystal_out src/cli/proto proto/*.proto
 	@mkdir -p src/cli/proto/facebook
 	PROTOBUF_NS=Facebook::Proto protoc -I proto -I proto/facebook --crystal_out src/cli/proto/facebook proto/facebook/*.proto
 
+# [proto_each]
+# - alternative for proto_at_once
+# - slow. but works.
 .PHONY: proto_each
+proto_each:
 	@mkdir -p src/cli/proto/facebook
 	@for x in proto/facebook/*.proto; do \
 	  PROTOBUF_NS=Facebook::Proto protoc -I proto -I proto/facebook --crystal_out src/cli/proto/facebook $$x; \
 	done
+
+# I don't know how to not create imported file. So adjust by removing it.
+.PHONY: proto_remove_duplicated
+proto_remove_duplicated:
+	@for x in src/cli/proto/facebook/*.pb.cr; do \
+	  if [ -f "src/cli/proto/`basename $$x`" ]; then \
+	    echo "delete: duplicated $$x"; \
+	    rm $$x; \
+	  fi; \
+	done
+
+.PHONY: proto_test
+proto_test:
+	@mkdir -p src/cli/proto/facebook
+	PROTOBUF_NS=Facebook::Proto protoc -I proto -I proto/facebook --crystal_out src/cli/proto/facebook proto/facebook/Targeting.proto
 
 .PHONY : test
 test: check_version_mismatch spec progs

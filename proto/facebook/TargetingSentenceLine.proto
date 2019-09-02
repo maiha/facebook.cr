@@ -1,10 +1,11 @@
 syntax = "proto2";
 
-
+import "Targeting.proto";
 
 message TargetingSentenceLine {
-  optional string id           = 1;
-  repeated string targetingsentencelines = 2;
+  optional string    id = 1;
+  optional Targeting params = 2;
+  repeated string    targetingsentencelines = 3;
 }
 
 message TargetingSentenceLineArray {

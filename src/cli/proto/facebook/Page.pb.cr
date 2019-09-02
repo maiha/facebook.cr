@@ -91,38 +91,39 @@ module Facebook
         optional :phone, :string, 81
         optional :place_type, :string, 82
         optional :plot_outline, :string, 83
-        optional :press_contact, :string, 84
-        optional :price_range, :string, 85
-        optional :privacy_info_url, :string, 86
-        optional :produced_by, :string, 87
-        optional :products, :string, 88
-        optional :promotion_eligible, :bool, 89
-        optional :promotion_ineligible_reason, :string, 90
-        optional :public_transit, :string, 91
-        optional :rating_count, :int64, 92
-        optional :recipient, :string, 93
-        optional :record_label, :string, 94
-        optional :release_date, :string, 95
-        optional :schedule, :string, 96
-        optional :screenplay_by, :string, 97
-        optional :season, :string, 98
-        optional :single_line_address, :string, 99
-        optional :starring, :string, 100
-        optional :store_code, :string, 101
-        optional :store_location_descriptor, :string, 102
-        optional :store_number, :int64, 103
-        optional :studio, :string, 104
-        optional :supports_instant_articles, :bool, 105
-        optional :talking_about_count, :int64, 106
-        optional :unread_message_count, :int64, 107
-        optional :unread_notif_count, :int64, 108
-        optional :unseen_message_count, :int64, 109
-        optional :username, :string, 110
-        optional :verification_status, :string, 111
-        optional :website, :string, 112
-        optional :were_here_count, :int64, 113
-        optional :whatsapp_number, :string, 114
-        optional :written_by, :string, 115
+        optional :preferred_audience, Targeting, 84
+        optional :press_contact, :string, 85
+        optional :price_range, :string, 86
+        optional :privacy_info_url, :string, 87
+        optional :produced_by, :string, 88
+        optional :products, :string, 89
+        optional :promotion_eligible, :bool, 90
+        optional :promotion_ineligible_reason, :string, 91
+        optional :public_transit, :string, 92
+        optional :rating_count, :int64, 93
+        optional :recipient, :string, 94
+        optional :record_label, :string, 95
+        optional :release_date, :string, 96
+        optional :schedule, :string, 97
+        optional :screenplay_by, :string, 98
+        optional :season, :string, 99
+        optional :single_line_address, :string, 100
+        optional :starring, :string, 101
+        optional :store_code, :string, 102
+        optional :store_location_descriptor, :string, 103
+        optional :store_number, :int64, 104
+        optional :studio, :string, 105
+        optional :supports_instant_articles, :bool, 106
+        optional :talking_about_count, :int64, 107
+        optional :unread_message_count, :int64, 108
+        optional :unread_notif_count, :int64, 109
+        optional :unseen_message_count, :int64, 110
+        optional :username, :string, 111
+        optional :verification_status, :string, 112
+        optional :website, :string, 113
+        optional :were_here_count, :int64, 114
+        optional :whatsapp_number, :string, 115
+        optional :written_by, :string, 116
       end
     end
     

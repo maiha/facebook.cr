@@ -1,6 +1,7 @@
 syntax = "proto2";
 
 import "Datetime.proto";
+import "Targeting.proto";
 import "Int64Array.proto";
 
 message AdSet {
@@ -38,18 +39,19 @@ message AdSet {
   optional string     source_adset_id              = 32;
   optional Datetime   start_time                   = 33;
   optional string     status                       = 34;
-  repeated Int64Array time_based_ad_rotation_id_blocks = 35;
-  repeated int64      time_based_ad_rotation_intervals = 36;
-  optional Datetime   updated_time                 = 37;
-  optional bool       use_new_app_click            = 38;
-  optional int64      daily_imps                   = 39;
-  optional string     date_format                  = 40;
-  repeated string     execution_options            = 41;
-  optional int64      line_number                  = 42;
-  optional string     rb_prediction_id             = 43;
-  optional Datetime   time_start                   = 44;
-  optional Datetime   time_stop                    = 45;
-  optional string     topline_id                   = 46;
+  optional Targeting  targeting                    = 35;
+  repeated Int64Array time_based_ad_rotation_id_blocks = 36;
+  repeated int64      time_based_ad_rotation_intervals = 37;
+  optional Datetime   updated_time                 = 38;
+  optional bool       use_new_app_click            = 39;
+  optional int64      daily_imps                   = 40;
+  optional string     date_format                  = 41;
+  repeated string     execution_options            = 42;
+  optional int64      line_number                  = 43;
+  optional string     rb_prediction_id             = 44;
+  optional Datetime   time_start                   = 45;
+  optional Datetime   time_stop                    = 46;
+  optional string     topline_id                   = 47;
 }
 
 message AdSetArray {

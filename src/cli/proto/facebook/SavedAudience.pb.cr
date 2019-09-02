@@ -14,8 +14,9 @@ module Facebook
         optional :name, :string, 4
         optional :run_status, :string, 5
         repeated :sentence_lines, :string, 6
-        optional :time_created, Datetime, 7
-        optional :time_updated, Datetime, 8
+        optional :targeting, Targeting, 7
+        optional :time_created, Datetime, 8
+        optional :time_updated, Datetime, 9
       end
     end
     

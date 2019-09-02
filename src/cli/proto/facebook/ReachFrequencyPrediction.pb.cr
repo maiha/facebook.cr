@@ -69,29 +69,30 @@ module Facebook
         optional :story_event_type, :int64, 59
         optional :target_audience_size, :int64, 60
         optional :target_cpm, :int64, 61
-        optional :time_created, Datetime, 62
-        optional :time_updated, Datetime, 63
-        optional :timezone_id, :int64, 64
-        optional :timezone_name, :string, 65
-        optional :topline_id, :int64, 66
-        optional :video_view_length_constraint, :int64, 67
-        optional :viewtag, :string, 68
-        optional :action, :string, 69
-        optional :budget, :int64, 70
-        optional :deal_id, :string, 71
-        repeated :destination_ids, :string, 72
-        optional :exceptions, :bool, 73
-        optional :existing_campaign_id, :string, 74
-        optional :grp_buying, :bool, 75
-        optional :impression, :int64, 76
-        optional :is_full_view, :bool, 77
-        optional :is_reach_and_frequency_io_buying, :bool, 78
-        optional :num_curve_points, :int64, 79
-        optional :reach, :int64, 80
-        optional :rf_prediction_id, :string, 81
-        optional :rf_prediction_id_to_release, :string, 82
-        optional :rf_prediction_id_to_share, :string, 83
-        optional :stop_time, :int64, 84
+        optional :target_spec, Targeting, 62
+        optional :time_created, Datetime, 63
+        optional :time_updated, Datetime, 64
+        optional :timezone_id, :int64, 65
+        optional :timezone_name, :string, 66
+        optional :topline_id, :int64, 67
+        optional :video_view_length_constraint, :int64, 68
+        optional :viewtag, :string, 69
+        optional :action, :string, 70
+        optional :budget, :int64, 71
+        optional :deal_id, :string, 72
+        repeated :destination_ids, :string, 73
+        optional :exceptions, :bool, 74
+        optional :existing_campaign_id, :string, 75
+        optional :grp_buying, :bool, 76
+        optional :impression, :int64, 77
+        optional :is_full_view, :bool, 78
+        optional :is_reach_and_frequency_io_buying, :bool, 79
+        optional :num_curve_points, :int64, 80
+        optional :reach, :int64, 81
+        optional :rf_prediction_id, :string, 82
+        optional :rf_prediction_id_to_release, :string, 83
+        optional :rf_prediction_id_to_share, :string, 84
+        optional :stop_time, :int64, 85
       end
     end
     

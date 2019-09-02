@@ -9,7 +9,8 @@ module Facebook
       
       contract_of "proto2" do
         optional :id, :string, 1
-        repeated :targetingsentencelines, :string, 2
+        optional :params, Targeting, 2
+        repeated :targetingsentencelines, :string, 3
       end
     end
     
