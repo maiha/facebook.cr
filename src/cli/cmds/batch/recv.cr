@@ -6,18 +6,18 @@ class Cmds::BatchCmd
   META_PAGING_NEXT = "paging_next"
   META_WARN        = "warn"
 
-  private macro api(klass)
+  RECV_IMPLS = [] of String
+  
+  private macro api(klass, accounted = nil)
     {% name  = klass.stringify.underscore %}
     {% proto = "Facebook::Proto::#{klass}".id %}
 
-    api_recv({{klass}}, {{name}}, {{proto}})
-  end
-
-  private macro api_accounted(klass)
-    {% name  = klass.stringify.underscore %}
-    {% proto = "Facebook::Proto::#{klass}".id %}
-
-    api_accounted_recv({{klass}}, {{name}}, {{proto}})
+    {% if accounted %}
+      api_accounted_recv({{klass}}, {{name}}, {{proto}})
+    {% else %}
+      api_recv({{klass}}, {{name}}, {{proto}})
+    {% end %}
+    {% RECV_IMPLS << "recv_" + name %}
   end
 
   # receive model, and store it in Protobuf::House
@@ -239,6 +239,14 @@ class Cmds::BatchCmd
   end
 
   api AdAccount
-  api_accounted AdSet
-  api_accounted Campaign
+  api AdSet, :accounted
+  api Campaign, :accounted
+
+  {% begin %}
+  def recv_impl
+    {% for recv in RECV_IMPLS %}
+      {{recv.id}}
+    {% end %}
+  end
+  {% end %}
 end

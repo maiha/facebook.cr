@@ -39,9 +39,7 @@ Cmds.command "batch" do
   # [Output]
   #   FILE: Facebook::Proto::*/
   task "recv", "<date>" do
-    recv_ad_account
-    recv_ad_set
-    recv_campaign
+    recv_impl
 
     logger.info "[recv:done] API:#{api} MEM:#{Pretty.process_info.max}"
   end
