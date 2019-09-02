@@ -239,6 +239,6 @@ class Cmds::BatchCmd
   end
 
   api AdAccount
-#  api Campaign, parent: AdAccount
   api_accounted AdSet
+  api_accounted Campaign
 end

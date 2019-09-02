@@ -41,6 +41,7 @@ Cmds.command "batch" do
   task "recv", "<date>" do
     recv_ad_account
     recv_ad_set
+    recv_campaign
 
     logger.info "[recv:done] API:#{api} MEM:#{Pretty.process_info.max}"
   end
