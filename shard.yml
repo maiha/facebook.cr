@@ -18,7 +18,8 @@ dependencies:
     branch: json
   protobuf-storage:
     github: maiha/protobuf-storage.cr
-    version: ">= 0.3.1"
+    # version: ">= 0.3.1"
+    commit: "93303b3d2db4268f8c893785c8fd63dd5e4814fa"
   var:
     github: maiha/var.cr
     version: ">= 1.2.0"

@@ -14,6 +14,7 @@ Cmds.command "batch" do
   #   clean
   task clean, "<date>" do
     Pretty.rm_rf(today_dir)
+    logger.info "Deleted #{today_dir}"
   end
   
   usage "run 2017-11-13"
@@ -39,6 +40,7 @@ Cmds.command "batch" do
   #   FILE: Facebook::Proto::*/
   task "recv", "<date>" do
     recv_ad_account
+    recv_ad_set
 
     logger.info "[recv:done] API:#{api} MEM:#{Pretty.process_info.max}"
   end

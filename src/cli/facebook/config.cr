@@ -159,7 +159,7 @@ log        = "log"
 gc         = true
 
 recv_ad_account = true
-recv_campaign   = true
+recv_ad_set     = true
 
 [clickhouse]
 host  = "localhost"
@@ -184,8 +184,12 @@ path     = "err"
 level    = "ERROR"
 
 [ad_account]
-cmd = "/v4.0/me/adaccounts -d fields=account_id,name,account_status -d limit=100"
+cmd = "/v4.0/me/adaccounts -d limit=100 -d fields=account_id,name,age,amount_spent,balance,business_city,business_country_code,business_name,business_state,business_street,business_street2,business_zip,can_create_brand_lift_study,created_time,currency,disable_reason,end_advertiser,end_advertiser_name,fb_entity,funding_source,has_migrated_permissions,io_number,is_attribution_spec_system_default,is_direct_deals_enabled,is_in_3ds_authorization_enabled_market,is_in_middle_of_local_entity_migration,is_notifications_enabled,is_personal,is_prepay_account,is_tax_id_required,line_numbers,media_agency,min_campaign_group_spend_cap,min_daily_budget,offsite_pixels_tos_accepted,owner,partner,spend_cap,tax_id,tax_id_status,tax_id_type,timezone_id,timezone_name,timezone_offset_hours_utc,user_role"
 
 [campaign]
 cmd = "/v4.0/{{ad_account.id}}/campaigns -d fields=id,name"
+
+[ad_set]
+cmd = "/v4.0/{{ad_account.id}}/adsets -d limit=100 -d fields=id,account_id,asset_feed_id,bid_amount,bid_strategy,budget_remaining,campaign_id,created_time,creative_sequence,daily_budget,daily_min_spend_target,daily_spend_cap,destination_type,effective_status,end_time,instagram_actor_id,is_dynamic_creative,lifetime_budget,lifetime_imps,lifetime_min_spend_target,lifetime_spend_cap,name,optimization_goal,optimization_sub_event,pacing_type,recurring_budget_semantics,review_feedback,rf_prediction_id,source_adset_id,start_time,status,targeting,time_based_ad_rotation_id_blocks,time_based_ad_rotation_intervals,updated_time,use_new_app_click,daily_imps,date_format,execution_options,line_number,rb_prediction_id,time_start,time_stop,topline_id"
+
 EOF
