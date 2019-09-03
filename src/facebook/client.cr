@@ -52,7 +52,7 @@ module Facebook
       self.strategy= Facebook::Strategy::Libcurl.new
     end
 
-    def paging_next!(url : String)
+    def authorized_url!(url : String)
       @auth = Facebook::Auth::Nothing.new
       case url
       when %r{\Ahttps?://(.*?)(/.*)\Z}
@@ -103,7 +103,7 @@ module Facebook
       req.api?  || raise "api not found"
       req.auth? || raise "auth not found"
       req.host? || raise "host not found"
-      req.auth.authorize!(req)
+      req.authorize!
     end
   end
 end

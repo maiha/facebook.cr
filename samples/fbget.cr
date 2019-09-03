@@ -25,7 +25,7 @@ end
 
 def show(res : Facebook::Response, verbose = false)
   if verbose
-    puts "%s %s %s" % [res.code, res.req.api.method, res.req.full_url]
+    puts "%s %s %s" % [res.code, res.req.api.method, res.req.url]
     puts "----------------------------------------"
     show_headers(res)
     puts "----------------------------------------"

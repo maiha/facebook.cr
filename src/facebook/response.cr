@@ -27,6 +27,19 @@ module Facebook
       return self
     end
 
+    def rate_limits : Hash(String, Array(RateLimit))
+      if json = headers["x-business-use-case-usage"]?
+        RateLimit.parse(json)
+      else
+        Hash(String, Array(RateLimit)).new
+      end
+    end
+
+    # return first RateLimit or nil
+    def rate_limit? : RateLimit?
+      rate_limits.try(&.values.flatten.first?)
+    end
+
     private def build_headers : HTTP::Headers
       headers = HTTP::Headers.new
       header.scan(/^([^\n]+?):\s*([^\n]+?)\r?$/m) do

@@ -48,10 +48,10 @@ describe Facebook::Response::RateLimit do
   end
 
   it "works" do
-    rate_limit(json_string_throttled).max_percent.should eq(101)
+    rate_limit(json_string_throttled).max_pct.should eq(101)
     rate_limit(json_string_throttled).throttled?.should be_true
 
-    rate_limit(json_string_normal).max_percent.should eq(6)
+    rate_limit(json_string_normal).max_pct.should eq(6)
     rate_limit(json_string_normal).throttled?.should be_false
   end
 end

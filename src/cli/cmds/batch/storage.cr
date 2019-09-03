@@ -22,7 +22,7 @@ class Cmds::BatchCmd
 
   private def write_http_call(req : Facebook::Request, res : Facebook::Response?)
     pb = HttpCall.new(
-      url: req.full_url,
+      url: req.url,
       method: req.method.to_s,
       header: "",               # TODO: how to get request header in libcurl
       body: "",                 # TODO: how to get request body in libcurl

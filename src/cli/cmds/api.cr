@@ -54,9 +54,11 @@ Cmds.command "api" do
 
   private def show(res : Facebook::Response)
     if verbose?
-      puts "%s %s %s" % [res.code, res.req.api.method, res.req.full_url]
+      puts "%s %s %s" % [res.code, res.req.api.method, res.req.url]
       puts "----------------------------------------"
       show_headers(res)
+      puts "----------------------------------------"
+      p res.rate_limits
       puts "----------------------------------------"
     end
     show_body(res)

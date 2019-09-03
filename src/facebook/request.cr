@@ -12,14 +12,19 @@ class Facebook::Request
 
   delegate method, path, headers, to: api
   
-  def full_url : String
+  def url : String
     u = host.uri.dup
     u.path = api.request_path
     u.to_s
   end
 
+  def authorize! : Request
+    auth.authorize!(self)
+    return self
+  end
+
   # "GET http://..."
   def to_s(io : IO)
-    io << full_url
+    io << url
   end
 end

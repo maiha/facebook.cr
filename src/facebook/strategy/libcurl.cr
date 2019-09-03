@@ -7,9 +7,9 @@ module Facebook::Strategy
     var read_timeout    : Float64 = 300.0
 
     def execute(req : Request) : Response
-      logger.debug "HTTP request: #{req.full_url}"
+      logger.debug "HTTP request: #{req.url}"
 
-      easy = ::Curl::Easy.new(req.full_url)
+      easy = ::Curl::Easy.new(req.url)
       easy.connect_timeout = connect_timeout.seconds
       easy.timeout         = read_timeout.seconds
       

@@ -29,6 +29,10 @@ class Facebook::Config < TOML::Config
   str  "batch/log"
   bool "batch/gc"
   bool "batch/skip_400"
+  bool "batch/reduce_data"
+  int  "batch/reduce_data_min"
+  int  "batch/rate_limit_max"
+  bool "batch/pretty_rate_limit"
   
   # clickhouse
   str "clickhouse/host"
@@ -90,6 +94,8 @@ class Facebook::Config < TOML::Config
 
       logger = Logger.new(io)
       logger.level = Logger::Severity.parse(hash["level"].to_s) if hash["level"]?
+      logger.colorize = (hash["colorize"]?.try(&.to_s) == "true")
+
       logger.formatter = Logger::Formatter.new do |level, time, progname, message, io|
         mark = level.to_s[0]
         # time = time.to_s("%Y-%m-%d %H:%M:%S")
@@ -154,11 +160,15 @@ connect_timeout = 5.0
 read_timeout    = 300.0
 
 [batch]
-work_dir   = "tmp"
-shared_dir = "tmp/shared"
-log        = "log"
-gc         = true
-skip_400   = true
+work_dir        = "tmp"
+shared_dir      = "tmp/shared"
+log             = "log"
+gc              = true
+skip_400        = true
+reduce_data     = true
+reduce_data_min = 10
+rate_limit_max  = 90
+pretty_rate_limit = true
 
 recv_ad_account = true
 recv_ad_set     = true
@@ -178,6 +188,7 @@ mode     = "a+"
 [[logger]]
 path     = "STDOUT"
 level    = "INFO"
+colorize = true
 
 [[logger]]
 path     = "warn"
@@ -191,12 +202,12 @@ level    = "ERROR"
 cmd = "/v4.0/me/adaccounts -d limit=100 -d fields=account_id,name,age,amount_spent,balance,business_city,business_country_code,business_name,business_state,business_street,business_street2,business_zip,can_create_brand_lift_study,created_time,currency,disable_reason,end_advertiser,end_advertiser_name,fb_entity,funding_source,has_migrated_permissions,io_number,is_attribution_spec_system_default,is_direct_deals_enabled,is_in_3ds_authorization_enabled_market,is_in_middle_of_local_entity_migration,is_notifications_enabled,is_personal,is_prepay_account,is_tax_id_required,line_numbers,media_agency,min_campaign_group_spend_cap,min_daily_budget,offsite_pixels_tos_accepted,owner,partner,spend_cap,tax_id,tax_id_status,tax_id_type,timezone_id,timezone_name,timezone_offset_hours_utc,user_role"
 
 [ad_set]
-cmd = "/v4.0/{{ad_account.id}}/adsets -d limit=100 -d fields=id,account_id,asset_feed_id,bid_amount,bid_strategy,budget_remaining,campaign_id,created_time,creative_sequence,daily_budget,daily_min_spend_target,daily_spend_cap,destination_type,effective_status,end_time,instagram_actor_id,is_dynamic_creative,lifetime_budget,lifetime_imps,lifetime_min_spend_target,lifetime_spend_cap,name,optimization_goal,optimization_sub_event,pacing_type,recurring_budget_semantics,review_feedback,rf_prediction_id,source_adset_id,start_time,status,targeting,time_based_ad_rotation_id_blocks,time_based_ad_rotation_intervals,updated_time,use_new_app_click,daily_imps,date_format,execution_options,line_number,rb_prediction_id,time_start,time_stop,topline_id"
+cmd = "/v4.0/{{act_id}}/adsets -d limit=100 -d fields=id,account_id,asset_feed_id,bid_amount,bid_strategy,budget_remaining,campaign_id,created_time,creative_sequence,daily_budget,daily_min_spend_target,daily_spend_cap,destination_type,effective_status,end_time,instagram_actor_id,is_dynamic_creative,lifetime_budget,lifetime_imps,lifetime_min_spend_target,lifetime_spend_cap,name,optimization_goal,optimization_sub_event,pacing_type,recurring_budget_semantics,review_feedback,rf_prediction_id,source_adset_id,start_time,status,targeting,time_based_ad_rotation_id_blocks,time_based_ad_rotation_intervals,updated_time,use_new_app_click,date_format,execution_options,rb_prediction_id,time_start,time_stop"
 
 [campaign]
-cmd = "/v4.0/{{ad_account.id}}/campaigns -d fields=id,account_id,bid_strategy,boosted_object_id,budget_rebalance_flag,budget_remaining,buying_type,can_create_brand_lift_study,can_use_spend_cap,configured_status,created_time,daily_budget,effective_status,last_budget_toggling_time,lifetime_budget,name,objective,pacing_type,source_campaign_id,spend_cap,start_time,status,stop_time,topline_id,updated_time,execution_options"
+cmd = "/v4.0/{{act_id}}/campaigns -d fields=id,account_id,bid_strategy,boosted_object_id,budget_rebalance_flag,budget_remaining,buying_type,can_create_brand_lift_study,can_use_spend_cap,configured_status,created_time,daily_budget,effective_status,last_budget_toggling_time,lifetime_budget,name,objective,pacing_type,source_campaign_id,spend_cap,start_time,status,stop_time,topline_id,updated_time,execution_options"
 
 [ad]
-cmd = "/v4.0/{{ad_account.id}}/ads -d limit=100 -d fields=id,account_id,adset_id,bid_amount,bid_type,campaign_id,configured_status,created_time,demolink_hash,display_sequence,effective_status,engagement_audience,is_autobid,last_updated_by_app_id,name,preview_shareable_link,priority,source_ad_id,status,targeting,updated_time,audience_id,date_format,draft_adgroup_id,execution_options,include_demolink_hashes"
+cmd = "/v4.0/{{act_id}}/ads -d limit=80 -d fields=id,account_id,adset_id,bid_amount,bid_type,campaign_id,configured_status,created_time,demolink_hash,display_sequence,effective_status,engagement_audience,is_autobid,last_updated_by_app_id,name,preview_shareable_link,priority,source_ad_id,status,targeting,updated_time,audience_id,date_format,draft_adgroup_id,execution_options,include_demolink_hashes"
 
 EOF

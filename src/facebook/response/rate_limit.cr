@@ -1,6 +1,3 @@
-require "./error"
-require "./paging"
-
 class Facebook::Response
   class RateLimit
     # ```json
@@ -24,7 +21,7 @@ class Facebook::Response
       estimated_time_to_regain_access: Int32?,
     })
 
-    def max_percent : Int32
+    def max_pct : Int32
       vals = [
         call_count, 
         total_cputime,
@@ -39,7 +36,7 @@ class Facebook::Response
     end
 
     def throttled? : Bool
-      max_percent >= 100
+      max_pct >= 100
     end
 
     def self.parse(buf : String)
