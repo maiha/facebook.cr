@@ -5,6 +5,7 @@ class Cmds::BatchCmd
   CMD_PARAM_ACT_ID = "act_id"
 
   META_DONE         = "done"
+  META_STATUS       = "status"
   META_RATE_LIMIT   = "rate_limit"
   META_CURRENT_URL  = "current_url"
   META_INFO         = "info"
@@ -47,14 +48,15 @@ class Cmds::BatchCmd
     end
   end
 
-#  record LoopNext, action : LoopAction, msg : String
-
-  MODEL_CLASS_IDS = [] of String
-
-  private var pretty_rate_limit : Bool = config.batch_pretty_rate_limit?
-  private var rate_limit_max : Int32   = config.batch_rate_limit_max
   private var last_rate_limit : Facebook::Response::RateLimit
   private var reduced_limit : Int32
+
+  # cache config values
+  private var pretty_rate_limit : Bool = config.batch_pretty_rate_limit?
+  private var rate_limit_max : Int32   = config.batch_rate_limit_max
+  private var skip_400 : Bool          = config.batch_skip_400?
+
+  MODEL_CLASS_IDS = [] of String
 
   private macro api(klass)
     {% MODEL_CLASS_IDS << klass %}
@@ -156,10 +158,10 @@ class Cmds::BatchCmd
     @reduced_limit = nil
 
     # 1. each act_id
-    act_ids.each do |act_id|
+    act_ids.each_with_index do |act_id, i|
       act_id =~ /^act_(\d+)$/ ||
         raise "[BUG] %s: act_id is unknown format (%s)" % [hint, act_id.inspect]
-      hint = "[recv] %s[%-#{act_id_max_len}s]" % [name, act_id]
+      hint = "[recv] %s(%s/%s)[%s]" % [name, i+1, act_ids.size, act_id]
 
       # 2. house.chdir(act_xxx + model)
       sub_house = house.chdir(File.join(today_dir, "act", act_id, "Facebook::Proto::#{klass}"))
@@ -173,6 +175,12 @@ class Cmds::BatchCmd
     # if done, nothing to do
     if house.meta[META_DONE]?
       logger.info "%s (skip: cached %d)" % [hint, house.count]
+      return false
+    end
+
+    # if 400, nothing to do
+    if house.meta[META_STATUS]? == "400" && skip_400
+      logger.info "%s (skip: ERROR 400)" % [hint]
       return false
     end
 
@@ -253,7 +261,7 @@ class Cmds::BatchCmd
         raise "[BUG] url contains spaces: #{url}"
       when /\baccess_token=/
         visited_urls.includes?(url) &&
-          raise "[BUG] %s: already visited: #{url}"
+          raise "[BUG] already visited: #{url}"
       else
         raise "[BUG] no access_token: #{url}"
       end
@@ -272,6 +280,9 @@ class Cmds::BatchCmd
     house.meta[META_RATE_LIMIT] = (rate_limit ? Pretty.json(rate_limit.to_json) : nil)
     self.last_rate_limit = rate_limit
 
+    # write state
+    house.meta[META_STATUS] = res.code.to_s
+    
     parser = response_parser.from_json(res.body)
     next_url = parser.paging.try(&.next)
 
@@ -323,7 +334,7 @@ class Cmds::BatchCmd
       
     fetched = parser.to_a
     house.tmp(fetched)
-    this_achievement = "%3d [%s]" % [fetched.size, api.last]
+    this_achievement = "%s [%s]" % [fetched.size, api.last]
     
     if url = next_url
       house.checkin(url)
