@@ -20,9 +20,6 @@ class Cmds::BatchCmd
   # oneline status for the current task
   var oneline_status : String
 
-  # internal variables
-  var http_storage = storage(HttpCall)
-  
   def before
     self.paging_limit = config.api_paging_limit
     self.paging_width = config.api_paging_width

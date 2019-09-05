@@ -1,18 +1,21 @@
 # add methods to open class
 class Cmds::BatchCmd
+  # internal variables
+  var http_house = house(HttpCall)
+
   private macro load(klass)
     disk.measure {
-      storage({{klass}}).load
+      house({{klass}}).load
     }
   end
   
   private macro save(klass, pbs)
     disk.measure {
-      storage({{klass}}).save({{pbs}})
+      house({{klass}}).save({{pbs}})
     }
   end
 
-  private macro storage(klass)
+  private macro house(klass)
     Protobuf::House({{klass}}).new(File.join(today_dir, {{klass.stringify}}), logger: logger, watch: disk)
   end
 
@@ -34,6 +37,6 @@ class Cmds::BatchCmd
       pb.res_header   = res.headers.to_h.to_json
       pb.res_body     = res.body
     end
-    save(HttpCall, pb)
+    http_house.save(pb)
   end
 end
