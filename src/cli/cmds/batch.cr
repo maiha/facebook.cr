@@ -43,6 +43,10 @@ Cmds.command "batch" do
 
     logger.info "[recv:done] API:#{api} MEM:#{Pretty.process_info.max}"
   end
+
+  task "status", "<date>" do
+    status_impl
+  end
 end
 
 require "./batch/*"

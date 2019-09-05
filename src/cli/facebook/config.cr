@@ -85,24 +85,10 @@ class Facebook::Config < TOML::Config
     when Array
       CompositeLogger.new(hash.map{|i| build_logger(i, _path).as(Logger)})
     when Hash
-      mode = hash["mode"]?.try(&.to_s) || "w+"
-      path = hash["path"]?.try(&.to_s) || _path || raise Error.new("logger.path is missing")
-      name_part = hash["name"]?.try{|s| "[#{s}] "} || ""
-
-      io = {"STDOUT" => STDOUT, "STDERR" => STDERR}[path]? || File.open(path, mode)
-      io.sync = true
-
-      logger = Logger.new(io)
-      logger.level = Logger::Severity.parse(hash["level"].to_s) if hash["level"]?
-      logger.colorize = (hash["colorize"]?.try(&.to_s) == "true")
-
-      logger.formatter = Logger::Formatter.new do |level, time, progname, message, io|
-        mark = level.to_s[0]
-        # time = time.to_s("%Y-%m-%d %H:%M:%S")
-        time = time.to_s("%H:%M:%S")
-        io << mark << ", [" << time << "] " << name_part << message
-        # I, [2017-12-04 20:15:59] ...
-      end                                              
+      hint = hash["name"]?.try{|s| "[#{s}] "} || ""
+      hash["path"] ||= _path || raise Error.new("logger.path is missing")
+      logger = CompositeLogger.build_logger(hash)
+      logger.formatter = "{{mark}}, [{{time=%H:%M}}] #{hint} {{message}}"
       return logger
     else
       raise Error.new("logger type error (#{hash.class})")
