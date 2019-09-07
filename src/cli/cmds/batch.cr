@@ -7,7 +7,6 @@ Cmds.command "batch" do
   var keep_remaining : Int32 = 10      # keep this limit rate, othewise stop
 
   ### retry
-  var api_max_attempts  : Int32 = 5              # max attempts to retry
   var api_base_interval : Time::Span = 3.seconds # interval between retries
 
   # [Task]

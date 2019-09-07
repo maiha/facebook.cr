@@ -33,7 +33,8 @@ class Facebook::Config < TOML::Config
   int  "batch/reduce_data_min"
   int  "batch/rate_limit_max"
   bool "batch/pretty_rate_limit"
-  
+  int  "batch/max_attempts"
+
   # clickhouse
   str "clickhouse/host"
   int "clickhouse/port"
@@ -150,6 +151,7 @@ work_dir        = "tmp"
 shared_dir      = "tmp/shared"
 log             = "log"
 gc              = true
+max_attempts    = 3
 skip_400        = true
 reduce_data     = true
 reduce_data_min = 10

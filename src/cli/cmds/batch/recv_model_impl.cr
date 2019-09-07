@@ -23,11 +23,15 @@ class Cmds::BatchCmd
     end
 
     loop_counter = 0
+    self.retry_attempts = 0
     recv.start
 
     while house.resume?
       loop_counter += 1
       label = "#{hint}##{loop_counter}"
+      if retry_attempts > 0
+        label = "#{label}(retry #{retry_attempts})"
+      end
 
       begin
         if loop_counter > paging_limit
