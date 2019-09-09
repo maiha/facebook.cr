@@ -163,6 +163,30 @@ recv_ad_set     = true
 recv_campaign   = true
 recv_ad         = true
 
+# recv_ad_async_request      = true
+# recv_ad_async_request_set  = true
+# recv_ad_campaign_activity  = true
+# recv_ad_image              = true
+# recv_ad_label              = true
+# recv_ad_rule               = true
+# recv_ad_study              = true
+# recv_ad_topline            = true
+# recv_ad_video              = true
+# recv_ads_insights          = true
+# recv_album                 = true
+# recv_business              = true
+# recv_business_role_request = true
+# recv_event                 = true
+# recv_group                 = true
+# recv_life_event            = true
+# recv_open_graph_object     = true
+# recv_page_call_to_action   = true
+# recv_page_post             = true
+# recv_photo                 = true
+# recv_post                  = true
+# recv_unified_thread        = true
+# recv_user                  = true
+
 [clickhouse]
 host  = "localhost"
 port  = 9000
