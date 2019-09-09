@@ -15,6 +15,10 @@ class Cmds::BatchCmd
     }
   end
 
+  private macro storage(klass)
+    Protobuf::Storage({{klass}}).new(File.join(today_dir, "{{klass}}/"), logger: logger, watch: disk)
+  end
+
   private macro house(klass)
     Protobuf::House({{klass}}).new(File.join(today_dir, {{klass.stringify}}), logger: logger, watch: disk)
   end

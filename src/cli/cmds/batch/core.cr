@@ -1,5 +1,11 @@
 # add methods to open class
 class Cmds::BatchCmd
+  MODEL_CLASS_IDS = [] of String
+
+  private macro model(klass)
+    {% MODEL_CLASS_IDS << klass %}
+  end
+
   ### for tasks
   var api  = Pretty::Stopwatch.new # total time of API
   var db   = Pretty::Stopwatch.new # total time of DB
@@ -15,7 +21,7 @@ class Cmds::BatchCmd
   var today_dir    : String        # abs path
   var executed_at  : Time
   var console      : CompositeLogger = CompositeLogger.new(Logger.new(STDERR))
-  var batch_logger : CompositeLogger
+  var batch_logger : CompositeLogger = CompositeLogger.new(Logger.new(nil))
 
   # oneline status for the current task
   var oneline_status : String
@@ -33,10 +39,12 @@ class Cmds::BatchCmd
 
     setup_target_date!(arg1?)
 
-    self.today_dir    = "#{work_dir}/#{target_ymd}"
-    self.batch_logger = build_batch_logger("#{today_dir}/#{task_name}.log")
+    self.today_dir = "#{work_dir}/#{target_ymd}"
 
-    logger.info "target time: %s" % target_ymd
+    if task_name? != "status"
+      self.batch_logger = build_batch_logger("#{today_dir}/#{task_name}.log")
+      logger.info "target time: %s" % target_ymd
+    end
 
     task.start
   end
@@ -123,5 +131,5 @@ class Cmds::BatchCmd
     logger.error msg
     super(msg)
   end
-
+  
 end

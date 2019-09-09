@@ -25,16 +25,9 @@ dependencies:
   pretty:
     github: maiha/pretty.cr
     version: ">= 0.7.5"
-  retriable:
-    github: Sija/retriable.cr
-    branch: develop
-  jq:
-    github: maiha/jq.cr
-    version: ">= 0.8.0"
   curl:
     github: maiha/curl.cr
-    # version: ">= 0.4.1"
-    commit: "f962733bdb84e8cb5a140270e7574b9fdc59126d"
+    version: ">= 0.4.2"
 
 development_dependencies:
   clickhouse:
