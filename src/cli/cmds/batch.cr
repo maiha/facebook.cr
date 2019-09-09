@@ -27,6 +27,8 @@ Cmds.command "batch" do
   #   See each task
   task "run", "<date>" do
     invoke_task("recv")
+    invoke_task("tsv")
+    invoke_task("clickhouse")
   end
 
   # [Task]
@@ -41,6 +43,38 @@ Cmds.command "batch" do
     recv_impl
 
     logger.info "[recv:done] API:#{api} MEM:#{Pretty.process_info.max}"
+  end
+
+  task "tsv", "<date>" do
+    tsv_impl
+  end  
+
+  task "clickhouse" do
+    invoke_task("clickhouse_import")
+    invoke_task("clickhouse_after")
+
+    logger.info "[clickhouse:done] DB:#{db} MEM:#{Pretty.process_info.max}"
+  end
+
+  task "clickhouse_import" do
+    {% for klass in MODEL_CLASS_IDS %}
+      {% proto  = "Facebook::Proto::#{klass}".id %}
+      import_clickhouse_tsv {{proto}}
+    {% end %}
+
+    import_clickhouse_tsv_snap
+  end
+  
+  task "clickhouse_snap" do
+    if ! File.exists?(snap_tsv)
+      write_snap_tsv
+    end
+
+    import_clickhouse_tsv_snap
+  end
+
+  task "clickhouse_after" do
+    clickhouse_views_union "mutable", ["account_id String", "id String", "updated_time DateTime"]
   end
 
   task "status", "<date>" do

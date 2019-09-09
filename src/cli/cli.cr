@@ -15,9 +15,10 @@ require "toml-config"
 require "../facebook"
 
 ### app
-# require "./ext/**"
+require "./ext/**"
 require "./lib/**"
 require "./proto/**"
+require "./bundled/*"
 require "./data/**"
 require "./facebook/**"
 require "./helpers/**"

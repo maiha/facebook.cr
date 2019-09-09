@@ -1,0 +1,26 @@
+CREATE TABLE ad_report_run (
+  id String,
+  account_id String,
+  async_percent_completion Nullable(Int64),
+  async_status Nullable(String),
+  date_start Nullable(String),
+  date_stop Nullable(String),
+  emails Array(String),
+  friendly_name Nullable(String),
+  is_bookmarked Nullable(UInt8),
+  is_running Nullable(UInt8),
+  schedule_id Nullable(String),
+  time_completed Nullable(Int64),
+  time_ref Nullable(Int64),
+  default_summary Nullable(UInt8),
+  export_columns Array(String),
+  export_format Nullable(String),
+  export_name Nullable(String),
+  fields Array(String),
+  product_id_limit Nullable(Int64),
+  sort Array(String),
+  summary Array(String),
+  time_increment Nullable(String),
+  use_account_attribution_setting Nullable(UInt8)
+)
+ENGINE = Log

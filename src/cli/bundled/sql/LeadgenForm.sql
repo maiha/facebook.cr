@@ -1,0 +1,25 @@
+CREATE TABLE leadgen_form (
+  id String,
+  allow_organic_lead Nullable(UInt8),
+  block_display_for_non_targeted_viewer Nullable(UInt8),
+  created_time Nullable(DateTime),
+  creator_id Nullable(Int64),
+  cusomized_tcpa_content Nullable(String),
+  expired_leads_count Nullable(Int64),
+  extra_details Array(String),
+  follow_up_action_text Nullable(String),
+  follow_up_action_url Nullable(String),
+  is_optimized_for_quality Nullable(UInt8),
+  leadgen_export_csv_url Nullable(String),
+  leads_count Nullable(Int64),
+  locale Nullable(String),
+  messenger_welcome_message Nullable(String),
+  name Nullable(String),
+  organic_leads_count Nullable(Int64),
+  page_id Nullable(String),
+  privacy_policy_url Nullable(String),
+  question_page_custom_headline Nullable(String),
+  status Nullable(String),
+  tcpa_compliance Nullable(UInt8)
+)
+ENGINE = Log

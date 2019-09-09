@@ -19,6 +19,9 @@ class Cmds::BatchCmd
   var work_dir     : String        # abs path
   var shared_dir   : String        # abs path
   var today_dir    : String        # abs path
+  var snap_dir     : String
+  var snap_tsv     : String
+  var snap_tmp     : String
   var executed_at  : Time
   var console      : CompositeLogger = CompositeLogger.new(Logger.new(STDERR))
   var batch_logger : CompositeLogger = CompositeLogger.new(Logger.new(nil))
@@ -41,6 +44,10 @@ class Cmds::BatchCmd
 
     self.today_dir = "#{work_dir}/#{target_ymd}"
 
+    self.snap_dir = File.join(today_dir, "snap")
+    self.snap_tsv = File.join(today_dir, "tsv/snap.tsv")
+    self.snap_tmp = File.join(today_dir, "snap.tmp")
+    
     if task_name? != "status"
       self.batch_logger = build_batch_logger("#{today_dir}/#{task_name}.log")
       logger.info "target time: %s" % target_ymd

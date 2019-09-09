@@ -166,12 +166,12 @@ recv_ad         = true
 # recv_ad_async_request      = true
 # recv_ad_async_request_set  = true
 # recv_ad_campaign_activity  = true
-# recv_ad_image              = true
+recv_ad_image              = true
 # recv_ad_label              = true
-# recv_ad_rule               = true
+recv_ad_rule               = true
 # recv_ad_study              = true
 # recv_ad_topline            = true
-# recv_ad_video              = true
+recv_ad_video              = true
 # recv_ads_insights          = true
 # recv_album                 = true
 # recv_business              = true
@@ -195,7 +195,6 @@ db    = "facebook"
 [[logger]]
 progname = "facebook"
 level    = "DEBUG"
-mode     = "a+"
 
 [[logger]]
 path     = "STDOUT"
@@ -221,5 +220,11 @@ cmd = "/v4.0/{{act_id}}/campaigns -d fields=id,account_id,bid_strategy,boosted_o
 
 [ad]
 cmd = "/v4.0/{{act_id}}/ads -d limit=80 -d fields=id,account_id,adset_id,bid_amount,bid_type,campaign_id,configured_status,created_time,demolink_hash,display_sequence,effective_status,engagement_audience,is_autobid,last_updated_by_app_id,name,preview_shareable_link,priority,source_ad_id,status,targeting,updated_time,audience_id,date_format,draft_adgroup_id,execution_options,include_demolink_hashes"
+
+[ad_image]
+cmd = "/v4.0/{{act_id}}/adimages -d limit=300 -d fields=id,name,width,height,url,account_id,permalink_url,original_width,original_height,status,created_time,updated_time"
+
+[ad_rule]
+cmd = "/v4.0/{{act_id}}/adrules_library -d limit=300 -d fields=id,account_id,name,status,updated_time"
 
 EOF

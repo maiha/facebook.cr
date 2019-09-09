@@ -88,7 +88,9 @@ class Cmds::BatchCmd
     }
 
     client.after_execute {|req, res|
-      visited_urls << req.url
+      if res.try{|r| r.success? && r.client_error? }
+        visited_urls << req.url
+      end
     }
 
     api.start

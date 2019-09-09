@@ -1,0 +1,28 @@
+CREATE TABLE automotive_model (
+  id String,
+  automotive_model_id Nullable(String),
+  availability Nullable(String),
+  body_style Nullable(String),
+  currency Nullable(String),
+  custom_label_0 Nullable(String),
+  description Nullable(String),
+  drivetrain Nullable(String),
+  exterior_color Nullable(String),
+  finance_description Nullable(String),
+  finance_type Nullable(String),
+  fuel_type Nullable(String),
+  generation Nullable(String),
+  images Array(String),
+  interior_color Nullable(String),
+  interior_upholstery Nullable(String),
+  make Nullable(String),
+  model Nullable(String),
+  price Nullable(String),
+  sanitized_images Array(String),
+  title Nullable(String),
+  transmission Nullable(String),
+  trim Nullable(String),
+  url Nullable(String),
+  year Nullable(Int64)
+)
+ENGINE = Log

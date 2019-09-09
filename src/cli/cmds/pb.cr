@@ -367,7 +367,19 @@ Cmds.command "pb" do
     create = Clickhouse::Schema::Create.new
     create.table = Pretty.underscore(schema.klass)
     schema.fields.each do |f|
-      create.columns << Clickhouse::Column.new(f.name, f.clickhouse_type)
+      case f.name
+      when "created_time"
+        # sometimes nil for the case such as AdRule
+        data_type = "Nullable(DateTime)"
+      when "updated_time"
+        # expected non-nil to use as required field in mutable resources
+        data_type = "DateTime"
+      when "id", "account_id"
+        data_type = f.clickhouse_type(ignore_rule: true)
+      else
+        data_type = f.clickhouse_type
+      end
+      create.columns << Clickhouse::Column.new(f.name, data_type)
     end
     create.engine = "Log"
 

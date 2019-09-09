@@ -1,15 +1,18 @@
 class Cmds::BatchCmd
+  # main models
   model AdAccount
   model AdSet
   model Campaign
   model Ad
 
+  # mutable resources
+  model AdImage
+  model AdRule
+
   model AdAsyncRequest
   model AdAsyncRequestSet
   model AdCampaignActivity
-  model AdImage
   model AdLabel
-  model AdRule
   model AdStudy
   model AdTopline
   model AdVideo

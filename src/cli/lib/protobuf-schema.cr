@@ -18,14 +18,17 @@ module ProtobufSchema
     num  : String,
     memo : String = "" do
 
-    def clickhouse_type : String
+    def clickhouse_type(ignore_rule = false) : String
       klass = {
         "int64"  => "Int64",
         "bool"   => "UInt8",
         "double" => "Float64",
       }[type]? || "String"
 
-      klass = "Array(#{klass})" if rule == "repeated"
+      if !ignore_rule
+        klass = "Array(#{klass})" if rule == "repeated"
+        klass = "Nullable(#{klass})" if rule == "optional"
+      end
       return klass
     end
   end

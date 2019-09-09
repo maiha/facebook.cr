@@ -1,0 +1,25 @@
+CREATE TABLE direct_deal (
+  id String,
+  adbreaks_enabled Nullable(UInt8),
+  advertiser_lead_email Nullable(String),
+  advertiser_page Nullable(String),
+  cpe_amount Nullable(Int64),
+  cpe_currency Nullable(String),
+  end_time Nullable(Int64),
+  lifetime_budget_amount Nullable(Int64),
+  lifetime_budget_currency Nullable(String),
+  lifetime_impressions Nullable(Int64),
+  name Nullable(String),
+  pages Array(String),
+  placements Array(String),
+  priced_by Nullable(String),
+  publisher_name Nullable(String),
+  review_requirement Nullable(String),
+  sales_lead_email Nullable(String),
+  start_time Nullable(Int64),
+  status Nullable(String),
+  targeting Nullable(String),
+  third_party_ids Array(String),
+  third_party_integrated_deal Nullable(UInt8)
+)
+ENGINE = Log

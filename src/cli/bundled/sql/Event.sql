@@ -1,0 +1,28 @@
+CREATE TABLE event (
+  id String,
+  attending_count Nullable(Int64),
+  can_guests_invite Nullable(UInt8),
+  category Nullable(String),
+  declined_count Nullable(Int64),
+  description Nullable(String),
+  discount_code_enabled Nullable(UInt8),
+  end_time Nullable(String),
+  guest_list_enabled Nullable(UInt8),
+  interested_count Nullable(Int64),
+  is_canceled Nullable(UInt8),
+  is_draft Nullable(UInt8),
+  is_page_owned Nullable(UInt8),
+  maybe_count Nullable(Int64),
+  name Nullable(String),
+  noreply_count Nullable(Int64),
+  scheduled_publish_time Nullable(String),
+  start_time Nullable(String),
+  ticket_uri Nullable(String),
+  ticket_uri_start_sales_time Nullable(String),
+  ticketing_privacy_uri Nullable(String),
+  ticketing_terms_uri Nullable(String),
+  timezone Nullable(String),
+  type Nullable(String),
+  updated_time DateTime
+)
+ENGINE = Log

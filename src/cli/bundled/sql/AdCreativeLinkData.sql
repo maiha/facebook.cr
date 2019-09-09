@@ -1,0 +1,25 @@
+CREATE TABLE ad_creative_link_data (
+  additional_image_index Nullable(Int64),
+  attachment_style Nullable(String),
+  branded_content_shared_to_sponsor_status Nullable(String),
+  branded_content_sponsor_page_id Nullable(String),
+  caption Nullable(String),
+  description Nullable(String),
+  event_id Nullable(String),
+  force_single_link Nullable(UInt8),
+  format_option Nullable(String),
+  image_hash Nullable(String),
+  link Nullable(String),
+  message Nullable(String),
+  multi_share_end_card Nullable(UInt8),
+  multi_share_optimized Nullable(UInt8),
+  name Nullable(String),
+  offer_id Nullable(String),
+  page_welcome_message Nullable(String),
+  picture Nullable(String),
+  preferred_image_tags Array(String),
+  retailer_item_ids Array(String),
+  show_multiple_images Nullable(UInt8),
+  use_flexible_image_aspect_ratio Nullable(UInt8)
+)
+ENGINE = Log

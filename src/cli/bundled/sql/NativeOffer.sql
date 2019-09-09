@@ -1,0 +1,27 @@
+CREATE TABLE native_offer (
+  id String,
+  barcode_photo Nullable(String),
+  barcode_photo_uri Nullable(String),
+  barcode_type Nullable(String),
+  barcode_value Nullable(String),
+  block_reshares Nullable(UInt8),
+  details Nullable(String),
+  disable_location Nullable(UInt8),
+  expiration_time Nullable(String),
+  instore_code Nullable(String),
+  location_type Nullable(String),
+  max_save_count Nullable(Int64),
+  online_code Nullable(String),
+  page_set_id Nullable(String),
+  redemption_code Nullable(String),
+  redemption_link Nullable(String),
+  save_count Nullable(Int64),
+  terms Nullable(String),
+  title Nullable(String),
+  total_unique_codes Nullable(String),
+  unique_codes Nullable(String),
+  unique_codes_file_code_type Nullable(String),
+  unique_codes_file_name Nullable(String),
+  unique_codes_file_upload_status Nullable(String)
+)
+ENGINE = Log
