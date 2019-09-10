@@ -2,6 +2,7 @@ require "../../cli/cli"
 
 class Cli::Main
   include Opts
+  include GlobalHelper
 
   CONFIG_FILE   = ".facebookrc"
   
@@ -28,10 +29,11 @@ class Cli::Main
   option help    : Bool  , "--help"   , "Output this help and exit" , false
 
   var cmd : Cmds::Cmd
+  var config : Facebook::Config
 
   def run
     # setup
-    config = load_config
+    self.config = load_config
     config.verbose  = verbose
     config.dryrun   = dryrun
     config.colorize = !nocolor
@@ -87,10 +89,10 @@ class Cli::Main
     when Cmds::Finished
       exit 0
     when Facebook::Config::Error, TOML::Config::NotFound
-      STDERR.puts "ERROR: #{err}".colorize(:red)
+      STDERR.puts red("ERROR: #{err}")
       exit 1
     when Cmds::ArgumentError
-      STDERR.puts err.to_s.colorize(:red)
+      STDERR.puts red(err.to_s)
       STDERR.puts cmd.class.pretty_usage(prefix: " ")
       exit 2
     when Cmds::CommandNotFound
@@ -98,7 +100,7 @@ class Cli::Main
       exit 3
     when Cmds::TaskNotFound
       task_names = cmd.class.task_names
-      STDERR.puts "ERROR: Task Not Found (current: '#{err.name}')".colorize(:red)
+      STDERR.puts red("ERROR: Task Not Found (current: '#{err.name}')")
       STDERR.puts "[possible tasks]"
       STDERR.puts "  %s" % task_names.join(", ")
       STDERR.puts
@@ -109,20 +111,20 @@ class Cli::Main
       STDERR.puts err.inspect
       exit 10
     when Facebook::Denied, Facebook::Error
-      STDERR.puts err.to_s.colorize(:red)
+      STDERR.puts red(err.to_s)
       exit 20
     when Errno
-      STDERR.puts err.to_s.colorize(:red)
+      STDERR.puts red(err.to_s)
       exit 91
     when Cmds::Abort
-      STDERR.puts Pretty.error(err).message.colorize(:red)
+      STDERR.puts red(Pretty.error(err).message)
       cmd.logger.error "ERROR: #{err}"
       exit 100
     else
-      STDERR.puts Pretty.error(err).message.colorize(:red)
+      STDERR.puts red(Pretty.error(err).message)
       cmd.logger.error "ERROR: #{err} (#{err.class.name})"
       cmd.logger.error(err.inspect_with_backtrace)
-      STDERR.puts Pretty.error(err).where.colorize(:red) # This may kill app
+      STDERR.puts red(Pretty.error(err).where.to_s) # This may kill app
       exit 100
     end
   end

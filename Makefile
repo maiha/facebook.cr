@@ -1,6 +1,10 @@
 SHELL=/bin/bash
 
 BUILD := crystal build src/cli/bin/facebook.cr
+DOCKER_BUILD := docker-compose run --rm crystal $(BUILD)
+
+export UID = $(shell id -u)
+export GID = $(shell id -g)
 
 VERSION=
 CURRENT_VERSION=$(shell git tag -l | sort -V | tail -1)
@@ -16,7 +20,7 @@ facebook-dev:
 
 .PHONY: facebook
 facebook:
-	$(BUILD) -o $@ -D with_pb --release
+	$(BUILD) -o $@ -D with_pb --link-flags "-static" --release
 
 .PHONY: facebook-pb
 facebook-pb:

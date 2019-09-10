@@ -2,8 +2,8 @@ class Cmds::BatchCmd
   # receive model, and store it in Protobuf::House
   protected def recv_model_impl(house, response_parser, url_builder, hint)
     # if done, nothing to do
-    if house.meta[META_DONE]?
-      logger.info "%s (skip: cached %d)" % [hint, house.count]
+    if msg = house.meta[META_DONE]?
+      logger.info "%s (already %s)" % [hint, msg]
       return false
     end
 
@@ -26,7 +26,7 @@ class Cmds::BatchCmd
     self.retry_attempts = 0
     recv.start
 
-    while house.resume?
+    while house.resume? && !house.meta[META_DONE]?
       loop_counter += 1
       label = "#{hint}##{loop_counter}"
       if retry_attempts > 0
@@ -35,11 +35,26 @@ class Cmds::BatchCmd
 
       begin
         if loop_counter > paging_limit
-          loop_break!("reached max loop limit(#{paging_limit})")
+          loop_action!(warn: "#{label} reached max loop limit(#{paging_limit})", status: "limited", break_loop: true)
         end
         recv_model_impl_one(house, response_parser)
       rescue action : LoopAction
-        action.process!(house, logger, label)
+        if msg = action.status?
+          house.meta[META_STATUS] = msg
+        end
+        if msg = action.done?
+          house.commit
+          msg = "got #{house.count}" if msg == true
+          house.meta[META_DONE] = msg.to_s
+        end
+        if msg = action.info?
+          logger.info "#{label} #{msg}"
+          house.meta[META_INFO] = msg
+        end
+        if msg = action.warn?
+          logger.warn "#{label} #{msg}"
+          house.meta[META_WARN] = msg
+        end
         break if action.break_loop
       rescue err
         if retry = retriable?(err)
@@ -69,7 +84,7 @@ class Cmds::BatchCmd
     self.last_rate_limit = nil
 
     client = new_client
-    url = house.resume? || loop_done!
+    url = house.resume? || loop_action!(done: true)
     url = ReduceData.update_limit(url, limit: reduced_limit?)
     client.authorized_url!(url)
 
@@ -102,9 +117,9 @@ class Cmds::BatchCmd
     house.meta[META_RATE_LIMIT] = (rate_limit ? Pretty.json(rate_limit.to_json) : nil)
     self.last_rate_limit = rate_limit
 
-    # write state
+    # write status into meta
     house.meta[META_STATUS] = res.code.to_s
-    
+
     parser = response_parser.from_json(res.body)
     next_url = parser.paging.try(&.next)
 
@@ -117,7 +132,7 @@ class Cmds::BatchCmd
       if error = parser.error
         msg = "%s %s" % [msg, error.inspect]
       end
-      loop_break!(msg)
+      loop_action!(done: "#{res.code} ERROR" , warn: msg)
     end
 
     if error = parser.error
@@ -141,7 +156,7 @@ class Cmds::BatchCmd
         limit1 = ReduceData.limit?(current_url)
         limit2 = ReduceData.limit?(reduced_url)
         self.reduced_limit = limit2
-        loop_warn! "ReduceData(#{limit1}->#{limit2})"
+        loop_action!(warn: "ReduceData(#{limit1}->#{limit2})", status: "reduced")
 
       when .unhandled?
         # simply raises
@@ -162,18 +177,18 @@ class Cmds::BatchCmd
       house.checkin(url)
     else
       house.checkout
-      loop_done!
+      loop_action!(done: true)
     end
 
     # stop the loop if rate_limit exceeds our max limit
     if pct = rate_limit.try(&.max_pct)
       if pct > rate_limit_max
-        loop_break!("skip due to rate_limit (#{pct})")
+        loop_action!(warn: "skip due to rate_limit (#{pct})", status: "limited", break_loop: true)
       end
       this_achievement = "#{this_achievement} (limit: #{pct}%)"
     end
 
-    loop_next! this_achievement
+    loop_action!(info: this_achievement)
   end
 
   private var visited_urls = Set(String).new
