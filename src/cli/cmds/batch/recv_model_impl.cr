@@ -9,7 +9,7 @@ class Cmds::BatchCmd
 
     # if 400, nothing to do
     if house.meta[META_STATUS]? == "400" && skip_400
-      logger.info "%s (skip: ERROR 400)" % [hint]
+      logger.error "%s (skip: ERROR 400)" % [hint]
       return false
     end
 
@@ -35,7 +35,7 @@ class Cmds::BatchCmd
 
       begin
         if loop_counter > paging_limit
-          loop_action!(warn: "#{label} reached max loop limit(#{paging_limit})", status: "limited", break_loop: true)
+          loop_action!(error: "#{label} reached max loop limit(#{paging_limit})", status: "limited", break_loop: true)
         end
         recv_model_impl_one(house, response_parser)
       rescue action : LoopAction
@@ -54,6 +54,10 @@ class Cmds::BatchCmd
         if msg = action.warn?
           logger.warn "#{label} #{msg}"
           house.meta[META_WARN] = msg
+        end
+        if msg = action.error?
+          logger.error "#{label} #{msg}"
+          house.meta[META_ERROR] = msg
         end
         break if action.break_loop
       rescue err
@@ -76,7 +80,7 @@ class Cmds::BatchCmd
     return true
 
   rescue err
-    house.meta[META_ERR] = err.to_s
+    house.meta[META_ERROR] = err.to_s
     raise err
   end
 
@@ -183,7 +187,7 @@ class Cmds::BatchCmd
     # stop the loop if rate_limit exceeds our max limit
     if pct = rate_limit.try(&.max_pct)
       if pct > rate_limit_max
-        loop_action!(warn: "skip due to rate_limit (#{pct})", status: "limited", break_loop: true)
+        loop_action!(error: "skip due to rate_limit (#{pct})", status: "limited", break_loop: true)
       end
       this_achievement = "#{this_achievement} (limit: #{pct}%)"
     end

@@ -147,8 +147,8 @@ connect_timeout = 5.0
 read_timeout    = 300.0
 
 [batch]
-work_dir        = "tmp"
-shared_dir      = "tmp/shared"
+work_dir        = "./"
+shared_dir      = "shared"
 log             = "log"
 gc              = true
 max_attempts    = 3
