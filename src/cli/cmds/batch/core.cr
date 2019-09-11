@@ -13,6 +13,8 @@ class Cmds::BatchCmd
   var task = Pretty::Stopwatch.new # total time of TASK
   var recv = Pretty::Stopwatch.new # total time of RECV
 
+  var disable_after : Bool = false
+  
   var target_date : Time           # logical date for the resources
   var target_ymd  : String         # logical ymd for the resources
   
@@ -48,15 +50,15 @@ class Cmds::BatchCmd
     self.snap_tsv = File.join(today_dir, "tsv/snap.tsv")
     self.snap_tmp = File.join(today_dir, "snap.tmp")
     
-    if task_name? != "status"
-      self.batch_logger = build_batch_logger("#{today_dir}/#{task_name}.log")
-      logger.info "target time: %s" % target_ymd
-    end
+    self.batch_logger = build_batch_logger("#{today_dir}/#{task_name}.log")
+    logger.info "target time: %s" % target_ymd
 
     task.start
   end
 
   def after
+    return if disable_after?
+
     task.stop
     # if `before` has not finished successfully, `today_dir` is not also set.
     return unless today_dir?
@@ -134,9 +136,4 @@ class Cmds::BatchCmd
     end
   end
 
-  private def abort(msg)
-    logger.error msg
-    super(msg)
-  end
-  
 end

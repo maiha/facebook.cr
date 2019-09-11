@@ -119,13 +119,17 @@ class Cli::Main
     when Cmds::Abort
       STDERR.puts red(Pretty.error(err).message)
       cmd.logger.error "ERROR: #{err}"
+      exit 99
+    when Cmds::Halt
+      cmd.logger.warn err.to_s
+      STDERR.puts red(err.to_s)
       exit 100
     else
       STDERR.puts red(Pretty.error(err).message)
       cmd.logger.error "ERROR: #{err} (#{err.class.name})"
       cmd.logger.error(err.inspect_with_backtrace)
       STDERR.puts red(Pretty.error(err).where.to_s) # This may kill app
-      exit 100
+      exit 255
     end
   end
 end

@@ -86,10 +86,10 @@ class Facebook::Config < TOML::Config
     when Array
       CompositeLogger.new(hash.map{|i| build_logger(i, _path).as(Logger)})
     when Hash
-      hint = hash["name"]?.try{|s| "[#{s}] "} || ""
+      hint = hash["name"]?.try{|s| "[#{s}]"} || ""
       hash["path"] ||= _path || raise Error.new("logger.path is missing")
       logger = CompositeLogger.build_logger(hash)
-      logger.formatter = "{{mark}}, [{{time=%H:%M}}] #{hint} {{message}}"
+      logger.formatter = "{{mark}}, [{{time=%H:%M}}] #{hint}{{message}}"
       return logger
     else
       raise Error.new("logger type error (#{hash.class})")

@@ -27,8 +27,8 @@ Cmds.command "batch" do
   #   See each task
   task "run", "<date>" do
     invoke_task("recv")
-    invoke_task("tsv")
-    invoke_task("clickhouse")
+    invoke_task("check")
+    invoke_task("db")
   end
 
   # [Task]
@@ -43,6 +43,11 @@ Cmds.command "batch" do
     recv_impl
 
     logger.info "[recv:done] API:#{api} MEM:#{Pretty.process_info.max}"
+  end
+
+  task "db", "<date>" do
+    invoke_task("tsv")
+    invoke_task("clickhouse")
   end
 
   task "tsv", "<date>" do
@@ -77,7 +82,15 @@ Cmds.command "batch" do
     clickhouse_views_union "mutable", ["account_id String", "id String", "updated_time DateTime"]
   end
 
-  task "status", "<date>" do
+  task "gc" do
+    return if !config.batch_gc?
+
+    gc_storage HttpCall
+    gc_tsv
+    gc_snap
+  end
+  
+  task "check", "<date>" do
     status_impl
   end
 end
