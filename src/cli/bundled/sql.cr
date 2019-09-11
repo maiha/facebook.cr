@@ -9,6 +9,7 @@ module Bundled
     # mutable resources
     "ad_image"   => {{ system("cat src/cli/bundled/sql/AdImage.sql").stringify }},
     "ad_rule"    => {{ system("cat src/cli/bundled/sql/AdRule.sql").stringify }},
+    "ad_video"   => {{ system("cat src/cli/bundled/sql/AdVideo.sql").stringify }},
     
     # application data
     "snap" => {{ system("cat src/cli/bundled/sql/snap.sql").stringify }},

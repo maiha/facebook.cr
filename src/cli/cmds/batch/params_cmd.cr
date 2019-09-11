@@ -13,7 +13,7 @@ class Cmds::BatchCmd
 
       buf = cmd
       vals.each do |key, val|
-        buf = buf.gsub("{{#{key}}}", val)
+        buf = buf.gsub("{#{key}}", val)
       end
       return buf
     end
@@ -21,7 +21,7 @@ class Cmds::BatchCmd
     def self.parse?(s : String?) : ParamsCmd?
       if s
         cmd = new(s)
-        s.scan(/{{(.*?)}}/) do
+        s.scan(/{(.*?)}/) do
           cmd.params << $1
         end
         return cmd
