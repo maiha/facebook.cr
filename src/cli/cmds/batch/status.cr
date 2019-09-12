@@ -23,6 +23,10 @@ class Cmds::BatchCmd
           total += 1
 
           act = house.chdir(path)
+          # disable DEBUG logging since that is huge but not important here
+          act.tmp.logger.level = "INFO"
+          act.data.logger.level = "INFO"
+
           if act.meta[META_DONE]?
             status = "done"
             ok += 1
