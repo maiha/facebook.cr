@@ -1,5 +1,6 @@
 CREATE TABLE ad_video (
   id String,
+  account_id String,
   ad_breaks Array(Int64),
   backdated_time Nullable(String),
   backdated_time_granularity Nullable(String),

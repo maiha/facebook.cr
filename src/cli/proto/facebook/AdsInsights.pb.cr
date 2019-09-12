@@ -8,8 +8,8 @@ module Facebook
       include Protobuf::Message
       
       contract_of "proto2" do
-        optional :account_currency, :string, 1
-        optional :account_id, :string, 2
+        optional :account_id, :string, 1
+        optional :account_currency, :string, 2
         optional :account_name, :string, 3
         optional :actions_per_impression, :string, 4
         optional :activity_recency, :string, 5

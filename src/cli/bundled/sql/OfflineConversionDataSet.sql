@@ -1,5 +1,6 @@
 CREATE TABLE offline_conversion_data_set (
   id String,
+  account_id String,
   config Nullable(String),
   creation_time Nullable(String),
   description Nullable(String),

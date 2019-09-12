@@ -3,7 +3,8 @@ syntax = "proto2";
 
 
 message AdAccountMaxBid {
-  optional int64 max_bid = 1;
+  optional string account_id = 1;
+  optional int64  max_bid = 2;
 }
 
 message AdAccountMaxBidArray {

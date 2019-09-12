@@ -1,5 +1,6 @@
 CREATE TABLE ad_study (
   id String,
+  account_id String,
   canceled_time Nullable(String),
   cooldown_start_time Nullable(String),
   created_time Nullable(DateTime),

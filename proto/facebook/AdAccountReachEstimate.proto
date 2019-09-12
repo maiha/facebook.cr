@@ -3,8 +3,9 @@ syntax = "proto2";
 
 
 message AdAccountReachEstimate {
-  optional bool  estimate_ready = 1;
-  optional int64 users          = 2;
+  optional string account_id     = 1;
+  optional bool   estimate_ready = 2;
+  optional int64  users          = 3;
 }
 
 message AdAccountReachEstimateArray {

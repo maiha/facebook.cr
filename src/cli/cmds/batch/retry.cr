@@ -17,18 +17,21 @@ class Cmds::BatchCmd
     case err.to_s
     when /curl_easy_perform/ # Curl::Easy::Error
       return try_retry(err)
-    when /An unknown error occurred/
-      # #<Facebook::Response::Error:0x7ff83d513300 @message="An unknown error occurred", @type=nil, @code=1, @fbtrace_id=nil>
-      return try_retry(err)
+    when /An unknown error/
+      # @message="An unknown error occurred", @type=nil, @code=1
+      # @message="An unknown error has occurred.", @type="OAuthException", @code=1
+      return try_retry(err, wait: 3.seconds)
     else
       return nil
     end
   end        
 
-  private def try_retry(err)
+  private def try_retry(err, wait = nil)
     if retry_attempts < config.batch_max_attempts
       self.retry_attempts += 1
-      return Retry.new(err)
+      wait ||= (retry_attempts*3).seconds
+      wait = [wait, 10.seconds].min
+      return Retry.new(err, wait: wait)
     else
       raise err
     end

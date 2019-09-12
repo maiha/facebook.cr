@@ -3,10 +3,11 @@ syntax = "proto2";
 import "Datetime.proto";
 
 message AdLabel {
-  optional string   id   = 1;
-  optional Datetime created_time = 2;
-  optional string   name = 3;
-  optional Datetime updated_time = 4;
+  optional string   id         = 1;
+  optional string   account_id = 2;
+  optional Datetime created_time = 3;
+  optional string   name       = 4;
+  optional Datetime updated_time = 5;
 }
 
 message AdLabelArray {

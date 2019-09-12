@@ -8,7 +8,8 @@ module Facebook
       include Protobuf::Message
       
       contract_of "proto2" do
-        optional :max_bid, :int64, 1
+        optional :account_id, :string, 1
+        optional :max_bid, :int64, 2
       end
     end
     

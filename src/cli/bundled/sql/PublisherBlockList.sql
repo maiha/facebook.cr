@@ -1,5 +1,6 @@
 CREATE TABLE publisher_block_list (
   id String,
+  account_id String,
   business_owner_id Nullable(String),
   is_auto_blocking_on Nullable(UInt8),
   is_eligible_at_campaign_level Nullable(UInt8),

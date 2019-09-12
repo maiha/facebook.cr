@@ -3,6 +3,10 @@ struct Datetime
     new(time.to_s)
   end
 
+  def time
+    Pretty.time(value)
+  end
+
   def to_json(io : IO)
     io << value.to_json
   end

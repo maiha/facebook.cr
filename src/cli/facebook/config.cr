@@ -16,7 +16,6 @@ class Facebook::Config < TOML::Config
   str  "api/access_token"
   str  "api/access_token_secret"
   int  "api/paging_limit"
-  int  "api/paging_width"
   int  "api/keep_remaining"
 
   float "api/dns_timeout"
@@ -25,7 +24,8 @@ class Facebook::Config < TOML::Config
 
   # batch
   str  "batch/work_dir"
-  str  "batch/shared_dir"
+  str  "batch/cache_dir"
+  int  "batch/meta_limit"
   str  "batch/log"
   bool "batch/gc"
   bool "batch/skip_400"
@@ -89,7 +89,7 @@ class Facebook::Config < TOML::Config
       hint = hash["name"]?.try{|s| "[#{s}]"} || ""
       hash["path"] ||= _path || raise Error.new("logger.path is missing")
       logger = CompositeLogger.build_logger(hash)
-      logger.formatter = "{{mark}}, [{{time=%H:%M}}] #{hint}{{message}}"
+      logger.formatter = "{{mark}},[{{time=%H:%M}}] #{hint}{{message}}"
       return logger
     else
       raise Error.new("logger type error (#{hash.class})")
@@ -138,7 +138,6 @@ access_token    = ""
 
 url             = "https://graph.facebook.com"
 paging_limit    = 1000
-paging_width    = 1000
 logging         = true
 keep_remaining  = 10
 
@@ -148,30 +147,35 @@ read_timeout    = 300.0
 
 [batch]
 work_dir        = "./"
-shared_dir      = "shared"
+cache_dir       = "cache"
 log             = "log"
 gc              = true
-max_attempts    = 3
+meta_limit      = 500
+max_attempts    = 5
 skip_400        = true
 reduce_data     = true
 reduce_data_min = 10
 rate_limit_max  = 90
 pretty_rate_limit = true
 
+# main models
 recv_ad_account = true
 recv_ad_set     = true
 recv_campaign   = true
 recv_ad         = true
 
+# mutable and belongs to account
+recv_ad_image              = true
+# recv_ad_label              = true
+# recv_ad_rule               = true
+# recv_ad_study              = true
+# recv_ad_video              = true
+# recv_user                  = true
+
 # recv_ad_async_request      = true
 # recv_ad_async_request_set  = true
 # recv_ad_campaign_activity  = true
-recv_ad_image              = true
-# recv_ad_label              = true
-recv_ad_rule               = true
-# recv_ad_study              = true
 # recv_ad_topline            = true
-recv_ad_video              = true
 # recv_ads_insights          = true
 # recv_album                 = true
 # recv_business              = true
@@ -185,7 +189,6 @@ recv_ad_video              = true
 # recv_photo                 = true
 # recv_post                  = true
 # recv_unified_thread        = true
-# recv_user                  = true
 
 [clickhouse]
 host  = "localhost"

@@ -3,9 +3,10 @@ syntax = "proto2";
 import "Targeting.proto";
 
 message TargetingSentenceLine {
-  optional string    id = 1;
-  optional Targeting params = 2;
-  repeated string    targetingsentencelines = 3;
+  optional string    id         = 1;
+  optional string    account_id = 2;
+  optional Targeting params     = 3;
+  repeated string    targetingsentencelines = 4;
 }
 
 message TargetingSentenceLineArray {

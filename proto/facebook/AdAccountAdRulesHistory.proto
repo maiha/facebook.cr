@@ -3,11 +3,12 @@ syntax = "proto2";
 import "Datetime.proto";
 
 message AdAccountAdRulesHistory {
-  optional int64    exception_code    = 1;
-  optional string   exception_message = 2;
-  optional bool     is_manual         = 3;
-  optional int64    rule_id           = 4;
-  optional Datetime timestamp         = 5;
+  optional string   account_id        = 1;
+  optional int64    exception_code    = 2;
+  optional string   exception_message = 3;
+  optional bool     is_manual         = 4;
+  optional int64    rule_id           = 5;
+  optional Datetime timestamp         = 6;
 }
 
 message AdAccountAdRulesHistoryArray {

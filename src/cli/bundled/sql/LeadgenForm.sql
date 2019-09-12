@@ -1,5 +1,6 @@
 CREATE TABLE leadgen_form (
   id String,
+  account_id String,
   allow_organic_lead Nullable(UInt8),
   block_display_for_non_targeted_viewer Nullable(UInt8),
   created_time Nullable(DateTime),

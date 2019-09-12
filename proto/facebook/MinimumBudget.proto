@@ -3,11 +3,12 @@ syntax = "proto2";
 
 
 message MinimumBudget {
-  optional string currency                     = 1;
-  optional int64  min_daily_budget_high_freq   = 2;
-  optional int64  min_daily_budget_imp         = 3;
-  optional int64  min_daily_budget_low_freq    = 4;
-  optional int64  min_daily_budget_video_views = 5;
+  optional string account_id                   = 1;
+  optional string currency                     = 2;
+  optional int64  min_daily_budget_high_freq   = 3;
+  optional int64  min_daily_budget_imp         = 4;
+  optional int64  min_daily_budget_low_freq    = 5;
+  optional int64  min_daily_budget_video_views = 6;
 }
 
 message MinimumBudgetArray {

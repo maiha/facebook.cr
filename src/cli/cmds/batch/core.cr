@@ -19,7 +19,7 @@ class Cmds::BatchCmd
   var target_ymd  : String         # logical ymd for the resources
   
   var work_dir     : String        # abs path
-  var shared_dir   : String        # abs path
+  var cache_dir    : String        # abs path
   var today_dir    : String        # abs path
   var snap_dir     : String
   var snap_tsv     : String
@@ -33,14 +33,13 @@ class Cmds::BatchCmd
 
   def before
     self.paging_limit = config.api_paging_limit
-    self.paging_width = config.api_paging_width
     self.executed_at  = Time.now
 
     self.work_dir   = File.expand_path(config.batch_work_dir).chomp("/")
-    self.shared_dir = File.expand_path(config.batch_shared_dir).chomp("/")
+    self.cache_dir = File.expand_path(config.batch_cache_dir).chomp("/")
 
     Dir.mkdir_p(work_dir)
-    Dir.mkdir_p(shared_dir)
+    Dir.mkdir_p(cache_dir)
 
     setup_target_date!(arg1?)
 

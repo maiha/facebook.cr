@@ -1,5 +1,6 @@
 CREATE TABLE ad_topline_detail (
   id String,
+  account_id String,
   active_status Nullable(Int64),
   ad_account_id Nullable(String),
   flight_end_date Nullable(String),

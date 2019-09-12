@@ -9,14 +9,15 @@ module Facebook
       
       contract_of "proto2" do
         optional :id, :string, 1
-        optional :delivery_targeting, Targeting, 2
-        optional :description, :string, 3
-        optional :name, :string, 4
-        repeated :sentence_lines, :string, 5
-        optional :status, :string, 6
-        optional :targeting, Targeting, 7
-        optional :time_created, Datetime, 8
-        optional :time_updated, Datetime, 9
+        optional :account_id, :string, 2
+        optional :delivery_targeting, Targeting, 3
+        optional :description, :string, 4
+        optional :name, :string, 5
+        repeated :sentence_lines, :string, 6
+        optional :status, :string, 7
+        optional :targeting, Targeting, 8
+        optional :time_created, Datetime, 9
+        optional :time_updated, Datetime, 10
       end
     end
     

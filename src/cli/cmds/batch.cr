@@ -1,7 +1,6 @@
 Cmds.command "batch" do
   ### API
   var paging_limit : Int32 = 1_000     # pagination limit
-  var paging_width : Int32 = 1_000     # element size in a page
 
   ### Facebook API
   var keep_remaining : Int32 = 10      # keep this limit rate, othewise stop

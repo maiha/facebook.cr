@@ -4,19 +4,20 @@ import "Datetime.proto";
 
 message AdToplineDetail {
   optional string   id                = 1;
-  optional int64    active_status     = 2;
-  optional string   ad_account_id     = 3;
-  optional Datetime flight_end_date   = 4;
-  optional Datetime flight_start_date = 5;
-  optional int64    io_number         = 6;
-  optional int64    line_number       = 7;
-  optional double   price             = 8;
-  optional double   quantity          = 9;
-  optional string   sf_detail_line_id = 10;
-  optional string   subline_id        = 11;
-  optional string   targets           = 12;
-  optional Datetime time_created      = 13;
-  optional Datetime time_updated      = 14;
+  optional string   account_id        = 2;
+  optional int64    active_status     = 3;
+  optional string   ad_account_id     = 4;
+  optional Datetime flight_end_date   = 5;
+  optional Datetime flight_start_date = 6;
+  optional int64    io_number         = 7;
+  optional int64    line_number       = 8;
+  optional double   price             = 9;
+  optional double   quantity          = 10;
+  optional string   sf_detail_line_id = 11;
+  optional string   subline_id        = 12;
+  optional string   targets           = 13;
+  optional Datetime time_created      = 14;
+  optional Datetime time_updated      = 15;
 }
 
 message AdToplineDetailArray {

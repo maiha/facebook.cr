@@ -1,5 +1,6 @@
 CREATE TABLE saved_audience (
   id String,
+  account_id String,
   approximate_count Nullable(Int64),
   description Nullable(String),
   name Nullable(String),

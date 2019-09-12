@@ -3,11 +3,11 @@ syntax = "proto2";
 import "Datetime.proto";
 
 message AdRule {
-  optional string   id           = 1;
-  optional string   account_id   = 2;
+  optional string   id         = 1;
+  optional string   account_id = 2;
   optional Datetime created_time = 3;
-  optional string   name         = 4;
-  optional string   status       = 5;
+  optional string   name       = 4;
+  optional string   status     = 5;
   optional Datetime updated_time = 6;
 }
 

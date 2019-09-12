@@ -1,5 +1,6 @@
 CREATE TABLE application (
   id String,
+  account_id String,
   an_ad_space_limit Nullable(Int64),
   an_platforms Array(String),
   android_key_hash Array(String),

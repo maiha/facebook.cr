@@ -9,19 +9,20 @@ module Facebook
       
       contract_of "proto2" do
         optional :id, :string, 1
-        optional :active_status, :int64, 2
-        optional :ad_account_id, :string, 3
-        optional :flight_end_date, Datetime, 4
-        optional :flight_start_date, Datetime, 5
-        optional :io_number, :int64, 6
-        optional :line_number, :int64, 7
-        optional :price, :double, 8
-        optional :quantity, :double, 9
-        optional :sf_detail_line_id, :string, 10
-        optional :subline_id, :string, 11
-        optional :targets, :string, 12
-        optional :time_created, Datetime, 13
-        optional :time_updated, Datetime, 14
+        optional :account_id, :string, 2
+        optional :active_status, :int64, 3
+        optional :ad_account_id, :string, 4
+        optional :flight_end_date, Datetime, 5
+        optional :flight_start_date, Datetime, 6
+        optional :io_number, :int64, 7
+        optional :line_number, :int64, 8
+        optional :price, :double, 9
+        optional :quantity, :double, 10
+        optional :sf_detail_line_id, :string, 11
+        optional :subline_id, :string, 12
+        optional :targets, :string, 13
+        optional :time_created, Datetime, 14
+        optional :time_updated, Datetime, 15
       end
     end
     

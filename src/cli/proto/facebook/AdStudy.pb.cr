@@ -9,20 +9,21 @@ module Facebook
       
       contract_of "proto2" do
         optional :id, :string, 1
-        optional :canceled_time, Datetime, 2
-        optional :cooldown_start_time, Datetime, 3
-        optional :created_time, Datetime, 4
-        optional :description, :string, 5
-        optional :end_time, Datetime, 6
-        optional :name, :string, 7
-        optional :observation_end_time, Datetime, 8
-        optional :results_first_available_date, :string, 9
-        optional :start_time, Datetime, 10
-        optional :type, :string, 11
-        optional :updated_time, Datetime, 12
-        optional :client_business, :string, 13
-        optional :confidence_level, :double, 14
-        repeated :viewers, :int64, 15
+        optional :account_id, :string, 2
+        optional :canceled_time, Datetime, 3
+        optional :cooldown_start_time, Datetime, 4
+        optional :created_time, Datetime, 5
+        optional :description, :string, 6
+        optional :end_time, Datetime, 7
+        optional :name, :string, 8
+        optional :observation_end_time, Datetime, 9
+        optional :results_first_available_date, :string, 10
+        optional :start_time, Datetime, 11
+        optional :type, :string, 12
+        optional :updated_time, Datetime, 13
+        optional :client_business, :string, 14
+        optional :confidence_level, :double, 15
+        repeated :viewers, :int64, 16
       end
     end
     

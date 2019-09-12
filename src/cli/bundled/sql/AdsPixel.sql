@@ -1,5 +1,6 @@
 CREATE TABLE ads_pixel (
   id String,
+  account_id String,
   automatic_matching_fields Array(String),
   can_proxy Nullable(UInt8),
   code Nullable(String),

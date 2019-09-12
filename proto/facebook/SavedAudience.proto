@@ -5,14 +5,15 @@ import "Datetime.proto";
 
 message SavedAudience {
   optional string    id                = 1;
-  optional int64     approximate_count = 2;
-  optional string    description       = 3;
-  optional string    name              = 4;
-  optional string    run_status        = 5;
-  repeated string    sentence_lines    = 6;
-  optional Targeting targeting         = 7;
-  optional Datetime  time_created      = 8;
-  optional Datetime  time_updated      = 9;
+  optional string    account_id        = 2;
+  optional int64     approximate_count = 3;
+  optional string    description       = 4;
+  optional string    name              = 5;
+  optional string    run_status        = 6;
+  repeated string    sentence_lines    = 7;
+  optional Targeting targeting         = 8;
+  optional Datetime  time_created      = 9;
+  optional Datetime  time_updated      = 10;
 }
 
 message SavedAudienceArray {

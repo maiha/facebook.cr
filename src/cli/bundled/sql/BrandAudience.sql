@@ -1,5 +1,6 @@
 CREATE TABLE brand_audience (
   id String,
+  account_id String,
   delivery_targeting Nullable(String),
   description Nullable(String),
   name Nullable(String),

@@ -8,8 +8,9 @@ module Facebook
       include Protobuf::Message
       
       contract_of "proto2" do
-        optional :estimate_ready, :bool, 1
-        optional :users, :int64, 2
+        optional :account_id, :string, 1
+        optional :estimate_ready, :bool, 2
+        optional :users, :int64, 3
       end
     end
     

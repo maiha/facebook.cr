@@ -1,6 +1,6 @@
 CREATE TABLE ads_insights (
-  account_currency Nullable(String),
   account_id String,
+  account_currency Nullable(String),
   account_name Nullable(String),
   actions_per_impression Nullable(String),
   activity_recency Nullable(String),

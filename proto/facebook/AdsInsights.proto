@@ -3,8 +3,8 @@ syntax = "proto2";
 
 
 message AdsInsights {
-  optional string account_currency = 1;
-  optional string account_id   = 2;
+  optional string account_id   = 1;
+  optional string account_currency = 2;
   optional string account_name = 3;
   optional string actions_per_impression = 4;
   optional string activity_recency = 5;

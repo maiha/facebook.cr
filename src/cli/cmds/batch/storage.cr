@@ -23,8 +23,12 @@ class Cmds::BatchCmd
     Protobuf::House({{klass}}).new(File.join(today_dir, {{klass.stringify}}), logger: logger, watch: disk)
   end
 
-  private macro shared(klass)
-    Protobuf::House({{klass}}).new(File.join(shared_dir, {{klass.stringify}}), logger: logger, watch: disk)
+  private macro house_meta(klass)
+    Protobuf::House({{klass}}).new(File.join(today_dir, "meta", {{klass.stringify}}), logger: logger, watch: disk)
+  end
+
+  private macro cache(klass)
+    Protobuf::House({{klass}}).new(File.join(cache_dir, {{klass.stringify}}), logger: logger, watch: disk)
   end
 
   private def write_http_call(req : Facebook::Request, res : Facebook::Response?)

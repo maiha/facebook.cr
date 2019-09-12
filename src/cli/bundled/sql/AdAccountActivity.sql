@@ -1,5 +1,6 @@
 CREATE TABLE ad_account_activity (
   id String,
+  account_id String,
   billing_address_new Nullable(String),
   billing_address_old Nullable(String),
   created_by Nullable(String),

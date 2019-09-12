@@ -8,11 +8,12 @@ module Facebook
       include Protobuf::Message
       
       contract_of "proto2" do
-        optional :exception_code, :int64, 1
-        optional :exception_message, :string, 2
-        optional :is_manual, :bool, 3
-        optional :rule_id, :int64, 4
-        optional :timestamp, Datetime, 5
+        optional :account_id, :string, 1
+        optional :exception_code, :int64, 2
+        optional :exception_message, :string, 3
+        optional :is_manual, :bool, 4
+        optional :rule_id, :int64, 5
+        optional :timestamp, Datetime, 6
       end
     end
     

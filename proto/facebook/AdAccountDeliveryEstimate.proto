@@ -3,9 +3,10 @@ syntax = "proto2";
 
 
 message AdAccountDeliveryEstimate {
-  optional int64 estimate_dau   = 1;
-  optional int64 estimate_mau   = 2;
-  optional bool  estimate_ready = 3;
+  optional string account_id     = 1;
+  optional int64  estimate_dau   = 2;
+  optional int64  estimate_mau   = 3;
+  optional bool   estimate_ready = 4;
 }
 
 message AdAccountDeliveryEstimateArray {

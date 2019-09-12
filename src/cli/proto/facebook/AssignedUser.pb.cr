@@ -9,8 +9,9 @@ module Facebook
       
       contract_of "proto2" do
         optional :id, :string, 1
-        optional :name, :string, 2
-        optional :user_type, :string, 3
+        optional :account_id, :string, 2
+        optional :name, :string, 3
+        optional :user_type, :string, 4
       end
     end
     

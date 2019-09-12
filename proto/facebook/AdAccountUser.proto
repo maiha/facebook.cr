@@ -4,8 +4,9 @@ syntax = "proto2";
 
 message AdAccountUser {
   optional string id           = 1;
-  optional string name         = 2;
-  repeated string tasks        = 3;
+  optional string account_id   = 2;
+  optional string name         = 3;
+  repeated string tasks        = 4;
 }
 
 message AdAccountUserArray {

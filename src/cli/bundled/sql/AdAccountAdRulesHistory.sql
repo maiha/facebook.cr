@@ -1,4 +1,5 @@
 CREATE TABLE ad_account_ad_rules_history (
+  account_id String,
   exception_code Nullable(Int64),
   exception_message Nullable(String),
   is_manual Nullable(UInt8),

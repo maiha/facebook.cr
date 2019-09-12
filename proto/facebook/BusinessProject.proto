@@ -3,9 +3,10 @@ syntax = "proto2";
 import "Datetime.proto";
 
 message BusinessProject {
-  optional string   id      = 1;
-  optional Datetime created_time = 2;
-  optional string   name    = 3;
+  optional string   id         = 1;
+  optional string   account_id = 2;
+  optional Datetime created_time = 3;
+  optional string   name       = 4;
 }
 
 message BusinessProjectArray {

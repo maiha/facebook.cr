@@ -4,6 +4,9 @@
 require "pretty"
 require "protobuf"
 
+BELONGS_TO_ACCOUNTS = File.read_lines("#{__DIR__}/belongs_to_account.txt").to_set
+ORPHANED_BELONGS_TO = BELONGS_TO_ACCOUNTS.dup
+
 SRC_DIR = ".facebook-ruby-business-sdk/lib/facebook_ads/ad_objects"
 DST_DIR = "proto/facebook"
 
@@ -152,17 +155,41 @@ def extract_schema?(rb_path) : Schema?
       # field :recommendations, { list: 'AdRecommendation' }
       
       s = schema || abort "#{rb_path}:#{line_no}: field found before class definition\n#{line}"
-      s.fields << Field.new($1, $2)
+
+      name = $1
+      type = $2
+
+      # field :account, 'AdAccount'
+      if name == "account" && type == "AdAccount"
+        name = "account_id"
+        type = "string"
+      end
+
+      s.fields << Field.new(name, type)
     end
   end
-
+  
   return schema
 end
 
-def adjust_schema_fields_respect_id!(schema)
-  if id = schema.fields.find(&.name.== "id")
-    schema.fields.delete(id)
-    schema.fields.unshift id
+def add_belongs_to!(schema)
+  #   p [BELONGS_TO_ACCOUNTS.includes?(schema.klass), schema.klass,  BELONGS_TO_ACCOUNTS]
+  return if schema.fields.any?{|f| f.name == "account_id"}
+  [schema.klass, schema.klass.sub(/^AdAccount/, "")].each do |name|
+    if BELONGS_TO_ACCOUNTS.includes?(name)
+      schema.fields << Field.new("account_id", "string")
+      ORPHANED_BELONGS_TO.delete(name)
+      return true
+    end
+  end
+end
+
+def sort_schema_fields!(schema, order)
+  order.reverse_each do |name|
+    if id = schema.fields.find(&.name.== name)
+      schema.fields.delete(id)
+      schema.fields.unshift id
+    end
   end
 end
 
@@ -295,11 +322,25 @@ def show_all_fields(schemas)
   end
 end
 
+def show_orphaned_belongs_to
+  puts "ORPHANED_BELONGS_TO:\n  " + ORPHANED_BELONGS_TO.join(" ")
+end
+
+def show_model(schemas)
+  schemas.each do |schema|
+    next if !schema.fields.any?{|f| f.name == "account_id" && f.type == "string"}
+    next if !schema.fields.any?{|f| f.name == "id" && f.type == "string"}
+    next if !schema.fields.any?{|f| f.name == "updated_time" && f.type == "datetime"}
+    puts "  model %s" % schema.klass
+  end
+end
+
 schemas = Dir["#{SRC_DIR}/*.rb"].sort.map{|rb|
   extract_schema?(rb) || abort "no schema found in #{rb}"
 }
 schemas.each do |schema|
-  adjust_schema_fields_respect_id!(schema)
+  add_belongs_to!(schema)
+  sort_schema_fields!(schema, ["id", "account_id"])
 end
 
 AVAILABLE_TYPES.concat schemas.map(&.klass)
@@ -323,5 +364,7 @@ write_unknown_log
 write_removed_log
 
 show_summary(schemas)
+# show_orphaned_belongs_to
+# show_model(schemas)
 
 # show_all_fields(schemas)

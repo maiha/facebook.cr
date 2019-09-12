@@ -1,3 +1,61 @@
+# Unlike other media APIs, the Facebook API can specify the fields to be acquired.
+# However, the consumption of RateLimit also increases depending on the amount of
+# fields to be acquired.
+#
+# Therefore, we fetch data by two phases.
+#
+# 1. fetch with the minimum fields to know all records.
+# 2. fetch with all fields for the records that need to be updated.
+#
+# Here, we call the former as `meta` and the latter as `data`.
+
+# ```
+# shared/
+#  + Facebook::Proto::Ad/
+#     + data/
+#        + act_12345/
+#           + data/
+#              + 00001.pb.gz # => [{id,name,...},...]
+#        + act_12346/
+# recv/
+#  + 20190912/
+#     + meta/
+#        + Facebook::Proto::Ad/
+#           + meta/
+#              + done # => ""
+#           + data/
+#              + act_12345/
+#                + meta/
+#                   + job_value # => "(next url)"
+#                + data/
+#                   + 00001.pb.gz # => [{id,updated_time},...]
+#              + act_12346/
+#     + data/
+#        + Facebook::Proto::Ad/
+#           + meta/
+#              + done # => ""
+#              + job_value # => "act_12345"
+#           + data/
+#              + act_12345/
+#                + meta/
+#                   + done # => "1"
+#                + data/
+#                   + 00001.pb.gz # => [{id,name,...},...]
+#              + act_12346/
+# ```
+#
+# [logic]
+# 1. (meta)
+#   1.1 check done
+#   1.2 iterate job
+#   1.3 call api
+# 2. (data)
+#   2.1 check done
+#   2.2 iterate job
+#   2.3 use (shared) as cache when updated_time is older or equal
+#   2.4 otherwise call api
+#   2.5 write back to cache if done
+
 # add methods to open class
 class Cmds::BatchCmd
   CMD_PARAM_ACT_ID = "act_id"
@@ -22,42 +80,39 @@ class Cmds::BatchCmd
   private var skip_400 : Bool          = config.batch_skip_400?
   private var retry_attempts : Int32
 
-  # call API for the model, and store it in Protobuf::House
-  private def recv_model_standalone(klass_name, name, house, response_parser)
-    hint = "[recv] #{name}"
-    url  = url_builder(name)
-    recv_model_impl(house, response_parser, url, hint)
+  {% begin %}
+  def recv_impl
+    {% for klass in MODEL_CLASS_IDS %}
+      {% name   = klass.stringify.underscore %}
+      {% proto  = "Facebook::Proto::#{klass}".id %}
+      {% parser = "Facebook::Response::Parser(#{proto})".id %}
+
+      if enabled?({{proto}})
+        # reset reduced limit for another api
+        @reduced_limit = nil
+
+        {% if name == "ad_account" %}
+          recv_model_impl(house({{proto}}), {{parser}}, url_builder({{name}}), "[recv] {{name.id}}")
+        {% else %}
+          recv_meta({{name}}, house_meta({{proto}}), {{parser}})
+          recv_data({{name}}, house_meta({{proto}}), house({{proto}}), cache({{proto}}), {{parser}})
+        {% end %}
+      end
+    {% end %}
   end
- 
-  # call API for the model related account, and store it in Protobuf::House
-  # 1. each act_id
-  # 2. house.chdir(model + "tmp" + act_xxx)
-  # 3. delegate to recv_model_impl(act_id)
-  private def recv_model_accounted(klass_name, name, house, response_parser)
+  {% end %}
+
+  private def load_act_ids! : Array(String)
     act_ids = house(Facebook::Proto::AdAccount).load.map{|pb|
       act_id = pb.id.to_s
       act_id =~ /^act_(\d+)$/ || raise "[BUG] act_id format error '#{pb.to_hash.inspect}'"
       act_id
     }.sort
 
-    if act_ids.empty?
-      logger.info "%s (skip: act_ids are empty [%s])" % [name, "AdAccount"]
-      return false
-    end
+    act_ids.any? ||
+      raise Cmds::Halt.new("act_ids are empty")
 
-    @reduced_limit = nil
-
-    # 1. each act_id
-    act_ids.each_with_index do |act_id, i|
-      hint = "[recv] %s(%s/%s)[%s]" % [name, i+1, act_ids.size, act_id]
-
-      # 2. house.chdir(model + "tmp" + act_xxx)
-      sub_house = house.chdir(File.join(today_dir, "Facebook::Proto::#{klass_name}", "tmp", act_id))
-
-      # 3. delegate to recv_model_impl(act_id)
-      url = url_builder(name, {CMD_PARAM_ACT_ID => act_id})
-      recv_model_impl(sub_house, response_parser, url, hint)
-    end
+    return act_ids
   end
 
   private def new_client(api : String? = nil)
@@ -66,25 +121,4 @@ class Cmds::BatchCmd
     client.after_execute {|req, res| write_http_call(req, res)}
     return client
   end
-
-  {% begin %}
-  def recv_impl
-    {% for klass in MODEL_CLASS_IDS %}
-
-      {% name   = klass.stringify.underscore %}
-      {% kname  = klass.stringify %}
-      {% proto  = "Facebook::Proto::#{kname.id}".id %}
-      {% house  = "house(#{proto})".id %}
-      {% parser = "Facebook::Response::Parser(#{proto})".id %}
-
-      if enabled?({{proto}})
-        {% if name == "ad_account" %}
-          recv_model_standalone({{kname}}, {{name}}, {{house}}, {{parser}})
-        {% else %}
-          recv_model_accounted({{kname}}, {{name}}, {{house}}, {{parser}})
-        {% end %}
-      end
-    {% end %}
-  end
-  {% end %}
 end

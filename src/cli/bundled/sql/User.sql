@@ -1,5 +1,6 @@
 CREATE TABLE user (
   id String,
+  account_id String,
   about Nullable(String),
   auth_method Nullable(String),
   birthday Nullable(String),

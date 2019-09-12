@@ -4,24 +4,25 @@ import "Datetime.proto";
 
 message OfflineConversionDataSet {
   optional string   id                               = 1;
-  optional string   config                           = 2;
-  optional Datetime creation_time                    = 3;
-  optional string   description                      = 4;
-  optional int64    duplicate_entries                = 5;
-  optional bool     enable_auto_assign_to_accounts   = 6;
-  optional string   event_stats                      = 7;
-  optional int64    event_time_max                   = 8;
-  optional int64    event_time_min                   = 9;
-  optional bool     is_mta_use                       = 10;
-  optional bool     is_restricted_use                = 11;
-  optional bool     is_unavailable                   = 12;
-  optional string   last_upload_app                  = 13;
-  optional int64    last_upload_app_changed_time     = 14;
-  optional int64    match_rate_approx                = 15;
-  optional int64    matched_entries                  = 16;
-  optional string   name                             = 17;
-  optional int64    valid_entries                    = 18;
-  optional bool     auto_assign_to_new_accounts_only = 19;
+  optional string   account_id                       = 2;
+  optional string   config                           = 3;
+  optional Datetime creation_time                    = 4;
+  optional string   description                      = 5;
+  optional int64    duplicate_entries                = 6;
+  optional bool     enable_auto_assign_to_accounts   = 7;
+  optional string   event_stats                      = 8;
+  optional int64    event_time_max                   = 9;
+  optional int64    event_time_min                   = 10;
+  optional bool     is_mta_use                       = 11;
+  optional bool     is_restricted_use                = 12;
+  optional bool     is_unavailable                   = 13;
+  optional string   last_upload_app                  = 14;
+  optional int64    last_upload_app_changed_time     = 15;
+  optional int64    match_rate_approx                = 16;
+  optional int64    matched_entries                  = 17;
+  optional string   name                             = 18;
+  optional int64    valid_entries                    = 19;
+  optional bool     auto_assign_to_new_accounts_only = 20;
 }
 
 message OfflineConversionDataSetArray {
