@@ -1,35 +1,6 @@
 class Cmds::BatchCmd
-  private var meta_limit : Int32 = config.batch_meta_limit
-
-  # 1. (meta)
-  protected def recv_meta(name, meta, parser)
-    #   1.1 check done
-    if msg = meta.meta[META_DONE]?
-      logger.info "[meta] %s (already %s)" % [name, msg]
-      return false
-    end
-
-    #   1.2 iterate job
-    done_count = 0
-    act_ids = load_act_ids!
-    act_ids.each_with_index do |act_id, i|
-      # meta : "20190912/meta/Facebook::Proto::Ad"
-      # house: "20190912/meta/Facebook::Proto::Ad/data/act_12345"
-      house = meta.chdir(File.join(meta.dir, "data", act_id))
-      hint  = "[meta] %s(%s/%s)[%s]" % [name, i+1, act_ids.size, act_id]
-      recv_meta_act(act_id, name, house, parser, hint)
-
-      done_count += 1 if house.meta[META_DONE]?
-    end
-
-    # mark meta.done if all metas have been finished.
-    if done_count == act_ids.size
-      meta.meta[META_DONE] = "got #{done_count}"
-    end
-  end
-
-  #   1.3 call api
-  protected def recv_meta_act(act_id, name, house, parser, hint)
+  protected def recv_model(name, house, parser)
+    hint = "[recv] #{name}"
     @retry_attempts = 0       # reset retry
 
     # if done, nothing to do
@@ -54,14 +25,10 @@ class Cmds::BatchCmd
       logger.info "%s found suspended job" % [hint]
     else
       # This url contains full fields specifed in config[xxx.cmd]
-      url = url_builder(name, {CMD_PARAM_ACT_ID => act_id}).call
+      url = url_builder(name).call
 
-      # 1. Minify fields and set new limit by overwriting it
-      api = Facebook::Api::Get.parse(url)
-      api.data.merge!({"fields" => "id,updated_time", "limit" => meta_limit.to_s})
-
-      # 2. Embeds access token
-      url = new_client.tap{|c| c.api = api}.request.authorize!.url
+      # 1. Embeds access token
+      url = new_client(api: url).request.authorize!.url
 
       house.checkin(url)
     end
@@ -130,6 +97,4 @@ class Cmds::BatchCmd
     house.meta[META_ERROR] = err.to_s
     raise err
   end
-
-  private var visited_urls = Set(String).new
 end

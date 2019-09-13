@@ -92,7 +92,7 @@ class Cmds::BatchCmd
         @reduced_limit = nil
 
         {% if name == "ad_account" %}
-          recv_model_impl(house({{proto}}), {{parser}}, url_builder({{name}}), "[recv] {{name.id}}")
+          recv_model({{name}}, house({{proto}}), {{parser}})
         {% else %}
           recv_meta({{name}}, house_meta({{proto}}), {{parser}})
           recv_data({{name}}, house_meta({{proto}}), house({{proto}}), cache({{proto}}), {{parser}})

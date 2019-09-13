@@ -35,7 +35,7 @@ class Cmds::BatchCmd
     self.paging_limit = config.api_paging_limit
     self.executed_at  = Time.now
 
-    self.work_dir   = File.expand_path(config.batch_work_dir).chomp("/")
+    self.work_dir  = File.expand_path(config.batch_work_dir).chomp("/")
     self.cache_dir = File.expand_path(config.batch_cache_dir).chomp("/")
 
     Dir.mkdir_p(work_dir)

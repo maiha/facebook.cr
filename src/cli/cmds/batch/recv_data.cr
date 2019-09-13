@@ -1,6 +1,4 @@
 class Cmds::BatchCmd
-  private var meta_limit : Int32 = config.batch_meta_limit
-
   # 2. (data)
   protected def recv_data(name, all_meta, all_data, all_cache, parser)
     #   2.1 check done
