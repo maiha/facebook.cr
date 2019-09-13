@@ -16,6 +16,22 @@ module Facebook
       @responsed_at = Time.now
     end
 
+    def mime_type? : MIME::MediaType?
+      if v = headers["Content-Type"]?
+        MIME::MediaType.parse?(v)
+      else
+        nil
+      end
+    end
+
+    def media_type? : String?
+      mime_type?.try(&.media_type)
+    end
+
+    def json? : Bool
+      !! (media_type? =~ /json/)
+    end
+ 
     def informational? ; 100 <= code <= 199; end
     def success?       ; 200 <= code <= 299; end
     def redirection?   ; 300 <= code <= 399; end
