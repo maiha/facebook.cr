@@ -39,22 +39,25 @@ class Cmds::BatchCmd
     # write status into meta
     house.meta[META_STATUS] = res.code.to_s
 
-    parser = parser.from_json(res.body)
-    next_url = parser.paging.try(&.next)
-
     # tiny information for this loop
     this_achievement : String? = nil
-    
+
+    if res.json?
+      res_json_or_nil = parser.from_json(res.body)
+    else
+      res_json_or_nil = nil
+    end
+
     if res.client_error?
       # 4xx(client errors) are not recoverable in most cases
       msg = "[#{res.code}]"
-      if error = parser.error
+      if error = res_json_or_nil.try(&.error)
         msg = "%s %s" % [msg, error.inspect]
       end
       loop_action!(done: "#{res.code} ERROR" , warn: msg)
     end
 
-    if error = parser.error
+    if error = res_json_or_nil.try(&.error)
       # 5xx(server errors) may be recoverable. Check details.
       case error.type
       when .unknown_error?
@@ -87,14 +90,16 @@ class Cmds::BatchCmd
     end
 
     res.success? || raise "[BUG] not success, but no errors found"
-      
-    fetched = parser.to_a
+    res_json = res_json_or_nil || raise "expected JSON, but got #{res.media_type?.inspect}"
+
+    fetched = res_json.to_a
     if act_id = account_id
       fetched.each{|pb| pb.account_id = act_id}
     end
     house.tmp(fetched)
     this_achievement = "%s [%s]" % [fetched.size, api.last]
     
+    next_url = res_json.paging.try(&.next)
     if url = next_url
       house.checkin(url)
     else
