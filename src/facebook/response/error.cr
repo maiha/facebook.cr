@@ -20,8 +20,9 @@ class Facebook::Response
 
     def type: Type
       case message
-      when /An unknown error occurred/
+      when /An .*error .*occurred/
         # "code":1,"message":"An unknown error occurred","error_subcode":99
+        # "code":2,"message":"An unexpected error has occurred. Please retry your request later.","type":"OAuthException","is_transient":true
         return Type::UNKNOWN_ERROR
       when /Please reduce the amount of data/
         # "code": 1, "message": "Please reduce the amount of data you're asking for, then retry your request"

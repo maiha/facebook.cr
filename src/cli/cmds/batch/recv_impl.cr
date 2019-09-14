@@ -49,6 +49,11 @@ class Cmds::BatchCmd
     end
 
     if res.client_error?
+      # 408 Request Timeout
+      if res.code == 408
+        raise try_retry(Exception.new("408 Request Timeout"))
+      end
+
       # 4xx(client errors) are not recoverable in most cases
       msg = "[#{res.code}]"
       if error = res_json_or_nil.try(&.error)

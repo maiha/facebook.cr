@@ -9,6 +9,8 @@ class Cmds::BatchCmd
       return false
     end
 
+    recv.start
+
     #   1.2 iterate job
     done_count = 0
     act_ids = load_act_ids!
@@ -26,6 +28,12 @@ class Cmds::BatchCmd
     if done_count == act_ids.size
       meta.meta[META_DONE] = "got #{done_count}"
     end
+
+    recv.stop
+    
+    # job summary
+    msg = "[meta] #{name} (#{done_count}/#{act_ids.size}) [#{recv.last}]"
+    update_status msg, logger: "INFO"
   end
 
   #   1.3 call api
@@ -108,12 +116,15 @@ class Cmds::BatchCmd
         end
         @retry_attempts = 0       # reset retry
         break if action.break_loop
+      rescue retry : RetryError
+        update_status "#{label} [retriable error] #{retry.to_s}", logger: "WARN"
+        retry.process!
       rescue err
         if retry = retriable?(err)
-          update_status "#{label} [retriable error] #{err}", logger: "WARN"
+          update_status "#{label} [retriable error] #{err.to_s}", logger: "WARN"
           retry.process!
         else
-          update_status "#{label} [unhandled error] #{err}", logger: "ERROR"
+          update_status "#{label} [unhandled error] #{err.to_s}", logger: "ERROR"
           logger.error(err.inspect_with_backtrace)
           raise err
         end

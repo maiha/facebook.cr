@@ -10,7 +10,7 @@
 # Here, we call the former as `meta` and the latter as `data`.
 
 # ```
-# shared/
+# cache/
 #  + Facebook::Proto::Ad/
 #     + data/
 #        + act_12345/
@@ -30,18 +30,17 @@
 #                + data/
 #                   + 00001.pb.gz # => [{id,updated_time},...]
 #              + act_12346/
-#     + data/
-#        + Facebook::Proto::Ad/
-#           + meta/
-#              + done # => ""
-#              + job_value # => "act_12345"
-#           + data/
-#              + act_12345/
-#                + meta/
-#                   + done # => "1"
-#                + data/
-#                   + 00001.pb.gz # => [{id,name,...},...]
-#              + act_12346/
+#     + Facebook::Proto::Ad/
+#        + meta/
+#           + done # => ""
+#           + job_value # => "act_12345"
+#        + tmp/
+#           + act_12345/
+#              + meta/
+#                + done # => "1"
+#              + data/
+#                 + 00001.pb.gz # => [{id,name,...},...]
+#           + act_12346/
 # ```
 #
 # [logic]
@@ -52,7 +51,7 @@
 # 2. (data)
 #   2.1 check done
 #   2.2 iterate job
-#   2.3 use (shared) as cache when updated_time is older or equal
+#   2.3 use (cache) when updated_time is older or equal
 #   2.4 otherwise call api
 #   2.5 write back to cache if done
 

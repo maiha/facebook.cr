@@ -1,9 +1,9 @@
 class Cmds::BatchCmd
-  class Retry
-    var err : Exception
+  class RetryError < Exception
     var wait : Time::Span = 1.second
 
-    def initialize(@err, @wait = nil)
+    def initialize(err, @wait = nil)
+      super(err)
     end
 
     def process!
@@ -13,7 +13,7 @@ class Cmds::BatchCmd
     end
   end
 
-  private def retriable?(err : Exception) : Retry?
+  private def retriable?(err : Exception) : RetryError?
     case err.to_s
     when /curl_easy_perform/ # Curl::Easy::Error
       return try_retry(err)
@@ -26,12 +26,12 @@ class Cmds::BatchCmd
     end
   end        
 
-  private def try_retry(err, wait = nil)
+  private def try_retry(err : Exception | String, wait = nil)
     if retry_attempts < config.batch_max_attempts
       self.retry_attempts += 1
       wait ||= (retry_attempts*3).seconds
       wait = [wait, 10.seconds].min
-      return Retry.new(err, wait: wait)
+      return RetryError.new(err.to_s, wait: wait)
     else
       raise err
     end

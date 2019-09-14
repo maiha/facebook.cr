@@ -6,6 +6,11 @@ class Cmds::BatchCmd
     {% MODEL_CLASS_IDS << klass %}
   end
 
+  ### API
+  var paging_limit : Int32 = 1_000     # pagination limit
+  var keep_remaining : Int32 = 10      # keep this limit rate, othewise stop
+  var api_base_interval : Time::Span = 3.seconds # interval between retries
+  
   ### for tasks
   var api  = Pretty::Stopwatch.new # total time of API
   var db   = Pretty::Stopwatch.new # total time of DB
@@ -29,7 +34,7 @@ class Cmds::BatchCmd
   var batch_logger : CompositeLogger = CompositeLogger.new(Logger.new(nil))
 
   # oneline status for the current task
-  var oneline_status : String
+  var status_callback : Proc(Logger, Nil)
   var status_logger : CompositeLogger = CompositeLogger.new(Logger.new(nil))
 
   def before
@@ -65,11 +70,9 @@ class Cmds::BatchCmd
     return unless today_dir?
 
     if err = error?
-      msg = Pretty.truncate(err.to_s.gsub(/\s+/, " "), size: 60)
-      self.oneline_status = msg
-      
       logger.error("dir: #{Dir.current}")
-      logger.error(err.to_s)
+      msg = Pretty.truncate(err.to_s.gsub(/\s+/, " "), size: 100)
+      update_status(msg, logger: "ERROR")
     end
     flush_status_log
 
@@ -86,16 +89,19 @@ class Cmds::BatchCmd
   end
 
   private def update_status(msg : String, logger = nil)
-    if severity = logger
-      self.logger.log(Logger::Severity.parse(severity), msg)
+    if logger
+      severity = Logger::Severity.parse(logger)
+      self.logger.log(severity, msg)
+    else
+      severity = Logger::Severity::INFO
     end
-    @oneline_status = msg
+    @status_callback = ->(log : Logger){ log.log(severity, msg); nil }
   end
 
   def flush_status_log
-    if msg = oneline_status?
-      status_logger.info msg
-      @oneline_status = nil
+    if callback = status_callback?
+      callback.call(status_logger)
+      @status_callback = nil
     end
   end
 

@@ -7,6 +7,8 @@ class Cmds::BatchCmd
       return false
     end
 
+    recv.start
+
     #   2.2 iterate job
     done_count = 0
     act_ids = load_act_ids!
@@ -25,7 +27,7 @@ class Cmds::BatchCmd
       # act_tmp  : "20190912/Facebook::Proto::Ad/tmp/act_12345"
       act_tmp = all_data.chdir(File.join(all_data.dir, "tmp", act_id))
 
-      #   2.3 use (shared) as cache when updated_time is older or equal
+      #   2.3 use (cache) when updated_time is older or equal
       meta_mtimes  = build_mtimes(act_meta)
       cache_mtimes = build_mtimes(act_cache)
       cache_hit    = Array(String).new
@@ -45,7 +47,7 @@ class Cmds::BatchCmd
       end
       
       if cache_miss.empty?
-        logger.info "%s cache(hit: %d)" % [hint, cache_hit.size]
+        logger.info cyan("%s cache(hit: %d)" % [hint, cache_hit.size])
         pbs = act_cache.load
         act_tmp.write(pbs, {META_DONE => "got #{pbs.size}" })
         done_count += 1
@@ -70,6 +72,12 @@ class Cmds::BatchCmd
     if done_count == act_ids.size
       all_data.commit({META_DONE => "got #{done_count}"})
     end
+
+    recv.stop
+    
+    # job summary
+    msg = "[recv] #{name} (#{done_count}/#{act_ids.size}) [#{recv.last}]"
+    update_status msg, logger: "INFO"
   end
 
   #   1.3 call api
@@ -148,12 +156,15 @@ class Cmds::BatchCmd
         end
         @retry_attempts = 0       # reset retry
         break if action.break_loop
+      rescue retry : RetryError
+        update_status "#{label} [retriable error] #{retry.to_s}", logger: "WARN"
+        retry.process!
       rescue err
         if retry = retriable?(err)
-          update_status "#{label} [retriable error] #{err}", logger: "WARN"
+          update_status "#{label} [retriable error] #{err.to_s}", logger: "WARN"
           retry.process!
         else
-          update_status "#{label} [unhandled error] #{err}", logger: "ERROR"
+          update_status "#{label} [unhandled error] #{err.to_s}", logger: "ERROR"
           logger.error(err.inspect_with_backtrace)
           raise err
         end

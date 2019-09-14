@@ -21,7 +21,7 @@ module GlobalHelper
   # colorize methods
   # - check config.colorize
   # - handy shortcuts for colors
-  {% for color in %w( green yellow red ) %}
+  {% for color in %w( green cyan yellow red ) %}
     protected def {{color.id}}(msg : String)
       colorize(msg, :{{color.id}})
     end

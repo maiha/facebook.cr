@@ -1,13 +1,4 @@
 Cmds.command "batch" do
-  ### API
-  var paging_limit : Int32 = 1_000     # pagination limit
-
-  ### Facebook API
-  var keep_remaining : Int32 = 10      # keep this limit rate, othewise stop
-
-  ### retry
-  var api_base_interval : Time::Span = 3.seconds # interval between retries
-
   # [Task]
   #   clean
   task clean, "<date>" do
