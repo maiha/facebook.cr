@@ -68,11 +68,11 @@ class Cmds::BatchCmd
       when .unknown_error?
         # stores into meta, then raises it
         house.meta[META_UNKONW_ERROR] = error.inspect
-        raise error.inspect
+        raise error.to_s
 
       when .reduce_data?
         # simply gives up if the feature is not enabled
-        config.batch_reduce_data? || raise error.inspect
+        config.batch_reduce_data? || raise error.to_s
 
         # try to reduce the amount of data
         min_limit   = config.batch_reduce_data_min? || DEFAULT_REDUCE_DATA_MIN
@@ -87,10 +87,10 @@ class Cmds::BatchCmd
 
       when .unhandled?
         # simply raises
-        raise error.inspect
+        raise error.to_s
       else
         # I miss trait
-        raise NotImplementedError.new("[BUG] missing implementation for: #{error.inspect}")
+        raise NotImplementedError.new("[BUG] missing implementation for: #{error}")
       end
     end
 
@@ -122,4 +122,105 @@ class Cmds::BatchCmd
 
     loop_action!(info: this_achievement)
   end
+
+  #   1.3 call api
+  protected def recv_impl_act(act_id, name, house, parser, url_builder, hint)
+    @retry_attempts = 0       # reset retry
+
+    # if done, nothing to do
+    if msg = house.meta[META_DONE]?
+      logger.info "%s (already %s)" % [hint, msg]
+      return false
+    end
+
+    # if 400, nothing to do
+    if house.meta[META_STATUS]? == "400"
+      msg = "%s (skip: ERROR 400)" % [hint]
+      if skip_400
+        update_status msg, logger: "INFO"
+        return false
+      else
+        update_status msg
+        raise msg
+      end
+    end
+
+    # check resumable url, or build initial url
+    if url = house.resume?
+      logger.info "%s found suspended job" % [hint]
+    else
+      url = url_builder.call
+      house.checkin(url)
+    end
+
+    loop_counter = 0
+    self.retry_attempts = 0
+    recv.start
+
+    while house.resume? && !house.meta[META_DONE]?
+      loop_counter += 1 if retry_attempts == 0 # increment only when not retry
+
+      label = "#{hint}##{loop_counter}"
+      if retry_attempts > 0
+        label = "#{label}(retry #{retry_attempts})"
+      end
+
+      begin
+        if loop_counter > paging_limit
+          loop_action!(error: "#{label} reached max loop limit(#{paging_limit})", status: "limited", break_loop: true)
+        end
+        recv_impl(house, parser, account_id: act_id)
+        @retry_attempts = 0       # reset retry
+      rescue action : LoopAction
+        if msg = action.status?
+          house.meta[META_STATUS] = msg
+        end
+        if msg = action.done?
+          house.commit
+          msg = "got #{house.count}" if msg == true
+          house.meta[META_DONE] = msg.to_s
+        end
+        if msg = action.info?
+          update_status "#{label} #{msg}", logger: "INFO"
+          house.meta[META_INFO] = msg
+        end
+        if msg = action.warn?
+          update_status "#{label} #{msg}", logger: "WARN"
+          house.meta[META_WARN] = msg
+        end
+        if msg = action.error?
+          update_status "#{label} #{msg}", logger: "ERROR"
+          house.meta[META_ERROR] = msg
+        end
+        @retry_attempts = 0       # reset retry
+        break if action.break_loop
+      rescue retry : RetryError
+        update_status "#{label} #{retry}", logger: "WARN"
+        retry.process!
+      rescue err
+        if retry = retriable?(err)
+          update_status "#{label} #{err}", logger: "WARN"
+          retry.process!
+        else
+          update_status "#{label} #{err}", logger: "ERROR"
+          logger.error(err.inspect_with_backtrace)
+          raise err
+        end
+      end
+    end
+
+    recv.stop
+
+    limit = last_rate_limit?.try{|i| "#{i.max_pct}%"} || "---"
+    msg   = "%s %s [%s] (limit: %s)" % [hint, house.count, recv.last.to_s, limit]
+    update_status msg, logger: "INFO"
+
+    return true
+
+  rescue err
+    house.meta[META_ERROR] = err.to_s
+    raise err
+  end
+
+  private var visited_urls = Set(String).new
 end

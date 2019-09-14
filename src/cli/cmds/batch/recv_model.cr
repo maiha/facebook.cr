@@ -76,14 +76,14 @@ class Cmds::BatchCmd
         @retry_attempts = 0       # reset retry
         break if action.break_loop
       rescue retry : RetryError
-        update_status "#{label} [retriable error] #{retry.to_s}", logger: "WARN"
+        update_status "#{label} #{retry}", logger: "WARN"
         retry.process!
       rescue err
         if retry = retriable?(err)
-          update_status "#{label} [retriable error] #{err.to_s}", logger: "WARN"
+          update_status "#{label} #{err}", logger: "WARN"
           retry.process!
         else
-          update_status "#{label} [unhandled error] #{err.to_s}", logger: "ERROR"
+          update_status "#{label} #{err}", logger: "ERROR"
           logger.error(err.inspect_with_backtrace)
           raise err
         end

@@ -31,5 +31,9 @@ class Facebook::Response
         return Type::UNHANDLED
       end
     end
+
+    def to_s(io : IO)
+      io << "#{type}(#{code}) #{message}"
+    end
   end
 end

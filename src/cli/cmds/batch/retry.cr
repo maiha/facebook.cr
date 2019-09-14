@@ -2,10 +2,6 @@ class Cmds::BatchCmd
   class RetryError < Exception
     var wait : Time::Span = 1.second
 
-    def initialize(err, @wait = nil)
-      super(err)
-    end
-
     def process!
       if wait.total_seconds > 0
         sleep(wait)
@@ -31,7 +27,10 @@ class Cmds::BatchCmd
       self.retry_attempts += 1
       wait ||= (retry_attempts*3).seconds
       wait = [wait, 10.seconds].min
-      return RetryError.new(err.to_s, wait: wait)
+      msg = err.is_a?(Exception) ? err.message : err.to_s
+      retry = RetryError.new(msg)
+      retry.wait = wait
+      return retry
     else
       raise err
     end
