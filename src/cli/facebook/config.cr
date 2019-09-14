@@ -25,8 +25,8 @@ class Facebook::Config < TOML::Config
   # batch
   str  "batch/work_dir"
   str  "batch/cache_dir"
+  str  "batch/status_log"
   int  "batch/meta_limit"
-  str  "batch/log"
   bool "batch/gc"
   bool "batch/skip_400"
   bool "batch/reduce_data"
@@ -96,6 +96,21 @@ class Facebook::Config < TOML::Config
     end
   end
 
+  def build_batch_status_logger?
+    if path = batch_status_log?
+      Dir.mkdir_p(File.dirname(path))
+      opts = {
+        "path"   => path,
+        "mode"   => "a+",
+        "level"  => "INFO",
+        "format" => "{{mark}},[{{time=%H:%M}}] {{message}}",
+      }
+      return CompositeLogger.new(CompositeLogger.build_logger(opts))
+    else
+      return nil
+    end    
+  end
+
   def to_s(io : IO)
     max = @paths.keys.map(&.size).max
     @paths.each do |(key, val)|
@@ -146,9 +161,9 @@ connect_timeout = 5.0
 read_timeout    = 300.0
 
 [batch]
-work_dir        = "./"
+work_dir        = "recv"
 cache_dir       = "cache"
-log             = "log"
+status_log      = "log"
 gc              = true
 meta_limit      = 500
 max_attempts    = 5
@@ -201,16 +216,13 @@ level    = "DEBUG"
 
 [[logger]]
 path     = "STDOUT"
-level    = "INFO"
+level    = "=INFO"
 colorize = true
 
 [[logger]]
-path     = "warn"
-level    = "WARN"
-
-[[logger]]
-path     = "err"
-level    = "ERROR"
+path     = "STDERR"
+level    = ">=WARN"
+colorize = true
 
 [ad_account]
 cmd = "/v4.0/me/adaccounts -d limit=100 -d fields=account_id,name,age,amount_spent,balance,business_city,business_country_code,business_name,business_state,business_street,business_street2,business_zip,can_create_brand_lift_study,created_time,currency,disable_reason,end_advertiser,end_advertiser_name,fb_entity,funding_source,has_migrated_permissions,io_number,is_attribution_spec_system_default,is_direct_deals_enabled,is_in_3ds_authorization_enabled_market,is_in_middle_of_local_entity_migration,is_notifications_enabled,is_personal,is_prepay_account,is_tax_id_required,line_numbers,media_agency,min_campaign_group_spend_cap,min_daily_budget,offsite_pixels_tos_accepted,owner,partner,spend_cap,tax_id,tax_id_status,tax_id_type,timezone_id,timezone_name,timezone_offset_hours_utc,user_role"

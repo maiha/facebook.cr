@@ -5,7 +5,7 @@ class Cmds::BatchCmd
   protected def recv_meta(name, meta, parser)
     #   1.1 check done
     if msg = meta.meta[META_DONE]?
-      logger.info "[meta] %s (already %s)" % [name, msg]
+      update_status "[meta] #{name} (already #{msg})", logger: "INFO"
       return false
     end
 
@@ -34,7 +34,7 @@ class Cmds::BatchCmd
 
     # if done, nothing to do
     if msg = house.meta[META_DONE]?
-      logger.info "%s (already %s)" % [hint, msg]
+      update_status "#{hint} (already #{msg})", logger: "INFO"
       return false
     end
 
@@ -42,11 +42,12 @@ class Cmds::BatchCmd
     if house.meta[META_STATUS]? == "400"
       msg = "%s (skip: ERROR 400)" % [hint]
       if skip_400
-        logger.info msg
+        update_status msg, logger: "INFO"
+        return false
       else
-        logger.error msg
+        update_status msg
+        raise msg
       end
-      return false
     end
 
     # check resumable url, or build initial url
@@ -94,25 +95,25 @@ class Cmds::BatchCmd
           house.meta[META_DONE] = msg.to_s
         end
         if msg = action.info?
-          logger.info "#{label} #{msg}"
+          update_status "#{label} #{msg}", logger: "INFO"
           house.meta[META_INFO] = msg
         end
         if msg = action.warn?
-          logger.warn "#{label} #{msg}"
+          update_status "#{label} #{msg}", logger: "WARN"
           house.meta[META_WARN] = msg
         end
         if msg = action.error?
-          logger.error "#{label} #{msg}"
+          update_status "#{label} #{msg}", logger: "ERROR"
           house.meta[META_ERROR] = msg
         end
         @retry_attempts = 0       # reset retry
         break if action.break_loop
       rescue err
         if retry = retriable?(err)
-          logger.warn("#{label} [retriable error] #{err}")
+          update_status "#{label} [retriable error] #{err}", logger: "WARN"
           retry.process!
         else
-          logger.error("#{label} [unhandled error] #{err}")
+          update_status "#{label} [unhandled error] #{err}", logger: "ERROR"
           logger.error(err.inspect_with_backtrace)
           raise err
         end
@@ -122,7 +123,8 @@ class Cmds::BatchCmd
     recv.stop
 
     limit = last_rate_limit?.try{|i| "#{i.max_pct}%"} || "---"
-    logger.info "%s %s [%s] (limit: %s)" % [hint, house.count, recv.last.to_s, limit]
+    msg   = "%s %s [%s] (limit: %s)" % [hint, house.count, recv.last.to_s, limit]
+    update_status msg, logger: "INFO"
 
     return true
 

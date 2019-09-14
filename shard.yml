@@ -38,7 +38,8 @@ development_dependencies:
     version: ">= 0.3.4"
   composite_logger:
     github: maiha/composite_logger.cr
-    version: ">= 0.3.2"
+    #version: ">= 0.3.2"
+    commit: "fc2f10435f4754ba394c7485309af01852422e2d"
   opts:
     github: maiha/opts.cr
     version: ">= 0.6.0"

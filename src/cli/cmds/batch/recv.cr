@@ -97,6 +97,7 @@ class Cmds::BatchCmd
           recv_meta({{name}}, house_meta({{proto}}), {{parser}})
           recv_data({{name}}, house_meta({{proto}}), house({{proto}}), cache({{proto}}), {{parser}})
         {% end %}
+        flush_status_log
       end
     {% end %}
   end

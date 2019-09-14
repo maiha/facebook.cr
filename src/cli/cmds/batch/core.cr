@@ -30,6 +30,7 @@ class Cmds::BatchCmd
 
   # oneline status for the current task
   var oneline_status : String
+  var status_logger : CompositeLogger = CompositeLogger.new(Logger.new(nil))
 
   def before
     self.paging_limit = config.api_paging_limit
@@ -49,9 +50,10 @@ class Cmds::BatchCmd
     self.snap_tsv = File.join(today_dir, "tsv/snap.tsv")
     self.snap_tmp = File.join(today_dir, "snap.tmp")
     
-    self.batch_logger = build_batch_logger("#{today_dir}/#{task_name}.log")
-    logger.info "target time: %s" % target_ymd
+    self.batch_logger  = build_batch_logger("#{today_dir}/#{task_name}.log")
+    self.status_logger = config.build_batch_status_logger?
 
+    logger.info "target time: %s" % target_ymd
     task.start
   end
 
@@ -69,12 +71,10 @@ class Cmds::BatchCmd
       logger.error("dir: #{Dir.current}")
       logger.error(err.to_s)
     end
-    batch_log(oneline_status) if oneline_status?
+    flush_status_log
 
-    if memory = logger.memory?
-      if ! memory.to_s.empty?
-        logger.error(memory.to_s)
-      end
+    if ! (error = logger.memory?.to_s).empty?
+      STDERR.puts error
     end
 
     msg = "#{task}, API:#{api}, DB:#{db}, IO:#{disk}, MEM:#{Pretty.process_info.max}"
@@ -82,6 +82,20 @@ class Cmds::BatchCmd
       logger.info "[task:done] #{msg}"
     else
       logger.error "[task:abort] #{msg}"
+    end
+  end
+
+  private def update_status(msg : String, logger = nil)
+    if severity = logger
+      self.logger.log(Logger::Severity.parse(severity), msg)
+    end
+    @oneline_status = msg
+  end
+
+  def flush_status_log
+    if msg = oneline_status?
+      status_logger.info msg
+      @oneline_status = nil
     end
   end
 
@@ -106,7 +120,7 @@ class Cmds::BatchCmd
   private def build_batch_logger(path : String) : CompositeLogger
     Dir.mkdir_p(File.dirname(path))
     logger = config.build_logger(path: path)
-    CompositeLogger.new(logger, memory: Logger::Severity::ERROR)
+    CompositeLogger.new(logger, memory: "=ERROR")
   end
 
   def logger : CompositeLogger
@@ -126,13 +140,4 @@ class Cmds::BatchCmd
     abort "config(#{key})が未設定です" if v.empty?
     return v
   end
-
-  private def batch_log(msg)
-    if path = config.batch_log?
-      File.open(path, "a+") do |f|
-        f.puts msg
-      end
-    end
-  end
-
 end
