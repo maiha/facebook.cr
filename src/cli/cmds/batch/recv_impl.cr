@@ -204,7 +204,7 @@ class Cmds::BatchCmd
         else
           update_status "#{label} #{err}", logger: "ERROR"
           logger.error(err.inspect_with_backtrace)
-          raise err
+          raise err.to_s
         end
       end
     end
@@ -219,7 +219,7 @@ class Cmds::BatchCmd
 
   rescue err
     house.meta[META_ERROR] = err.to_s
-    raise err
+    raise "#{hint} #{err}"
   end
 
   private var visited_urls = Set(String).new
