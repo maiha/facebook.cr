@@ -65,10 +65,10 @@ class Cmds::BatchCmd
     if error = res_json_or_nil.try(&.error)
       # 5xx(server errors) may be recoverable. Check details.
       case error.type
-      when .unknown_error?
+      when .unknown_error?,  .unhandled?
         # stores into meta, then raises it
-        house.meta[META_UNKONW_ERROR] = error.inspect
-        raise error.to_s
+        house.meta[META_ERROR] = error.inspect
+        raise "%s: %s" % [res.code, error]
 
       when .reduce_data?
         # simply gives up if the feature is not enabled
@@ -85,9 +85,6 @@ class Cmds::BatchCmd
         self.reduced_limit = limit2
         loop_action!(warn: "ReduceData(#{limit1}->#{limit2})", status: "reduced")
 
-      when .unhandled?
-        # simply raises
-        raise error.to_s
       else
         # I miss trait
         raise NotImplementedError.new("[BUG] missing implementation for: #{error}")

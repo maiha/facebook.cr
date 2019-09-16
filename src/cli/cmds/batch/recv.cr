@@ -66,7 +66,6 @@ class Cmds::BatchCmd
   META_INFO         = "info"
   META_WARN         = "warn"
   META_ERROR        = "error"
-  META_UNKONW_ERROR = "unknown_error"
 
   DEFAULT_REDUCE_DATA_MIN = 10
 
