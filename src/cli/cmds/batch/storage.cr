@@ -2,6 +2,7 @@
 class Cmds::BatchCmd
   # internal variables
   var http_house = house(HttpCall)
+  var pb_logging = config.batch_pb_logging?
 
   private macro load(klass)
     disk.measure {
@@ -16,19 +17,19 @@ class Cmds::BatchCmd
   end
 
   private macro storage(klass)
-    Protobuf::Storage({{klass}}).new(File.join(today_dir, "{{klass}}/"), logger: logger, watch: disk)
+    Protobuf::Storage({{klass}}).new(File.join(today_dir, "{{klass}}/"), logger: pb_logger, watch: disk)
   end
 
   private macro house(klass)
-    Protobuf::House({{klass}}).new(File.join(today_dir, {{klass.stringify}}), logger: logger, watch: disk)
+    Protobuf::House({{klass}}).new(File.join(today_dir, {{klass.stringify}}), logger: pb_logger, watch: disk)
   end
 
   private macro house_meta(klass)
-    Protobuf::House({{klass}}).new(File.join(today_dir, "meta", {{klass.stringify}}), logger: logger, watch: disk)
+    Protobuf::House({{klass}}).new(File.join(today_dir, "meta", {{klass.stringify}}), logger: pb_logger, watch: disk)
   end
 
   private macro cache(klass)
-    Protobuf::House({{klass}}).new(File.join(cache_dir, {{klass.stringify}}), logger: logger, watch: disk)
+    Protobuf::House({{klass}}).new(File.join(cache_dir, {{klass.stringify}}), logger: pb_logger, watch: disk)
   end
 
   private def write_http_call(req : Facebook::Request, res : Facebook::Response?)
@@ -46,5 +47,9 @@ class Cmds::BatchCmd
       pb.res_body     = res.body
     end
     http_house.save(pb)
+  end
+
+  private def pb_logger
+    pb_logging ? logger : Logger.new(nil)
   end
 end

@@ -28,6 +28,7 @@ class Facebook::Config < TOML::Config
   str  "batch/status_log"
   int  "batch/meta_limit"
   bool "batch/gc"
+  bool "batch/pb_logging"
   bool "batch/skip_400"
   bool "batch/reduce_data"
   int  "batch/reduce_data_min"
@@ -165,6 +166,7 @@ work_dir        = "recv"
 cache_dir       = "cache"
 status_log      = "log"
 gc              = true
+pb_logging      = false
 meta_limit      = 500
 max_attempts    = 5
 skip_400        = true
