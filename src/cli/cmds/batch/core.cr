@@ -88,7 +88,7 @@ class Cmds::BatchCmd
     end
   end
 
-  private def update_status(msg : String, logger = nil)
+  private def update_status(msg : String, logger = nil, flush = false)
     if logger
       severity = Logger::Severity.parse(logger)
       self.logger.log(severity, msg)
@@ -96,6 +96,7 @@ class Cmds::BatchCmd
       severity = Logger::Severity::INFO
     end
     @status_callback = ->(log : Logger){ log.log(severity, msg); nil }
+    flush_status_log if flush
   end
 
   def flush_status_log

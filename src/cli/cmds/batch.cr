@@ -78,6 +78,8 @@ Cmds.command "batch" do
     gc_storage HttpCall
     gc_tsv
     gc_snap
+
+    update_status "[gc:done] DISK:#{disk} MEM:#{Pretty.process_info.max}", logger: "INFO"
   end
   
   task "check", "<date>" do
