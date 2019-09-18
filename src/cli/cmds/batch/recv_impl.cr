@@ -68,7 +68,7 @@ class Cmds::BatchCmd
       when .unknown_error?,  .unhandled?
         # stores into meta, then raises it
         house.meta[META_ERROR] = error.inspect
-        raise "%s: %s" % [res.code, error]
+        raise try_retry(Exception.new("#{res.code} #{error}"))
 
       when .reduce_data?
         # simply gives up if the feature is not enabled
