@@ -91,8 +91,8 @@ class Cmds::BatchCmd
       end
     end
 
-    res.success? || raise "[BUG] not success, but no errors found"
-    res_json = res_json_or_nil || raise "expected JSON, but got #{res.media_type?.inspect}"
+    res_json = res_json_or_nil || raise try_retry("expected JSON, but got #{res.media_type?.inspect}")
+    res.success? || raise NotImplementedError.new("[BUG] res(#{res.code}) is not supported. (#{res.media_type?.inspect})")
 
     fetched = res_json.to_a
     if act_id = account_id
