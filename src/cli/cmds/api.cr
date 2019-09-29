@@ -30,6 +30,18 @@ Cmds.command "api" do
     show(res)
   end
 
+  usage "data XXX # call 'GET XXX', then extract data as json"
+  task data, "XXX" do
+    if limit = config.limit?
+      res = client.get(arg1, {"limit" => limit.to_s})
+    else
+      res = client.get(arg1)
+    end
+    json = JSON::Parser.new(res.body).parse
+    data = json["data"]? || abort "res[data] not found"
+    puts data.to_json
+  end
+
   private def show_headers(res : Facebook::Response)
     hash = res.headers.to_h
     lines = Array(Array(String)).new
