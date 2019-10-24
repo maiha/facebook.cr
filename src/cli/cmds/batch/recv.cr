@@ -75,7 +75,6 @@ class Cmds::BatchCmd
   # cache config values
   private var pretty_rate_limit : Bool = config.batch_pretty_rate_limit?
   private var rate_limit_max : Int32   = config.batch_rate_limit_max
-  private var skip_400 : Bool          = config.batch_skip_400?
   private var retry_attempts : Int32
 
   {% begin %}

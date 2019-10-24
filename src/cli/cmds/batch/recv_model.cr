@@ -9,18 +9,6 @@ class Cmds::BatchCmd
       return false
     end
 
-    # if 400, nothing to do
-    if house.meta[META_STATUS]? == "400"
-      msg = "%s (skip: ERROR 400)" % [hint]
-      if skip_400
-        update_status msg, logger: "INFO"
-        return false
-      else
-        update_status msg
-        raise msg
-      end
-    end
-
     # check resumable url, or build initial url
     if url = house.resume?
       logger.info "%s found suspended job" % [hint]
@@ -50,7 +38,7 @@ class Cmds::BatchCmd
         if loop_counter > paging_limit
           loop_action!(error: "#{label} reached max loop limit(#{paging_limit})", status: "limited", break_loop: true)
         end
-        recv_impl(house, parser)
+        recv_impl(name, house, parser)
         @retry_attempts = 0       # reset retry
       rescue action : LoopAction
         if msg = action.status?

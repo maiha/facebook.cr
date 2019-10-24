@@ -9,6 +9,10 @@ class Facebook::Response
       message: String?,
       type: String?,
       code: Int32?,
+      error_subcode: Int32?,
+      is_transient: Bool?,
+      error_user_title: String?,
+      error_user_msg: String?,
       fbtrace_id: String?,
     })
 
@@ -33,7 +37,12 @@ class Facebook::Response
     end
 
     def to_s(io : IO)
-      io << "#{type}(#{code}) #{message}"
+      msg = error_user_msg || error_user_title || message
+      io << "#{type}(#{code}) #{msg}"
+    end
+
+    def inspect(io : IO)
+      to_s(io)
     end
   end
 end

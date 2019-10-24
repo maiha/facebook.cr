@@ -1,5 +1,5 @@
 class Cmds::BatchCmd
-  private def recv_impl(house, parser, account_id : String? = nil)
+  private def recv_impl(name, house, parser, account_id : String? = nil)
     self.last_rate_limit = nil
 
     client = new_client
@@ -49,17 +49,23 @@ class Cmds::BatchCmd
     end
 
     if res.client_error?
-      # 408 Request Timeout
+      # 4xx(client errors) are not recoverable except 408 Request Timeout
       if res.code == 408
         raise try_retry(Exception.new("408 Request Timeout"))
       end
 
-      # 4xx(client errors) are not recoverable in most cases
       msg = "[#{res.code}]"
       if error = res_json_or_nil.try(&.error)
         msg = "%s %s" % [msg, error.inspect]
       end
-      loop_action!(done: "#{res.code} ERROR" , warn: msg)
+
+      if config.skip_400?(name)
+        # if skip, just warn it
+        loop_action!(done: "#{res.code} ERROR" , warn: msg)
+      else
+        # otherwise, raise
+        raise msg
+      end
     end
 
     if error = res_json_or_nil.try(&.error)
@@ -133,7 +139,7 @@ class Cmds::BatchCmd
     # if 400, nothing to do
     if house.meta[META_STATUS]? == "400"
       msg = "%s (skip: ERROR 400)" % [hint]
-      if skip_400
+      if config.skip_400?(name)
         update_status msg, logger: "INFO"
         return false
       else
@@ -166,7 +172,7 @@ class Cmds::BatchCmd
         if loop_counter > paging_limit
           loop_action!(error: "#{label} reached max loop limit(#{paging_limit})", status: "limited", break_loop: true)
         end
-        recv_impl(house, parser, account_id: act_id)
+        recv_impl(name, house, parser, account_id: act_id)
         @retry_attempts = 0       # reset retry
       rescue action : LoopAction
         if msg = action.status?
