@@ -20,7 +20,7 @@ class Cmds::BatchCmd
     def reduce_data(current_url : String, min_limit : Int32) : String
       reduced_url = current_url.sub(/\blimit=(\d+)\b/) {
         limit = $1.to_i
-        next_limit = [limit / 2, min_limit].max
+        next_limit = [limit / 2, min_limit].max.ceil.to_i32
 
         if limit <= next_limit
           # already failed with min_limit
@@ -37,7 +37,7 @@ class Cmds::BatchCmd
       end
 
       if [current_url, reduced_url].map(&.to_s.sub(/limit=\d+/, "")).uniq.size != 1
-        raise "[BUG] Failed to build reduced url. (An unexpected field has been updated): [#{reduced_url.inspect}]"
+        raise "[BUG] Failed to build reduced url. (An unexpected field has been updated): [#{current_url}] -> [#{reduced_url.inspect}]"
       end
 
       return reduced_url
