@@ -14,6 +14,8 @@ GUESSED_VERSION=$(shell git tag -l | sort -V | tail -1 | awk 'BEGIN { FS="." } {
 
 all: facebook-dev
 
+progs: facebook-dev facebook facebook-pb
+
 .PHONY: facebook-dev
 facebook-dev:
 	$(BUILD) -o $@

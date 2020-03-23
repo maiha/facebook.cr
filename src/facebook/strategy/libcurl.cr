@@ -13,7 +13,7 @@ module Facebook::Strategy
       easy.connect_timeout = connect_timeout.seconds
       easy.timeout         = read_timeout.seconds
       
-      requested_at = Time.now
+      requested_at = Pretty::Time.now
       res = easy.get
 
       logger.debug "HTTP response (status %s)" % res.code

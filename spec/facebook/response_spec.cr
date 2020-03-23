@@ -1,7 +1,7 @@
 require "./spec_helper"
 
 private def response(header)
-  Facebook::Response.new(requested_at: Time.now, req: nil, code: 200, header: header, body: "")
+  Facebook::Response.new(requested_at: Pretty::Time.now, req: nil, code: 200, header: header, body: "")
 end
 
 describe Facebook::Response do

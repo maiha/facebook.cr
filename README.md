@@ -2,7 +2,7 @@
 
 facebook api for [Crystal](http://crystal-lang.org/).
 
-- crystal: 0.30.0, 0.31.1, 0.32.0
+- crystal: 0.33.0
 
 ## Usage (library)
 

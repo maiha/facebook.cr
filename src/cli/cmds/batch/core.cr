@@ -30,16 +30,16 @@ class Cmds::BatchCmd
   var snap_tsv     : String
   var snap_tmp     : String
   var executed_at  : Time
-  var console      : CompositeLogger = CompositeLogger.new(Logger.new(STDERR))
-  var batch_logger : CompositeLogger = CompositeLogger.new(Logger.new(nil))
+  var console      : Pretty::Logger = Pretty::Logger.new(Logger.new(STDERR))
+  var batch_logger : Pretty::Logger = Pretty::Logger.new(Logger.new(nil))
 
   # oneline status for the current task
   var status_callback : Proc(Logger, Nil)
-  var status_logger : CompositeLogger = CompositeLogger.new(Logger.new(nil))
+  var status_logger : Pretty::Logger = Pretty::Logger.new(Logger.new(nil))
 
   def before
     self.paging_limit = config.api_paging_limit
-    self.executed_at  = Time.now
+    self.executed_at  = Pretty::Time.now
 
     self.work_dir  = File.expand_path(config.batch_work_dir).chomp("/")
     self.cache_dir = File.expand_path(config.batch_cache_dir).chomp("/")
@@ -124,13 +124,13 @@ class Cmds::BatchCmd
     config.enabled_recvs.includes?(name)
   end
 
-  private def build_batch_logger(path : String) : CompositeLogger
+  private def build_batch_logger(path : String) : Pretty::Logger
     Dir.mkdir_p(File.dirname(path))
     logger = config.build_logger(path: path)
-    CompositeLogger.new(logger, memory: "=ERROR")
+    Pretty::Logger.new(logger, memory: "=ERROR")
   end
 
-  def logger : CompositeLogger
+  def logger : Pretty::Logger
     batch_logger? || console
   end
 

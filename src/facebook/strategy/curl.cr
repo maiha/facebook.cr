@@ -1,6 +1,6 @@
 module Facebook::Strategy
   class Curl < Base
-    def execute(req : Request) : HTTP::Client::Response
+    def execute(req : Request) : Response
       raise Dryrun.new(req)
     end
 

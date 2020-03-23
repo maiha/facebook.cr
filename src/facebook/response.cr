@@ -13,7 +13,7 @@ module Facebook
     var headers : HTTP::Headers = build_headers
 
     def initialize(@requested_at, @req, @code, @header, @body)
-      @responsed_at = Time.now
+      @responsed_at = Pretty::Time.now
     end
 
     def mime_type? : MIME::MediaType?

@@ -4,7 +4,6 @@ require "file_utils"
 ### shard
 require "clickhouse"
 require "cmds"
-require "composite_logger"
 require "json"
 require "opts"
 require "protobuf-storage"

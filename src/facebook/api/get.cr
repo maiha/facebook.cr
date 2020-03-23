@@ -6,7 +6,7 @@ module Facebook::Api
       @method = Method::GET
     end
 
-    def request_path
+    def request_path : String
       build_request_path
     end
     

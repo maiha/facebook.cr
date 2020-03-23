@@ -34,7 +34,7 @@ module Facebook::Api
 
     params = Array(String).new
     data.each do |key, value|
-      params << "%s=%s" % [URI.escape(key), URI.escape(value)]
+      params << "%s=%s" % [key, value].map{|i| Pretty::URI.escape(i)}
     end
     delimiter = path.includes?("?") ? "&" : "?"
     path + delimiter + params.join("&")
