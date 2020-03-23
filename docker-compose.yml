@@ -1,0 +1,12 @@
+version: '2'
+
+services:
+  alpine:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: shards build
+    user: "${UID}:${GID}"
+    volumes:
+      - .:/v
+    working_dir: /v

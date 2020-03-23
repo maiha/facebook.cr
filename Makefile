@@ -1,36 +1,56 @@
 SHELL=/bin/bash
 
-BUILD := crystal build src/cli/bin/facebook.cr
-DOCKER_BUILD := docker-compose run --rm crystal $(BUILD)
+all: facebook
 
+######################################################################
+### compiling
+
+# for mounting permissions in docker-compose
 export UID = $(shell id -u)
 export GID = $(shell id -g)
 
-VERSION=
-CURRENT_VERSION=$(shell git tag -l | sort -V | tail -1)
-GUESSED_VERSION=$(shell git tag -l | sort -V | tail -1 | awk 'BEGIN { FS="." } { $$3++; } { printf "%d.%d.%d", $$1, $$2, $$3 }')
+COMPILE_FLAGS=-Dstatic
+BUILD_TARGET=
 
-.SHELLFLAGS = -o pipefail -c
+ON_ALPINE=docker-compose run --rm alpine
 
-all: facebook-dev
-
-progs: facebook-dev facebook facebook-pb
-
-.PHONY: facebook-dev
-facebook-dev:
-	$(BUILD) -o $@
+.PHONY: build
+build:
+	@$(ON_ALPINE) shards build $(COMPILE_FLAGS) --link-flags "-static" $(BUILD_TARGET) $(O)
 
 .PHONY: facebook
-facebook:
-	$(BUILD) -o $@ -D with_pb --link-flags "-static" --release
+facebook: BUILD_TARGET=--release facebook
+facebook: build
+
+.PHONY: facebook-dev
+facebook-dev: BUILD_TARGET=facebook-dev
+facebook-dev: build
 
 .PHONY: facebook-pb
-facebook-pb:
-	$(BUILD) -o $@ -D with_pb
+facebook-pb: BUILD_TARGET=--release facebook-pb -D with_pb
+facebook-pb: build
 
 .PHONY : fbget
 fbget:
 	shards build fbget
+
+
+######################################################################
+### testing
+
+.PHONY: ci
+ci: check_version_mismatch spec progs
+
+.PHONY : spec
+spec:
+	crystal spec -v --fail-fast
+
+.PHONY : check_version_mismatch
+check_version_mismatch: shard.yml README.md
+	diff -w -c <(grep version: README.md) <(grep ^version: shard.yml)
+
+######################################################################
+### generating
 
 .facebook-ruby-business-sdk:
 	git clone --depth 2 git@github.com:facebook/facebook-ruby-business-sdk.git .facebook-ruby-business-sdk
@@ -82,16 +102,12 @@ proto_test:
 	@mkdir -p src/cli/proto/facebook
 	PROTOBUF_NS=Facebook::Proto protoc -I proto -I proto/facebook --crystal_out src/cli/proto/facebook proto/facebook/Targeting.proto
 
-.PHONY : test
-test: check_version_mismatch spec progs
+######################################################################
+### versioning
 
-.PHONY : spec
-spec:
-	crystal spec -v --fail-fast
-
-.PHONY : check_version_mismatch
-check_version_mismatch: shard.yml README.md
-	diff -w -c <(grep version: README.md) <(grep ^version: shard.yml)
+VERSION=
+CURRENT_VERSION=$(shell git tag -l | sort -V | tail -1 | sed -e 's/^v//')
+GUESSED_VERSION=$(shell git tag -l | sort -V | tail -1 | awk 'BEGIN { FS="." } { $$3++; } { printf "%d.%d.%d", $$1, $$2, $$3 }')
 
 .PHONY : version
 version:
@@ -100,7 +116,7 @@ version:
 	  echo "  make version VERSION=$(GUESSED_VERSION)";\
 	else \
 	  sed -i -e 's/^version: .*/version: $(VERSION)/' shard.yml ;\
-	  sed -i -e 's/^    version: [0-9]\+\.[0-9]\+\.[0-9]\+/    version: $(VERSION)/' README.md ;\
+	  sed -i -e 's/^    version: [0-9]\+\.[0-9]\+\.[0-9]\+/    version: $(VERSION)/' README.cr.md ;\
 	  echo git commit -a -m "'$(COMMIT_MESSAGE)'" ;\
 	  git commit -a -m 'version: $(VERSION)' ;\
 	  git tag "v$(VERSION)" ;\
@@ -109,3 +125,4 @@ version:
 .PHONY : bump
 bump:
 	make version VERSION=$(GUESSED_VERSION) -s
+

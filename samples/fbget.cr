@@ -1,5 +1,4 @@
 require "../src/facebook"
-require "composite_logger"
 
 def show_headers(res : Facebook::Response)
   hash = res.headers.to_h

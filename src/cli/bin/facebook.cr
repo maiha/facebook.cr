@@ -132,6 +132,10 @@ class Cli::Main
       exit 255
     end
   end
+
+  private def show_version : String
+    "#{PROGRAM} #{VERSION} #{TARGET_TRIPLE} crystal-#{Crystal::VERSION} #{String.new(LibCurl.curl_version)}"
+  end
 end
 
 Cli::Main.run
