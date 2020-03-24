@@ -43,7 +43,7 @@ ci: check_version_mismatch spec facebook fbget
 
 .PHONY : spec
 spec:
-	crystal spec -v --fail-fast
+	@$(ON_ALPINE) crystal spec $(COMPILE_FLAGS) -v --fail-fast
 
 .PHONY : check_version_mismatch
 check_version_mismatch: shard.yml README.md
