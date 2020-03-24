@@ -31,9 +31,8 @@ facebook-pb: BUILD_TARGET=--release facebook-pb -D with_pb
 facebook-pb: build
 
 .PHONY : fbget
-fbget:
-	shards build fbget
-
+fbget: BUILD_TARGET=fbget
+fbget: build
 
 ######################################################################
 ### testing
