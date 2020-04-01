@@ -32,7 +32,7 @@ Cmds.command "batch" do
   task "recv", "<date>" do
     recv_impl
 
-    update_status "[recv:done] API:#{api} MEM:#{Pretty.process_info.max}", logger: "INFO"
+    update_status "[recv:done] API:#{api} MEM:#{max_mem}", logger: "INFO"
   end
 
   task "db", "<date>" do
@@ -48,7 +48,7 @@ Cmds.command "batch" do
     invoke_task("clickhouse_import")
     invoke_task("clickhouse_after")
 
-    update_status "[clickhouse:done] DB:#{db} MEM:#{Pretty.process_info.max}", logger: "INFO"
+    update_status "[clickhouse:done] DB:#{db} MEM:#{max_mem}", logger: "INFO"
   end
 
   task "clickhouse_import" do
@@ -79,7 +79,7 @@ Cmds.command "batch" do
     gc_tsv
     gc_snap
 
-    update_status "[gc:done] DISK:#{disk} MEM:#{Pretty.process_info.max}", logger: "INFO"
+    update_status "[gc:done] DISK:#{disk} MEM:#{max_mem}", logger: "INFO"
   end
   
   task "check", "<date>" do

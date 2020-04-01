@@ -80,7 +80,7 @@ class Cmds::BatchCmd
       STDERR.puts error
     end
 
-    msg = "#{task}, API:#{api}, DB:#{db}, IO:#{disk}, MEM:#{Pretty.process_info.max}"
+    msg = "#{task}, API:#{api}, DB:#{db}, IO:#{disk}, MEM:#{max_mem}"
     if task_state.finished?
       logger.info "[task:done] #{msg}"
     else
@@ -104,6 +104,8 @@ class Cmds::BatchCmd
       callback.call(status_logger)
       @status_callback = nil
     end
+  rescue err
+    STDERR.puts "[BUG] (flush_status_log) #{err}" 
   end
 
   private def setup_target_date!(v)
