@@ -13,10 +13,10 @@ Cmds.command "api" do
     show(res)
   end
 
-  usage "adaccounts # get '/v4.0/me/adaccounts'"
+  usage "adaccounts # get '/v6.0/me/adaccounts'"
   task adaccounts do
     limit = config.limit? || 10
-    res = client.get("/v4.0/me/adaccounts -d limit=#{limit}")
+    res = client.get("/v6.0/me/adaccounts -d limit=#{limit}")
     show(res)
   end
 
