@@ -61,7 +61,7 @@ $ facebook api get '/v4.0/me/adaccounts -d fields=account_id,name'
 dependencies:
   facebook:
     github: maiha/facebook
-    version: 0.4.6
+    version: 0.4.7
 ```
 
 2. Run `shards install`
