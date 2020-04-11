@@ -41,7 +41,7 @@ Cmds.command "clickhouse" do
     old  = tmp + "_old"
 
     shell  = Shell::Seq.new
-    shell.dryrun = config.dryrun?
+    shell.dryrun = config.dryrun
 
     this   = "#{PROGRAM_NAME} clickhouse"
     client = "clickhouse-client -h '#{host}' --port #{port} -d '#{db}'"
@@ -95,7 +95,7 @@ Cmds.command "clickhouse" do
     fmt  = "TSV"
 
     shell  = Shell::Seq.new
-    shell.dryrun = config.dryrun?
+    shell.dryrun = config.dryrun
 
     this   = "#{PROGRAM_NAME} clickhouse"
     client = "clickhouse-client -h '#{host}' --port #{port} -d '#{db}'"
@@ -137,7 +137,7 @@ Cmds.command "clickhouse" do
     name = arg1? || raise Cmds::ArgumentError.new("no sql name")
 
     shell  = Shell::Seq.new
-    shell.dryrun = config.dryrun?
+    shell.dryrun = config.dryrun
 
     this   = "#{PROGRAM_NAME} clickhouse"
     client = "clickhouse-client -h '#{host}' --port #{port}"

@@ -7,7 +7,7 @@ class Facebook::Config < TOML::Config
   bool "verbose"
   bool "dryrun"
   bool "colorize"
-  int  "limit"
+  i32  "limit"
   str  "fields"
 
   # api
@@ -15,30 +15,30 @@ class Facebook::Config < TOML::Config
   str  "api/url"
   str  "api/access_token"
   str  "api/access_token_secret"
-  int  "api/paging_limit"
-  int  "api/keep_remaining"
+  i32  "api/paging_limit"
+  i32  "api/keep_remaining"
 
-  float "api/dns_timeout"
-  float "api/connect_timeout"
-  float "api/read_timeout"
+  f64  "api/dns_timeout"
+  f64  "api/connect_timeout"
+  f64  "api/read_timeout"
 
   # batch
   str  "batch/work_dir"
   str  "batch/cache_dir"
   str  "batch/status_log"
-  int  "batch/meta_limit"
+  i32  "batch/meta_limit"
   bool "batch/gc"
   bool "batch/pb_logging"
   bool "batch/skip_400"
   bool "batch/reduce_data"
-  int  "batch/reduce_data_min"
-  int  "batch/rate_limit_max"
+  i32  "batch/reduce_data_min"
+  i32  "batch/rate_limit_max"
   bool "batch/pretty_rate_limit"
-  int  "batch/max_attempts"
+  i32  "batch/max_attempts"
 
   # clickhouse
   str "clickhouse/host"
-  int "clickhouse/port"
+  i32 "clickhouse/port"
   str "clickhouse/db"
   str "clickhouse/table"
   

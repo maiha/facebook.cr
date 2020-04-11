@@ -1,7 +1,7 @@
 class Cmds::BatchCmd
   protected def clickhouse_sqls_execute_bundled(key)
     shell = Shell::Seq.new
-    shell.dryrun = config.dryrun?
+    shell.dryrun = config.dryrun
 
     db.measure {
       shell.run("#{PROGRAM_NAME} clickhouse execute #{key}")
@@ -100,7 +100,7 @@ class Cmds::BatchCmd
     # import to ClickHouse
     db.measure {
       shell = Shell::Seq.new
-      shell.dryrun = config.dryrun?
+      shell.dryrun = config.dryrun
 
       shell.run("#{PROGRAM_NAME} clickhouse import snap #{target_ymd} #{snap_tsv}")
 
@@ -126,7 +126,7 @@ class Cmds::BatchCmd
 
   private def import_clickhouse_tsv_impl(table, path)
     shell = Shell::Seq.new
-    shell.dryrun = config.dryrun?
+    shell.dryrun = config.dryrun
 
     db.measure {
       shell.run("#{PROGRAM_NAME} clickhouse replace #{table} #{path}")

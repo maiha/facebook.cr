@@ -37,7 +37,7 @@ class Cli::Main
     config.verbose  = verbose
     config.dryrun   = dryrun
     config.colorize = !nocolor
-    config.limit    = limit.not_nil!.to_i64 if limit
+    config.limit    = limit
     config.fields  = fields.not_nil! if fields
 #    config.format  = format.not_nil! if format
     config.init!
