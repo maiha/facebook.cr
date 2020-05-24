@@ -93,20 +93,11 @@ class Cli::Main
       exit 1
     when Cmds::ArgumentError
       STDERR.puts red(err.to_s)
-      STDERR.puts cmd.class.pretty_usage(prefix: " ")
+      STDERR.puts cmd.class.pretty_usage(prefix: "  ")
       exit 2
-    when Cmds::CommandNotFound
-      STDERR.puts show_usage
+    when Cmds::Navigatable
+      STDERR.puts err.navigate
       exit 3
-    when Cmds::TaskNotFound
-      task_names = cmd.class.task_names
-      STDERR.puts red("ERROR: Task Not Found (current: '#{err.name}')")
-      STDERR.puts "[possible tasks]"
-      STDERR.puts "  %s" % task_names.join(", ")
-      STDERR.puts
-      STDERR.puts "[examples]"
-      STDERR.puts pretty_tasks(cmd, prefix: "  ")
-      exit 4
     when Facebook::Dryrun
       STDERR.puts err.inspect
       exit 10
