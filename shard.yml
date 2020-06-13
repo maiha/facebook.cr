@@ -13,9 +13,6 @@ targets:
     main: samples/fbget.cr
 
 dependencies:
-  protobuf:
-    github: maiha/protobuf.cr
-    branch: json
   protobuf-storage:
     github: maiha/protobuf-storage.cr
   var:
