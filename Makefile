@@ -12,11 +12,11 @@ export GID = $(shell id -g)
 COMPILE_FLAGS=-Dstatic
 BUILD_TARGET=
 
-ON_ALPINE=docker-compose run --rm alpine
+DOCKER=docker-compose run --rm alpine
 
 .PHONY: build
 build:
-	@$(ON_ALPINE) shards build $(COMPILE_FLAGS) --link-flags "-static" $(BUILD_TARGET) $(O)
+	@$(DOCKER) shards build $(COMPILE_FLAGS) --link-flags "-static" $(BUILD_TARGET) $(O)
 
 .PHONY: facebook
 facebook: BUILD_TARGET=--release facebook
@@ -37,12 +37,15 @@ fbget: build
 ######################################################################
 ### testing
 
+shard.lock: shard.yml
+	$(DOCKER) shards update -v
+
 .PHONY: ci
-ci: check_version_mismatch spec facebook fbget
+ci: shard.lock check_version_mismatch spec facebook fbget
 
 .PHONY : spec
 spec:
-	@$(ON_ALPINE) crystal spec $(COMPILE_FLAGS) -v --fail-fast
+	@$(DOCKER) crystal spec $(COMPILE_FLAGS) -v --fail-fast
 
 .PHONY : check_version_mismatch
 check_version_mismatch: shard.yml README.md
