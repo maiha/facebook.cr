@@ -1,5 +1,5 @@
 name: facebook
-version: 0.4.8
+version: 0.4.9
 
 authors:
   - maiha <maiha@wota.jp>
@@ -8,6 +8,8 @@ targets:
   facebook:
     main: src/cli/bin/facebook.cr
   facebook-dev:
+    main: src/cli/bin/facebook.cr
+  facebook-pb:
     main: src/cli/bin/facebook.cr
   fbget:
     main: samples/fbget.cr

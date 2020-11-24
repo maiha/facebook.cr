@@ -27,7 +27,7 @@ facebook-dev: BUILD_TARGET=facebook-dev
 facebook-dev: build
 
 .PHONY: facebook-pb
-facebook-pb: BUILD_TARGET=--release facebook-pb -D with_pb
+facebook-pb: BUILD_TARGET=--release facebook-pb -Dwith_pb
 facebook-pb: build
 
 .PHONY : fbget
