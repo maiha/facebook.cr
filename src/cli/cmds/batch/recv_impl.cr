@@ -22,7 +22,7 @@ class Cmds::BatchCmd
     }
 
     client.after_execute {|req, res|
-      if res.try{|r| r.success? && r.client_error? }
+      if res.try{|r| r.success? || r.client_error? }
         visited_urls << req.url
       end
     }
