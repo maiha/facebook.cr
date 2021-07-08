@@ -238,26 +238,25 @@ colorize = true
 
 [ad_account]
 # funding_source raises "Permission Denied" see #2
-cmd = "/v6.0/me/adaccounts -d limit=100 -d fields=account_id,name,age,amount_spent,balance,business_city,business_country_code,business_name,business_state,business_street,business_street2,business_zip,can_create_brand_lift_study,created_time,currency,disable_reason,end_advertiser,end_advertiser_name,fb_entity,has_migrated_permissions,io_number,is_attribution_spec_system_default,is_direct_deals_enabled,is_in_3ds_authorization_enabled_market,is_in_middle_of_local_entity_migration,is_notifications_enabled,is_personal,is_prepay_account,is_tax_id_required,line_numbers,media_agency,min_campaign_group_spend_cap,min_daily_budget,offsite_pixels_tos_accepted,owner,partner,spend_cap,tax_id,tax_id_status,tax_id_type,timezone_id,timezone_name,timezone_offset_hours_utc"
+cmd = "/v11.0/me/adaccounts -d limit=100 -d fields=account_id,name,age,amount_spent,balance,business_city,business_country_code,business_name,business_state,business_street,business_street2,business_zip,can_create_brand_lift_study,created_time,currency,disable_reason,end_advertiser,end_advertiser_name,fb_entity,has_migrated_permissions,io_number,is_attribution_spec_system_default,is_direct_deals_enabled,is_in_3ds_authorization_enabled_market,is_in_middle_of_local_entity_migration,is_notifications_enabled,is_personal,is_prepay_account,is_tax_id_required,line_numbers,media_agency,min_campaign_group_spend_cap,min_daily_budget,offsite_pixels_tos_accepted,partner,spend_cap,tax_id,tax_id_status,tax_id_type,timezone_id,timezone_name,timezone_offset_hours_utc"
 skip_400 = false
 
 [ad_set]
-cmd = "/v6.0/{act_id}/adsets -d limit=100 -d fields=id,account_id,asset_feed_id,bid_amount,bid_strategy,budget_remaining,campaign_id,created_time,creative_sequence,daily_budget,daily_min_spend_target,daily_spend_cap,destination_type,effective_status,end_time,instagram_actor_id,is_dynamic_creative,lifetime_budget,lifetime_imps,lifetime_min_spend_target,lifetime_spend_cap,name,optimization_goal,optimization_sub_event,pacing_type,recurring_budget_semantics,review_feedback,rf_prediction_id,source_adset_id,start_time,status,targeting,time_based_ad_rotation_id_blocks,time_based_ad_rotation_intervals,updated_time,use_new_app_click,date_format,execution_options,rb_prediction_id,time_start,time_stop"
+cmd = "/v11.0/{act_id}/adsets -d limit=100 -d fields=id,account_id,asset_feed_id,bid_amount,bid_strategy,budget_remaining,campaign_id,created_time,creative_sequence,daily_budget,daily_min_spend_target,daily_spend_cap,destination_type,effective_status,end_time,instagram_actor_id,is_dynamic_creative,lifetime_budget,lifetime_imps,lifetime_min_spend_target,lifetime_spend_cap,name,optimization_goal,optimization_sub_event,pacing_type,recurring_budget_semantics,review_feedback,rf_prediction_id,source_adset_id,start_time,status,targeting,time_based_ad_rotation_id_blocks,time_based_ad_rotation_intervals,updated_time,use_new_app_click,date_format,execution_options,rb_prediction_id,time_start,time_stop"
 
 [campaign]
-cmd = "/v6.0/{act_id}/campaigns -d fields=id,account_id,bid_strategy,boosted_object_id,budget_rebalance_flag,budget_remaining,buying_type,can_create_brand_lift_study,can_use_spend_cap,configured_status,created_time,daily_budget,effective_status,last_budget_toggling_time,lifetime_budget,name,objective,pacing_type,source_campaign_id,spend_cap,start_time,status,stop_time,topline_id,updated_time,execution_options"
+cmd = "/v11.0/{act_id}/campaigns -d fields=id,account_id,bid_strategy,boosted_object_id,budget_rebalance_flag,budget_remaining,buying_type,can_create_brand_lift_study,can_use_spend_cap,configured_status,created_time,daily_budget,effective_status,last_budget_toggling_time,lifetime_budget,name,objective,pacing_type,source_campaign_id,spend_cap,start_time,status,stop_time,topline_id,updated_time,execution_options"
 
 [ad]
 # preview_shareable_link: raises "Unsupported get request." for some ads
-cmd = "/v6.0/{act_id}/ads -d limit=80 -d fields=id,account_id,adset_id,bid_amount,bid_type,campaign_id,configured_status,created_time,demolink_hash,display_sequence,effective_status,engagement_audience,is_autobid,last_updated_by_app_id,name,priority,source_ad_id,status,targeting,updated_time,audience_id,date_format,draft_adgroup_id,execution_options,include_demolink_hashes"
+cmd = "/v11.0/{act_id}/ads -d limit=80 -d fields=id,account_id,adset_id,bid_amount,bid_type,campaign_id,configured_status,created_time,demolink_hash,display_sequence,effective_status,engagement_audience,is_autobid,last_updated_by_app_id,name,priority,source_ad_id,status,targeting,updated_time,audience_id,date_format,draft_adgroup_id,execution_options,include_demolink_hashes"
 
 [ad_image]
-cmd = "/v6.0/{act_id}/adimages -d limit=300 -d fields=id,name,width,height,url,account_id,permalink_url,original_width,original_height,status,created_time,updated_time"
+cmd = "/v11.0/{act_id}/adimages -d limit=300 -d fields=id,name,width,height,url,account_id,permalink_url,original_width,original_height,status,created_time,updated_time"
 
 [ad_rule]
-cmd = "/v6.0/{act_id}/adrules_library -d limit=300 -d fields=id,account_id,name,status,updated_time"
-
+cmd = "/v11.0/{act_id}/adrules_library -d limit=300 -d fields=id,account_id,name,status,updated_time"
 
 [ad_video]
-cmd = "/v6.0/{act_id}/advideos -d limit=300 -d fields=id,title,permalink_url,file_size,file_url,created_time,updated_time"
+cmd = "/v11.0/{act_id}/advideos -d limit=300 -d fields=id,title,permalink_url,file_size,file_url,created_time,updated_time"
 EOF
