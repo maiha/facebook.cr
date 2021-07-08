@@ -34,6 +34,14 @@ facebook-pb: build
 fbget: BUILD_TARGET=fbget
 fbget: build
 
+.PHONY : clean
+clean:
+	rm -rf lib shard.lock
+
+.PHONY : console
+console:
+	docker-compose run alpine sh
+
 ######################################################################
 ### testing
 
