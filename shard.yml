@@ -11,6 +11,8 @@ targets:
     main: src/cli/bin/facebook.cr
   facebook-pb:
     main: src/cli/bin/facebook.cr
+  facebook-pb-dev:
+    main: src/cli/bin/facebook.cr
   fbget:
     main: samples/fbget.cr
 

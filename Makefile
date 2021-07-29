@@ -16,7 +16,7 @@ DOCKER=docker-compose run --rm alpine
 
 .PHONY: build
 build:
-	@$(DOCKER) shards build $(COMPILE_FLAGS) --link-flags "-static" $(BUILD_TARGET) $(O)
+	@$(DOCKER) shards build $(COMPILE_FLAGS) --link-flags "-static" $(BUILD_TARGET) -p -t $(O)
 
 .PHONY: facebook
 facebook: BUILD_TARGET=--release facebook
@@ -29,6 +29,10 @@ facebook-dev: build
 .PHONY: facebook-pb
 facebook-pb: BUILD_TARGET=--release facebook-pb -Dwith_pb
 facebook-pb: build
+
+.PHONY: facebook-pb-dev
+facebook-pb-dev: BUILD_TARGET=facebook-pb-dev -Dwith_pb
+facebook-pb-dev: build
 
 .PHONY : fbget
 fbget: BUILD_TARGET=fbget
