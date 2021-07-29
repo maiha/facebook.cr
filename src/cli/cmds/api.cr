@@ -1,4 +1,6 @@
 Cmds.command "api" do
+  usage "# execute API directly"
+
   var client = config.facebook_client
 
   delegate verbose?, to: config
@@ -7,20 +9,20 @@ Cmds.command "api" do
     self.logger = Logger.new(nil)
   end
   
-  usage "me # get '/me'"
+  desc "me", "# get '/me'"
   task me do
     res = client.get("/me")
     show(res)
   end
 
-  usage "adaccounts # get '/v11.0/me/adaccounts'"
+  desc "adaccounts", "# get '/v11.0/me/adaccounts'"
   task adaccounts do
     limit = config.limit? || 10
     res = client.get("/v11.0/me/adaccounts -d limit=#{limit}")
     show(res)
   end
 
-  usage "get '/v11.0/me/adaccounts -d fields=name,age -d limit=300' # get 'XXX' as is"
+  desc "get '/v11.0/me/adaccounts -d fields=name,age -d limit=300'", "# get 'XXX' as is"
   task get, "XXX" do
     if limit = config.limit?
       res = client.get(arg1, {"limit" => limit.to_s})
@@ -30,7 +32,7 @@ Cmds.command "api" do
     show(res)
   end
 
-  usage "data XXX # call 'GET XXX', then extract data as json"
+  desc "data XXX", "# call 'GET XXX', then extract data as json"
   task data, "XXX" do
     if limit = config.limit?
       res = client.get(arg1, {"limit" => limit.to_s})

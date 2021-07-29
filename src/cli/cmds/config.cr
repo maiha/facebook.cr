@@ -1,7 +1,5 @@
 Cmds.command "config" do
-  usage "sample (field) # show sample values"
-  usage "show           # show current values"
-  usage "check          # verify keys"
+  usage "# manage current config file"
 
   var sample : Facebook::Config = Facebook::Config.sample
 
@@ -9,6 +7,7 @@ Cmds.command "config" do
     self.logger = Logger.new(nil)
   end
   
+  desc "sample [field]", "# show sample values (only for the [field] if given)"
   task sample do
     if field = args.shift?
       k = field.split(".").last
@@ -19,11 +18,13 @@ Cmds.command "config" do
     end
   end
 
+  desc "show", "# show current values"
   task show do
     puts "# %s" % (config.clue? || "(unknown path)")
     puts config
   end
 
+  desc "test", "# check keys"
   task test do
     src = sample.toml
     dst = config.toml

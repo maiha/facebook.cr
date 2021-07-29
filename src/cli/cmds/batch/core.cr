@@ -38,6 +38,9 @@ class Cmds::BatchCmd
   var status_logger : Pretty::Logger = Pretty::Logger.new(Logger.new(nil))
 
   def before
+    # First of all, check task name to raise when argument error.
+    args[0]? || task_name
+    
     self.paging_limit = config.api_paging_limit
     self.executed_at  = Pretty::Time.now
 

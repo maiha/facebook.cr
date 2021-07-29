@@ -1,33 +1,30 @@
 Cmds.command "clickhouse" do
-  usage "schema       facebook"
-  usage "schema       facebook 20180911"
-  usage "schema.merge facebook"
-  usage "schema.tmp   facebook 20180911"
-  usage "import 20180911 data.tsv"
-  usage "import 20180911 data.tsv"
-  usage "replace account data.tsv"
-  usage "execute facebook  # run sql(facebook)"
-  
+  usage "# managing schema and data in ClickHouse"
+
   var target_date : Time
   var host  : String = config.clickhouse_host
   var port  : Int32  = config.clickhouse_port
   var db    : String = config.clickhouse_db
 
+  desc "schema <table> [date]", "# show schema of the <table>"
   task "schema", "table_name (postfix)" do
     table = arg1? || raise Cmds::ArgumentError.new("Table name not found")
     do_schema(table, postfix: arg2?)
   end
 
+  desc "schema.tmp <table> [date]", "# show temp schema of the <table>"
   task "schema.tmp", "table_name (postfix)" do
     table = arg1? || raise Cmds::ArgumentError.new("Table name not found")
     do_schema(table, postfix: arg2?, tmp: true)
   end
 
+  desc "schema.merge <table>", "# show merge schema of the <table>"
   task "schema.merge", "table_name (postfix)" do
     table = arg1? || raise Cmds::ArgumentError.new("Table name not found")
     do_schema(table, postfix: arg2?, merge: true)
   end
 
+  desc "replace <table> <tsv_path>", "# replace data of the <table> with <tsv_path> file"
   task "replace", "table_name tsv_path" do
     name = arg1? || raise Cmds::ArgumentError.new("Table name not found")
     path = arg2? || raise Cmds::ArgumentError.new("TSV not found")
@@ -83,6 +80,7 @@ Cmds.command "clickhouse" do
     end
   end
 
+  desc "import <table> <date> <tsv_path>", "# import TSV into the date of the table"
   task "import", "table date path" do
     table = arg1? || raise Cmds::ArgumentError.new("Table name not found")
     date  = arg2? || raise Cmds::ArgumentError.new("Date not found")
@@ -133,6 +131,7 @@ Cmds.command "clickhouse" do
     end
   end
 
+  desc "execute <name>", "# execute sql of the <name>"
   task "execute", "sql" do
     name = arg1? || raise Cmds::ArgumentError.new("no sql name")
 

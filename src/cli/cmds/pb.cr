@@ -11,12 +11,8 @@
 Cmds.command "pb" do
   include Enumerable(Protobuf::Message)
 
-  usage "count HttpCall.pb               # show the count"
-  usage "list  HttpCall.pb -v -l 1       # show first entry"
-  usage "list  HttpCall.pb               # show all entries"
-  usage "list  HttpCall.pb -f url,status"
-  usage "grep 'status!=200' HttpCall.pb"
-  
+  usage "# manage pb files"
+
   var files  : Array(String)
   var fields : Array(String)
   var filter : Filter
@@ -28,27 +24,32 @@ Cmds.command "pb" do
     self.logger = Logger.new(nil)
   end
 
+  desc "count <pb>", "# count records in the <pb>"
   task "count" do
     puts size
   end
   
+  desc "grep 'status!=200' <pb>", "# filter records with the condition "
   task "grep" do
     # list already has grep features
     invoke_task("list")
   end
   
+  desc "list <pb> [-v] [-l 10]", "# list entries"
   task "list" do
     each_with_index do |pb, i|
       show(pb, i)
     end
   end
 
+  desc "show <pb> [-f fields]", "# show the value of the entry (only <fields> if given)"
   task "show" do
     each do |pb|
       p pb
     end
   end
 
+  desc "head <pb> [-v]", "# show only the first record"
   task "head" do
     each_with_index do |pb, i|
       show(pb, i)
@@ -56,6 +57,7 @@ Cmds.command "pb" do
     end
   end
 
+  desc "tail <pb> [-v]", "# show only the last record"
   task "tail" do
     pb = nil
     i = -1
@@ -68,7 +70,7 @@ Cmds.command "pb" do
     end
   end
 
-  usage "json2schema response.json Campaign  # convert to protobuf schema"
+  desc "json2schema response.json Campaign", "# [develop] convert to protobuf schema"
   task "json2schema" do
     path  = arg1? || raise Cmds::ArgumentError.new("need json file")
     klass = arg2? || File.basename(path, ".json").capitalize
@@ -76,14 +78,14 @@ Cmds.command "pb" do
     json2schema(hash, klass)
   end
 
-  usage "schema2renum campaign.proto # renumber schema"
+  desc "schema2renum campaign.proto", "# [develop] renumber schema"
   task "schema2renum" do
     path  = arg1? || raise Cmds::ArgumentError.new("need proto schema")
     lines = File.read(path).split(/\n/)
     schema2renum(lines)
   end
 
-  usage "schema2model campaign.proto Facebook::"
+  desc "schema2model campaign.proto Facebook::", "# [develop] generate crystal model class with prefix"
   task "schema2model" do
     path   = arg1? || raise Cmds::ArgumentError.new("need proto schema")
     prefix = arg2?
@@ -91,7 +93,7 @@ Cmds.command "pb" do
     schema2model(lines, prefix)
   end
   
-  usage "schema2clickhouse campaign.proto # convert to ClickHouse table"
+  desc "schema2clickhouse campaign.proto,", "# [develop] convert to ClickHouse table"
   task "schema2clickhouse" do
     path = arg1? || raise Cmds::ArgumentError.new("need proto schema")
     schema2clickhouse(File.read(path))
