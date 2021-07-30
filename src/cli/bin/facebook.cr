@@ -18,7 +18,7 @@ class Cli::Main
 
   option config_path  : String?, "-K <config>", "Facebook config file (default: '~/.facebookrc')", nil
 
-  option pass    : String?, "-a <access_token>", "Specify the access token for api account", nil
+  option token   : String?, "-a <access_token>", "Specify the access token for api account", nil
   option fields  : String?, "-f <fields>", "Select only these fields", nil
   option limit   : Int32?, "-l <limit>", "Select only first limit records", nil
   option rawmode : Bool  , "--raw", "Use raw formatting for output", false
@@ -34,6 +34,7 @@ class Cli::Main
   def run
     # setup
     self.config = load_config
+    config.api_access_token = token
     config.verbose  = verbose
     config.dryrun   = dryrun
     config.colorize = !nocolor

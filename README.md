@@ -2,9 +2,31 @@
 
 facebook api for [Crystal](http://crystal-lang.org/).
 
-- crystal: 0.33.0
+## Usage (as Application)
 
-## Usage (library)
+Download the x86_64 static binary from [releases](https://github.com/maiha/facebook.cr/releases).
+
+You can send an arbitrary GET request to the Facebook Marketing API.
+
+```console
+$ facebook api get '/v11.0/me' -a <ACCESS_TOKEN>
+$ facebook api get '/v11.0/me/adaccounts -d fields=account_id,name' -a <ACCESS_TOKEN>
+```
+
+Access tokens and other information can be put together in a configuration file.
+
+```console
+$ facebook config sample > .facebookrc
+
+$ vi .facebookrc
+access_token    = "xxxxxx"
+
+$ facebook api me
+```
+
+## Usage (as Library)
+
+- crystal: 0.33.0
 
 ```crystal
 require "facebook"
@@ -12,45 +34,6 @@ require "facebook"
 client = Facebook::Client.new(auth: "xxxxxx")
 res = client.get("/me")
 puts res.body
-```
-
-## Usage (facebook application)
-
-### setup config (first time only)
-
-Generate sample by `config`, then set `access_token`. That's all.
-
-```console
-$ facebook config sample > .facebookrc
-$ vi .facebookrc
-access_token    = "xxxxxx"
-```
-
-You can verify the access_key by invoking `api me`.
-
-```console
-$ facebook api me
-```
-
-### api
-
-##### builtin api commands
-
-Just run `facebook api` to show all available api commands.
-
-```console
-$ facebook api
-[possible tasks]
-  adaccounts, get, me
-...
-
-$ facebook api adaccounts
-```
-
-`get` is meta api commands that can invoke arbitrary commands by string.
-
-```console
-$ facebook api get '/v11.0/me/adaccounts -d fields=account_id,name'
 ```
 
 ## Development
@@ -65,10 +48,6 @@ dependencies:
 ```
 
 2. Run `shards install`
-
-## Development
-
-TODO: Write development instructions here
 
 ## Contributing
 

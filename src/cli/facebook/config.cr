@@ -15,7 +15,6 @@ class Facebook::Config < TOML::Config
   bool "api/logging"
   str  "api/url"
   str  "api/access_token"
-  str  "api/access_token_secret"
   i32  "api/paging_limit"
   i32  "api/keep_remaining"
 

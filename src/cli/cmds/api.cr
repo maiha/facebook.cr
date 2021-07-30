@@ -7,6 +7,10 @@ Cmds.command "api" do
 
   def before
     self.logger = Logger.new(nil)
+
+    if token = config.api_access_token?
+      client.auth = Facebook::Auth::AccessToken.new(token)
+    end
   end
   
   desc "me", "# get '/me'"
