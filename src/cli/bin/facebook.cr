@@ -21,7 +21,7 @@ class Cli::Main
   option pass    : String?, "-a <access_token>", "Specify the access token for api account", nil
   option fields  : String?, "-f <fields>", "Select only these fields", nil
   option limit   : Int32?, "-l <limit>", "Select only first limit records", nil
-  option format  : String?, "-F <format>", "Specify format", nil
+  option rawmode : Bool  , "--raw", "Use raw formatting for output", false
   option dryrun  : Bool  , "-n", "Dryrun mode", false
   option verbose : Bool  , "-v", "Verbose output", false
   option nocolor : Bool  , "--no-color", "Disable colored output", false
@@ -38,8 +38,8 @@ class Cli::Main
     config.dryrun   = dryrun
     config.colorize = !nocolor
     config.limit    = limit
-    config.fields  = fields.not_nil! if fields
-#    config.format  = format.not_nil! if format
+    config.fields   = fields.not_nil! if fields
+    config.rawmode  = rawmode
     config.init!
 
     Facebook::Config.current = config

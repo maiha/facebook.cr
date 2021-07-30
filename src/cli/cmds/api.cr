@@ -29,19 +29,8 @@ Cmds.command "api" do
     else
       res = client.get(arg1)
     end
-    show(res)
-  end
 
-  desc "data XXX", "# call 'GET XXX', then extract data as json"
-  task data, "XXX" do
-    if limit = config.limit?
-      res = client.get(arg1, {"limit" => limit.to_s})
-    else
-      res = client.get(arg1)
-    end
-    json = JSON::Parser.new(res.body).parse
-    data = json["data"]? || abort "res[data] not found"
-    puts data.to_json
+    show(res)
   end
 
   private def show_headers(res : Facebook::Response)
@@ -67,6 +56,11 @@ Cmds.command "api" do
   end
 
   private def show(res : Facebook::Response)
+    if config.rawmode
+      puts res.body
+      return nil
+    end
+
     if verbose?
       puts "%s %s %s" % [res.code, res.req.api.method, res.req.url]
       puts "----------------------------------------"
