@@ -121,7 +121,13 @@ Cmds.command "pb" do
       pb[@key].to_s != @val.to_s
     end
   end
-  
+
+  class Cond::Match < Cond
+    def =~(pb : Protobuf::Message)
+      pb[@key].to_s.includes?(@val.to_s)
+    end
+  end
+
   private record Filter, conds : Array(Cond) = Array(Cond).new do
     def =~ (pb)
       ! (self !~ pb)
@@ -162,6 +168,8 @@ Cmds.command "pb" do
     filter = Filter.new
     args.dup.each do |arg|
       case arg
+      when /^(.*?)=~(.*)$/
+        filter.conds << Cond::Match.new($1, $2)
       when /^(.*?)!=(.*)$/
         filter.conds << Cond::Not.new($1, $2)
       when /^(.*?)=(.*)$/
