@@ -22,6 +22,7 @@ class Cli::Main
   option fields  : String?, "-f <fields>", "Select only these fields", nil
   option limit   : Int32?, "-l <limit>", "Select only first limit records", nil
   option rawmode : Bool  , "--raw", "Use raw formatting for output", false
+  option jsonout : Bool  , "--json", "Use JSON formatting for output", false
   option dryrun  : Bool  , "-n", "Dryrun mode", false
   option verbose : Bool  , "-v", "Verbose output", false
   option nocolor : Bool  , "--no-color", "Disable colored output", false
@@ -41,6 +42,7 @@ class Cli::Main
     config.limit    = limit
     config.fields   = fields.not_nil! if fields
     config.rawmode  = rawmode
+    config.jsonout  = jsonout
     config.init!
 
     Facebook::Config.current = config

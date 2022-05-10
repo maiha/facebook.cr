@@ -8,6 +8,7 @@ class Facebook::Config < TOML::Config
   bool "dryrun"
   bool "colorize"
   bool "rawmode"
+  bool "jsonout"
   i32  "limit"
   str  "fields"
 

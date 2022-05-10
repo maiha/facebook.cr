@@ -252,6 +252,10 @@ Cmds.command "pb" do
       end
       puts Pretty.lines(lines, indent: "  ", delimiter: " : ").split(/\n/).map(&.sub(/\s+$/,"")).join("\n")
       puts
+    elsif config.jsonout?
+      hash = pb.to_hash
+      hash = hash.select(fields) if fields.any?
+      puts hash.to_json
     else
       case fields.size
       when 0
