@@ -102,7 +102,9 @@ class Cmds::BatchCmd
       shell = Shell::Seq.new
       shell.dryrun = config.dryrun
 
-      shell.run("#{PROGRAM_NAME} clickhouse import snap #{target_ymd} #{snap_tsv}")
+      if File.size(snap_tsv) > 0
+        shell.run("#{PROGRAM_NAME} clickhouse import snap #{target_ymd} #{snap_tsv}")
+      end
 
       if shell.dryrun?
         STDOUT.puts shell.manifest

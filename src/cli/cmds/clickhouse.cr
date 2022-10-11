@@ -107,8 +107,6 @@ Cmds.command "clickhouse" do
     # 4. replace partition
     shell.run(%Q(#{client} -q "ALTER TABLE #{dst} REPLACE PARTITION '#{ymd}' FROM #{tmp}"))
 
-    shell.run("#{client} -q 'INSERT INTO #{tmp} FORMAT #{fmt}' <  #{path}")
-
     # 5. delete tmp table
     shell.run("#{client} -q 'DROP TABLE IF EXISTS #{tmp}'")
 
