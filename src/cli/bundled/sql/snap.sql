@@ -1,4 +1,4 @@
-CREATE TABLE snap
+CREATE TABLE IF NOT EXISTS snap
 (
   date         Date,
   table        String,
