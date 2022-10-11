@@ -7,4 +7,7 @@ CREATE TABLE snap
   updated_time DateTime,
   json         String
 )
-ENGINE = MergeTree(date, (date, table, account_id, id), 8192)
+ENGINE = MergeTree
+PARTITION BY date
+ORDER BY (date, table, account_id, id)
+SETTINGS index_granularity = 8192 

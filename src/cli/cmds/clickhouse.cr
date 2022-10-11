@@ -18,12 +18,6 @@ Cmds.command "clickhouse" do
     do_schema(table, postfix: arg2?, tmp: true)
   end
 
-  desc "schema.merge <table>", "# show merge schema of the <table>"
-  task "schema.merge", "table_name (postfix)" do
-    table = arg1? || raise Cmds::ArgumentError.new("Table name not found")
-    do_schema(table, postfix: arg2?, merge: true)
-  end
-
   desc "replace <table> <tsv_path>", "# replace data of the <table> with <tsv_path> file"
   task "replace", "table_name tsv_path" do
     name = arg1? || raise Cmds::ArgumentError.new("Table name not found")
@@ -88,8 +82,7 @@ Cmds.command "clickhouse" do
 
     ymd  = Pretty.date(date).to_s("%Y%m%d")
     tmp  = build_table_name(table, postfix: ymd, tmp: true)
-    dst  = build_table_name(table, postfix: ymd)
-    old  = tmp + "_old"
+    dst  = build_table_name(table)
     fmt  = "TSV"
 
     shell  = Shell::Seq.new
@@ -101,25 +94,23 @@ Cmds.command "clickhouse" do
     # 0. create database
     shell.run("clickhouse-client -h '#{host}' --port #{port} -q 'CREATE DATABASE IF NOT EXISTS #{db}'")
 
-    # 1. create merge table
-    shell.run("#{this} schema.merge #{table} | #{client}")
+    # 1. create target table
+    shell.run("#{this} schema #{table} | #{client}")
 
-    # 2. create given dated table
-    shell.run("#{this} schema #{table} #{ymd} | #{client}")
-
-    # 3. create given dated tmp table
+    # 2. create given dated tmp table
     shell.run("#{client} -q 'DROP TABLE IF EXISTS #{tmp}'")
     shell.run("#{this} schema.tmp #{table} #{ymd} | #{client}")
 
-    # 4. insert data into dated tmp table
+    # 3. create given dated tmp table
     shell.run("#{client} -q 'INSERT INTO #{tmp} FORMAT #{fmt}' <  #{path}")
 
-    # 5. rename all tables at once
-    shell.run("#{client} -q 'DROP TABLE IF EXISTS #{old}'")
-    shell.run("#{client} -q 'RENAME TABLE #{dst} TO #{old}, #{tmp} TO #{dst}'")
+    # 4. replace partition
+    shell.run(%Q(#{client} -q "ALTER TABLE #{dst} REPLACE PARTITION '#{ymd}' FROM #{tmp}"))
 
-    # 6. delete old table
-    shell.run("#{client} -q 'DROP TABLE IF EXISTS #{old}'")
+    shell.run("#{client} -q 'INSERT INTO #{tmp} FORMAT #{fmt}' <  #{path}")
+
+    # 5. delete tmp table
+    shell.run("#{client} -q 'DROP TABLE IF EXISTS #{tmp}'")
 
     if shell.dryrun?
       STDOUT.puts shell.manifest
