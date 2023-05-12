@@ -19,14 +19,14 @@ Cmds.command "api" do
     show(res)
   end
 
-  desc "adaccounts", "# get '/v15.0/me/adaccounts'"
+  desc "adaccounts", "# get '/v16.0/me/adaccounts'"
   task adaccounts do
     limit = config.limit? || 10
-    res = client.get("/v15.0/me/adaccounts -d limit=#{limit}")
+    res = client.get("/v16.0/me/adaccounts -d limit=#{limit}")
     show(res)
   end
 
-  desc "get '/v15.0/me/adaccounts -d fields=name,age -d limit=300'", "# get 'XXX' as is"
+  desc "get '/v16.0/me/adaccounts -d fields=name,age -d limit=300'", "# get 'XXX' as is"
   task get, "XXX" do
     if limit = config.limit?
       res = client.get(arg1, {"limit" => limit.to_s})

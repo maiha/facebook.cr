@@ -9,8 +9,8 @@ Download the x86_64 static binary from [releases](https://github.com/maiha/faceb
 You can send an arbitrary GET request to the Facebook Marketing API.
 
 ```console
-$ facebook api get '/v15.0/me' -a <ACCESS_TOKEN>
-$ facebook api get '/v15.0/me/adaccounts -d fields=account_id,name' -a <ACCESS_TOKEN>
+$ facebook api get '/v16.0/me' -a <ACCESS_TOKEN>
+$ facebook api get '/v16.0/me/adaccounts -d fields=account_id,name' -a <ACCESS_TOKEN>
 ```
 
 Access tokens and other information can be put together in a configuration file.

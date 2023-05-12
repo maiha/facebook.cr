@@ -8,8 +8,8 @@ describe Facebook::Client do
     end
 
     it "respects api" do
-      client = Facebook::Client.new(api: "/v15.0/me")
-      client.request.to_s.should eq("https://graph.facebook.com/v15.0/me")
+      client = Facebook::Client.new(api: "/v16.0/me")
+      client.request.to_s.should eq("https://graph.facebook.com/v16.0/me")
 
       client = Facebook::Client.new
       client.api = Facebook::Api::Get.new("/me", data: {"limit" => "2"})
