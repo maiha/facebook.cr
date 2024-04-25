@@ -39,5 +39,6 @@ development_dependencies:
     github: maiha/shell.cr
   toml-config:
     github: maiha/toml-config.cr
+    version: 0.6.1
 
 license: MIT
