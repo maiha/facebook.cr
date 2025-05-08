@@ -1,7 +1,7 @@
 require "./spec_helper"
 
 private def current_url
-  "https://graph.facebook.com/v21.0/act_123/campaigns?access_token=xxx&fields=id%2Cname&limit=100&after=abc"
+  "https://graph.facebook.com/v22.0/act_123/campaigns?access_token=xxx&fields=id%2Cname&limit=100&after=abc"
 end
 
 private def reduce_data(*args)
@@ -15,7 +15,7 @@ end
 describe Cmds::BatchCmd::ReduceData do
   describe ".update_limit(url, limit)" do
     it "replace limit parameter" do
-      Cmds::BatchCmd::ReduceData.update_limit(current_url, 10).should eq "https://graph.facebook.com/v21.0/act_123/campaigns?access_token=xxx&fields=id%2Cname&limit=10&after=abc"
+      Cmds::BatchCmd::ReduceData.update_limit(current_url, 10).should eq "https://graph.facebook.com/v22.0/act_123/campaigns?access_token=xxx&fields=id%2Cname&limit=10&after=abc"
     end
 
     it "do nothing when limit is nil" do
@@ -35,11 +35,11 @@ describe Cmds::BatchCmd::ReduceData do
 
   describe ".reduce_data(current_url, min_limit)" do
     it "builds reduced_url by setting limit to limit/2" do
-      reduce_data(current_url, 10).should eq "https://graph.facebook.com/v21.0/act_123/campaigns?access_token=xxx&fields=id%2Cname&limit=50&after=abc"
+      reduce_data(current_url, 10).should eq "https://graph.facebook.com/v22.0/act_123/campaigns?access_token=xxx&fields=id%2Cname&limit=50&after=abc"
     end
 
     it "respects min_limit" do
-      reduce_data(current_url, 99).should eq "https://graph.facebook.com/v21.0/act_123/campaigns?access_token=xxx&fields=id%2Cname&limit=99&after=abc"
+      reduce_data(current_url, 99).should eq "https://graph.facebook.com/v22.0/act_123/campaigns?access_token=xxx&fields=id%2Cname&limit=99&after=abc"
     end
 
     it "raises when it has already reached the min_limit" do
