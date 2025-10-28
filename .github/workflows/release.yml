@@ -1,0 +1,30 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  release:
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build facebook
+        run: make facebook
+
+      - name: Generate SHA256
+        run: sha256sum bin/facebook > SHA256SUMS
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            bin/facebook
+            SHA256SUMS
+          draft: false
+          prerelease: false
+          generate_release_notes: true
