@@ -1,4 +1,4 @@
-# facebook.cr [![Build Status](https://travis-ci.org/maiha/facebook.cr.svg?branch=master)](https://travis-ci.org/maiha/facebook.cr)
+# facebook.cr [![CI](https://github.com/maiha/facebook.cr/actions/workflows/ci.yml/badge.svg)](https://github.com/maiha/facebook.cr/actions/workflows/ci.yml)
 
 facebook api for [Crystal](http://crystal-lang.org/).
 
