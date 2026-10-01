@@ -44,7 +44,7 @@ puts res.body
 dependencies:
   facebook:
     github: maiha/facebook
-    version: 23.0.0
+    version: 26.0.0
 ```
 
 2. Run `shards install`
